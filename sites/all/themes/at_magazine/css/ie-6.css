@@ -1,0 +1,33 @@
+/* AT Biz IE6 */
+.nav ul li a {
+  float: left;
+}
+section.breadcrumb {
+}
+.block {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+body div#secondary-content-wrapper div.image-overlay, 
+body div#tertiary-content-wrapper div.image-overlay,
+#secondary-content-wrapper div.container {
+  background: transparent !important;
+}
+#main-content .main-content-header,
+#block-system-main .block-inner {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.sf-horizontal .sf-with-ul {
+  padding-right: 30px;
+}
+span.sf-sub-indicator {
+  background: none;
+  display: none;
+}
+div.region-secondary-content .block-inner,
+div.region-secondary-content .block-content {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}

@@ -1,0 +1,12 @@
+/* AT Magazine */
+.form-submit {
+  position: relative;
+  top: -4px;
+}
+#footer {
+  zoom: 1;
+}
+li.crumb span {
+  display: inline-block;
+  padding: 0 0.5em;
+}

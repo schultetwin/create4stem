@@ -1,0 +1,236 @@
+/* AT Magazine Styles
+ * NOTICE: This is a commercial Drupal theme. Elements of this theme including this field
+ * are licensed under a standard commercial license which does not permit redistribution. 
+ */
+
+/* Views slideshow */
+.view-content .skin-default img {
+  border: 0;
+}
+.views-slideshow-controls-top,
+.views-slideshow-controls-bottom {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 2px 6px;
+  position: absolute;
+  right: 3px;
+  z-index: 300;
+}
+.views-slideshow-controls-top {
+  top: 3px;
+}
+.views-slideshow-controls-bottom {
+  bottom: 8px;
+}
+
+/* Superfish */
+/* sf-horizontal - classic drop menu style */
+.nav .block-superfish {
+  padding: 0;
+  margin: 0;
+}
+.block-superfish .block-content-inner,
+ul.sf-horizontal {
+  padding: 0;
+}
+.sf-horizontal a {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-left: none;
+  border-top: none;
+}
+.sf-horizontal a:hover,
+.sf-horizontal a:focus {
+  text-decoration: none;
+}
+.nav ul.sf-horizontal li {
+  margin: 0;
+  padding: 0;
+}
+.sf-horizontal li:hover ul,
+.sf-horizontal li.sfHover ul {
+  top: 30px;
+}
+.nav .contextual-links-wrapper {
+  display: none;
+}
+/* .sf-navbar - drop down nav bar style */
+ul.sf-navbar {
+  padding: 0;
+  position: absolute;
+  width: auto;
+  z-index: 99;
+}
+.sf-navbar a {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-left: none;
+  border-top: none;
+}
+.sf-navbar a:hover,
+.sf-navbar a:focus,
+.sf-navbar ul ul a:hover,
+.sf-navbar ul ul a:focus,
+.sf-navbar ul ul ul a:hover,
+.sf-navbar ul ul ul a:focus,
+.sf-navbar ul ul ul ul a:hover,
+.sf-navbar ul ul ul ul a:focus {
+    text-decoration: underline;
+}
+.sf-navbar ul a:hover,
+.sf-navbar ul a:focus  {
+  text-decoration: underline;
+}
+ul.sf-navbar li {
+  margin: 0;
+  padding: 0;
+}
+.sf-navbar li:hover ul,
+.sf-navbar li.sfHover ul {
+  top: 30px;
+  text-transform: none;
+}
+.sf-navbar li li li {
+  top: 0;
+}
+ul.sf-vertical ul,
+ul.sf-navbar ul ul,
+ul.sf-navbar ul ul ul,
+ul.sf-navbar ul ul ul ul {
+  width: 13em;
+}
+ul.sf-navbar ul ul ul,
+ul.sf-navbar ul ul ul ul {
+  left: 100% !important;
+}
+/* sf-vertical - flyout menus for sidebars */
+ul.sf-vertical a {
+  /* color: #fff !important; Tweak this to suit your color scheme */
+}
+ul.sf-vertical,
+ul.sf-vertical ul,
+ul.sf-vertical ul ul,
+ul.sf-vertical ul ul ul {
+  padding: 0;
+  margin: 0;
+}
+.nav .block-content {
+  padding: 5px 0 12px;
+  margin: 0;
+}
+.sf-vertical,
+.sf-vertical li {
+  width: 100%;
+}
+.sf-vertical li:hover ul,
+.sf-vertical li.sfHover ul,
+sf-vertical li:hover ul ul,
+.sf-vertical li.sfHover ul ul,
+sf-vertical li:hover ul ul ul,
+.sf-vertical li.sfHover ul ul ul {
+  left: 100%; /* match ul width */
+  top: -1px;
+}
+.sf-vertical a:hover,
+.sf-vertical a:focus {
+  text-decoration: none;
+}
+.sf-vertical li li a:hover,
+.sf-vertical li li a:focus,
+.sf-vertical li li li a:hover,
+.sf-vertical li li li a:focus {
+  text-decoration: underline;
+}
+
+/* Quicktabs */
+.block-quicktabs .block-inner .block-inner,
+.sidebar .block-quicktabs .block-inner .block-inner {
+  margin: 0;
+}
+.block-quicktabs .block-content,
+.sidebar .block-quicktabs .block-content {
+  background: transparent;
+  border: 0;
+}
+.block-quicktabs .block-content-inner,
+.sidebar .block-quicktabs .block-content-inner {
+  background: transparent;
+}
+.block-quicktabs ul.quicktabs-tabs {
+  margin: 0;
+  padding: 10px 10px 0;
+}
+.block-quicktabs ul.quicktabs-tabs li{
+  margin: 0 5px 0 0;
+}
+.quicktabs-style-nostyle ul.quicktabs_tabs {
+  padding: 0;
+}
+.quicktabs-style-nostyle ul.quicktabs_tabs li {
+  padding: 0 10px 0 0;
+}
+.quicktabs-style-nostyle ul.quicktabs_tabs li a {
+  text-decoration: none;
+}
+
+/* Date/Calendar */
+.calendar-calendar div.date-nav {
+  border: 0;
+  padding: 1px;
+}
+.calendar-calendar td {
+  text-align: center;
+}
+.calendar-calendar th.days {
+  border: 0;
+}
+.calendar-calendar td.calendar-agenda-hour {
+  border-style: solid none none;
+}
+.calendar-calendar td.calendar-agenda-items {
+  border-style: solid;
+}
+.calendar-calendar td.calendar-agenda-hour {
+  border-style: none none solid solid;
+  border-width: 1px;
+}
+.calendar-calendar td.calendar-agenda-hour .calendar-hour {
+  padding: 0 5px;
+  white-space: nowrap;
+}
+.calendar-calendar div.calendar {
+  font-size: 1em;
+}
+.calendar-calendar td .inner div.calendar div {
+  background: #eee;
+  border: 0;
+  padding: 0 5px;
+}
+.calendar-calendar td .inner div.calendar div a {
+  padding: 0;
+  background: #eee;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.week-view .calendar-calendar td .inner div,
+.week-view .calendar-calendar td .inner div a {
+  border-bottom: 1px solid #fff;
+}
+.view-content .calendar-calendar ul.inline {
+  padding: 0 0 10px;
+  display: block;
+}
+.view-content .calendar-calendar ul.inline li {
+  margin-right: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.block .calendar-calendar .month-view table {
+  border: 2px solid #fff;
+  clear: both;
+  margin: 0;
+  padding: 3px;
+  width: auto;
+}
