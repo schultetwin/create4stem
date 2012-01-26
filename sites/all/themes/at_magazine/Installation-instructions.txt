@@ -1,0 +1,17 @@
+﻿Installation.
+
+NOTE: This theme is for Drupal 7. If you purchased this for Drupal 6 by mistake please contact us for a refund.
+
+1. Download and install the base theme: http://drupal.org/project/adaptivetheme (use the latest Drupal 7 version).
+
+2. Install this theme and enable as default.
+
+3. Visit the "Settings" page and save the theme settings (you must do this at least once).
+
+4. On the "Settings" page you will find the color settings and all other Advanced theme settings.
+
+If you need help with anything please post in our support forum (you must be logged in to access the forums): http://adaptivethemes.com/forum
+
+You can download this theme as many times as you like.
+
+Please read the licence and view our EULA online. This is a commercial theme and in part subject to a commercial licence. All PHP is GPL.

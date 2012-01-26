@@ -1,0 +1,1505 @@
+/* AT Magazine Styles
+ * NOTICE: This is a commercial Drupal theme. Elements of this theme including this field
+ * are licensed under a standard commercial license which does not permit redistribution. 
+ */
+
+body,
+#branding,
+#header hgroup {
+  padding: 0; 
+  margin: 0;
+}
+div#page {
+  padding-top: 10px;
+}
+.container {}
+#columns {
+  padding-top: 15px;
+}
+#columns.with-featured {
+  padding-top: 0;
+}
+
+/* Gpanel margins */
+#tripanel {
+  font-size: 0.92em;
+  margin: 20px 10px;
+  padding: 10px 0;
+}
+#tripanel.with-secondary {
+  margin-top: 0;
+}
+#tripanel .article {
+  margin-bottom: 0;
+  padding: 0;
+}
+#bipanel,
+.region-highlighted {
+  padding-bottom: 15px;
+}
+#quadpanel {
+  margin: 15px 0 10px;
+}
+
+/* Region adjustments */
+.region-secondary-content,
+.region-tertiary-content {
+  margin: 15px 0;
+}
+
+/* Skip Navigation */
+#skip-link {
+  left: 50%;
+  margin-left: -6.5em;
+  margin-top: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  width: 12em;
+  z-index: 50;
+}
+#skip-link a,
+#skip-link a:link,
+#skip-link a:visited {
+  background: #444 !important;
+  color: #fff;
+  display: block;
+  line-height: 2;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  -khtml-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-radius: 0 0 10px 10px;
+}
+#skip-link a:hover,
+#skip-link a:active,
+#skip-link a:focus {
+  outline: 0;
+}
+
+/* HTML elements */
+html {
+  font-size:75%; /* 16px x 75% = 12px */
+}
+body {
+  line-height:1.5;
+}
+a img {
+  border:none;
+}
+em,
+dfn {
+  font-style:italic;
+}
+ins {
+  border-bottom:none;
+  text-decoration:none;
+}
+pre,
+code,
+tt,
+samp,
+kbd,
+var {
+  font:1em "Lucida Console",Monaco,"DejaVu Sans Mono",monospace;
+}
+blockquote,q {
+  font-style:italic;
+  quotes:"" "";
+}
+blockquote {
+  margin:0 0 1.5em;
+  padding:0 0 0 3em;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content:"";
+}
+blockquote p {
+  margin:0;
+}
+strong,
+dfn,
+caption,
+th {
+  font-weight:700;
+}
+img {
+  line-height: 0;
+}
+
+/* Forms */
+form {
+  margin:0 0 1.5em;
+  padding:0;
+}
+.form-item label {
+  font-weight: 400;
+}
+input {
+  margin: .5em 0;
+}
+input.title {
+  font-size: 1.5em;
+}
+input.text,
+input.title,
+textarea,
+select {
+  border: 1px solid #ccc;
+  margin: .5em 0;
+  padding: 2px;
+}
+.form-text:focus,
+.form-checkbox:focus,
+.form-radio:focus,
+.form-select:focus {
+  border: 1px solid #fc0;
+  background: #ffffdf;
+}
+textarea:focus {
+  border:1px solid #fc0;
+  background:#FFF;
+}
+input.text,
+input.title {
+  padding: .5em;
+}
+input.form-text,
+textarea {
+  border: 1px solid #ccc;
+  height: auto;
+  padding: 3px;
+}
+textarea,
+input {
+  font: 1em normal Arial, Helvetica, sans-serif;
+}
+.form-item textarea.error {
+  padding: 2px;
+}
+.form-item .description,
+fieldset .description,
+.fieldset-layout-settings dd {
+  font-size: .9em;
+}
+#article-admin-filter ul {
+  padding: .5em 0;
+}
+#edit-operation-wrapper select {
+  margin: .5em;
+}
+div.resizable-textarea textarea {
+  margin-top: 0;
+}
+
+/* Fieldsets */
+fieldset {
+  background: transparent;
+  border: 1px solid #dadada;
+  margin: 1.5em 0;
+  padding: .75em;
+}
+*:first-child+html fieldset {
+  background-color:transparent;
+  background-position: 0 .75em;
+  padding: 0 1em .75em;
+}
+*:first-child+html fieldset > .description,
+*:first-child+html fieldset .fieldset-wrapper .description {
+  padding-top: 1.5em;
+}
+fieldset legend {
+  display:block;
+  font-weight: 400;
+  padding: 0 1em 0 0;
+}
+*:first-child+html fieldset legend,
+*:first-child+html fieldset.collapsed legend {
+  display: inline;
+}
+html.js fieldset.collapsed {
+  background: transparent;
+  padding-top: .25em;
+}
+
+/* Search */
+#search-block-form .form-submit {
+  margin-right: 0;
+}
+#search-block-form .form-text {
+  width: 119px; /* Adjust this to suit */
+}
+
+/* Advanced search form */
+fieldset#edit-advanced fieldset {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+fieldset#edit-advanced fieldset .fieldset-legend {
+  background: none;
+  padding-left: 1em;
+}
+.advanced-search-submit {
+  clear: both;
+}
+.search-advanced .criterion {
+  float: none;
+  margin: 0 5px;
+}
+#edit-keywords-fieldset .form-item:first-child {
+  margin-top: 0.4em;
+}
+#search-form {
+  margin: 1em 0;
+}
+#search-form > div {}
+#search-form .container-inline {}
+#search-form label {}
+#search-form input {}
+#search-form .form-item {}
+#search-form .form-submit {}
+
+/* User login */
+#user-login-form ul {
+  margin: 0;
+  padding: 0;
+}
+#user-login-form li.openid-link,
+#user-login-form li.user-link {
+}
+#user-login ul {
+  margin: 0 0 5px;
+}
+#user-login ul li {
+  margin: 0;
+}
+#user-login-form .item-list li {
+  list-style: none;
+  margin: 0;
+}
+#user-login-form li.openid-link,
+#user-login li.openid-link {
+  background: none;
+}
+.hide-label label {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+#user-admin-filter ul li,
+#article-admin-filter ul li {
+  list-style: none;
+}
+.description {
+  color: #555;
+}
+/* Tips overrides */
+.field-type-text-with-summary fieldset {
+  padding: 1em 0;
+}
+.field-type-text-with-summary fieldset .form-item {
+  margin: 0;
+}
+.field-type-text-with-summary fieldset .filter-help {
+  padding: .5em 1.5em;
+}
+
+/* Buttons */
+.form-submit {
+  margin-bottom: 1px;
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 2px 10px;
+  color: #666;
+  font-weight: normal;
+  font-size: 1em;
+  border: 1px solid #8a8a8a;
+  background: url(images/button.png) repeat-x 0 center;
+}
+.form-submit:hover {
+  color: #101010;
+  border: 1px solid #6b6b6b;
+}
+
+/* Fix autocomplete drop lists */
+#autocomplete {
+  background: #fff;
+  border: 1px solid #ccc;
+  line-height: 1.2;
+}
+#autocomplete li {
+  padding: 2px;
+}
+#autocomplete li,
+#autocomplete div {
+  float: none;
+  display: block;
+}
+
+/* AT */
+table {
+  border-spacing: 0;
+  border-color: #eee;
+  margin: 1em 0;
+  padding: 0;
+  width: 100%;
+  font-size: 1em; 
+}
+table,
+tr,
+td,
+thead,
+tbody {
+  border: none;
+}
+table,
+td,
+th {
+  vertical-align:middle;
+}
+caption,
+th,
+td {
+  text-align:left;
+}
+thead th {
+  border-width:0 0 1px;
+  border-bottom-style: solid;
+  border-bottom-color:#eee;
+  color:#494949;
+  font-weight:700;
+}
+td,
+th {
+  border-bottom:none;
+  margin:0;
+  padding:.375em .5em;
+}
+tr.even,
+tr.odd {
+  border-bottom:none;
+}
+tbody tr:nth-child(2n+1),
+tr.odd,
+tr.info {
+  background-color:#f5f5f5;
+}
+tr.even {
+  background-color:#fff;
+}
+tr.drag {
+  background-color:#fffff0;
+}
+tr.drag-previous {
+  background-color:#ffd;
+}
+tr.odd td.active {
+  background-color:#eee;
+}
+tr.even td.active {
+  background-color:#f7f7f7;
+}
+td.region,
+td.module,
+td.container td.category {
+  background-color:#eee;
+  border-bottom:1px solid #ccc;
+  border-top:1.5em solid #fff;
+  color:#222;
+  font-weight:700;
+}
+tr:first-child td.region,
+tr:first-child td.module,
+tr:first-child td.container {
+  border-top-width:0;
+}
+table caption {
+  text-align: center;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+/* Forum */
+#forum {
+  margin: 15px 0;
+  overflow: hidden;
+}
+.block-forum h3 {
+  margin-bottom: 0.5em;
+}
+div.forum-topic-navigation a.topic-next {
+  text-align: right;
+}
+div.forum-topic-navigation a.topic-previous {
+  text-align: left;
+}
+
+/* Add back Drupal 7's missing forum icon http://drupal.org/node/1008580 */
+#forum tr td.forum {
+  background-image: url(images/forum-default.png);
+  background-position: 5px 5px;
+  background-repeat: no-repeat ;
+  padding-left: 40px;
+}
+#forum .description {
+  font-size: 0.92em;
+  margin: 5px 0;
+}
+#forum div.indent {
+  margin-left: .5em;
+}
+
+
+/* Books */
+.book-navigation .menu {
+  padding: 1.65em;
+}
+
+/* Lists */
+ul,
+ol {
+  margin:0 0 1.5em 1.667em;
+  padding:0;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul,
+.block ul ul,
+.block ul ol,
+.block ol ol,
+.block ol ul,
+.item-list ul ul,
+.item-list ul ol,
+.item-list ol ol,
+.item-list ol ul {
+  margin:0 0 0 1em;
+}
+ul {
+  list-style-type:disc;
+}
+ul ul ul {
+  list-style-type:square;
+}
+ol {
+  list-style-type:decimal;
+}
+ol ol {
+  list-style-type:lower-alpha;
+}
+ol ol ol {
+  list-style-type:lower-roman;
+}
+ul ul,
+ul ul ul ul {
+  list-style-type:circle;
+}
+dt {
+  font-weight:700;
+}
+dd {
+  margin:0 0 1.5em 1.667em;
+}
+.item-list ul,
+.item-list ol {
+  margin:0 0 0 1.667em;
+  padding:0;
+}
+.block .menu li {
+  margin: 0;
+}
+.block .menu li.content {
+  padding: 0; /* extra class can equal a standard class, nasty... */
+}
+.article ol {
+  margin-left: 4.75em;
+}
+.article ul {
+  margin-left: 3em;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.4em;
+}
+h1 {
+  font-size: 1.416em;
+}
+h2 {
+  font-size: 1.25em;
+}
+h3 {
+  font-size: 1.167em;
+}
+h4, h5, h6 {
+  font-size: 1em;
+}
+p {
+  margin-top: 0.4em;
+  margin-bottom: 0.8em;
+  padding:0;
+}
+em {
+  text-decoration: none;
+  font-weight: 400;
+}
+fieldset legend,
+.form-item label {
+  font-size: 1em;
+  font-weight: 700;
+}
+blockquote {
+  margin: 4px 10px 10px;
+  padding: 10px 15px 10px 25px;
+  background-image: url(images/blockquote.png);
+  background-position: 3px 3px;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.5);
+}
+abbr, acronym {
+  border-bottom: none;
+} 
+.article .article-content, 
+.comment .comment-content {
+  line-height: 1.5em;
+}
+h1#page-title {
+  padding: 0;
+  margin: 0 0 0.46em;
+  font-size: 1.667em;
+}
+
+/* Links */
+a,
+a.active {
+  text-decoration: none;
+  font-weight: 400;
+}
+a:hover,
+a.active:hover,
+a:focus,
+a.active:focus {
+  text-decoration: underline;
+}
+
+/* Header */
+#header {
+  margin: 0 10px;
+  padding: 0;
+  _height: 100px;
+  min-height: 100px;
+}
+#branding {
+  float: left;
+  padding: 0;
+  _height: 80px;
+  min-height: 80px;
+  width: 49.5%; /* Adjust this if you have a very long site name or large logo */
+}
+#branding a {
+  outline: 0;
+}
+#logo {
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+  overflow: hidden;
+  padding: 10px 0 0 10px;
+}
+#head-elements {
+  _height: 88px;
+  min-height: 88px;
+  margin: 0 0 0 15px;
+  padding: 0;
+}
+#branding {
+  text-transform: uppercase;
+}
+#site-name {
+  font-size: 2.6em;
+  margin: 0;
+  padding: 15px 0 0 0;
+  overflow: hidden;
+  line-height: 1.3em;
+}
+.logo-site-name a:hover,
+.logo-site-name a:focus {
+  text-decoration: none;
+}
+#site-slogan {
+  font-size: 1em;
+  line-height: 1em;
+  text-align: left;
+  margin: 0;
+}
+.region-header {
+  float:right;
+  margin: 0;
+  width: 49.5%;
+}
+/* Special casing for the search block in the header region */
+.region-header #block-search-form {
+  margin: 0;
+  padding: 10px 0 0 10px;
+}
+.region-header .block-content {
+  background: transparent;
+}
+.region-header #block-search-form .block-content {
+  padding: 0;
+}
+.region-header #block-search-form .block-inner {
+  background: none;
+}
+.region-header #block-search-form input.form-text {
+  width: 160px;
+}
+.region-help .block-title,
+.region-help .block-content,
+.region-help .block-content-inner {
+  background: #f7f7f7;
+  margin: 10px 0;
+}
+
+/* Top menu bar */
+.region-menu-bar-top .block-menu {
+  margin: 0;
+  padding: 0;
+}
+.region-menu-bar-top .block-menu .block-title {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+  background: none;
+}
+.region-menu-bar-top .block-menu .block-content,
+.region-menu-bar-top .block-menu .block-content-inner {
+  background: transparent;
+  padding: 0;
+}
+.region-menu-bar-top .block-menu .menu,
+.region-menu-bar-top .block-menu .menu li {
+  list-style: none;
+  list-style-image: none;
+  display: inline;
+  float: left;
+  padding: 0;
+  margin: 0;
+  height: 24px;
+  line-height: 24px;
+}
+.region-menu-bar-top .block-menu .menu li a {
+  padding: 0 10px;
+  color: #feffff !important;
+}
+
+/* Menu-bar */
+#menu-bar-wrapper {
+  margin: 0 10px;
+}
+#menu-bar .block-content-inner {
+  background: transparent;
+  padding: 0;
+}
+.nav {
+  clear: both;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  z-index: 100; /* Needed so Superfish menus appear over flash & slideshows in IE7 */
+  position: relative;
+}
+.nav ul {
+  padding: 0;
+}
+.nav ul,
+.nav ul li,
+#menu-bar ul,
+#menu-bar ul li {
+  margin: 0;
+  list-style: none;
+  list-style-image: none;
+}
+.nav ul ul {
+  display: none; /* Hide sub menu items */
+}
+.nav ul li {
+  float: left;
+  padding: 0;
+}
+.nav ul li a,
+.nav ul.links li a {
+  font-weight: 400;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+}
+.nav .block,
+.nav .block-inner,
+.nav .block-inner .block-content  {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+/**
+ * Hide additional menu levels for normal menu blocks - I can't think of a better
+ * way of handling these - you should really use http://drupal.org/project/menu_block 
+ */
+.nav .block-menu ul ul {
+  display: none;
+}
+
+/* Articles */
+.article {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+}
+.article section.field {
+  margin-bottom: 0.75em;
+}
+.article-teaser {
+  padding: 10px;
+}
+.article-full-view .article h1.article-title, 
+.article h1.article-title {
+  margin: 0;
+  padding-top: 0px;
+  padding-bottom: 2px;
+}
+.article h1.article-title {
+  font-size: 1.5em;
+}
+.article h1.article-title a:hover {
+  text-decoration: none;
+}
+.article .user-picture {
+  border: none;
+  float: left;
+  line-height: 0;
+}
+.article .submitted {
+  margin: 0.3em 0 1em; 
+  padding: 0;
+  overflow: hidden; /* Clearfix */
+}
+.article .submitted > span {
+  display: block;
+  padding: 14px 10px 13px;
+  float: left;
+}
+.article .submitted img {
+  height: 30px;
+}
+.article .article-content {
+  clear: both;
+  margin: 0.5em 0;
+  overflow: hidden;
+}
+.article .field-type-taxonomy-term-refernce {
+  font-size: 0.9em;
+}
+.article .taxonomy {
+  margin: 0; 
+  padding: 0;
+}
+.article .taxonomy li {
+  padding: 1px 5px;
+}
+.article ul.links li {
+  margin: 1px 2px 1px 0;
+  float: left;
+  white-space: nowrap;
+}
+/* Node Teaser */
+.article-teaser { 
+  margin: 0 0 15px;
+  padding: 10px 0;
+  overflow: hidden;
+}
+.article h2.field-label {
+  font-size: 1em;
+  border-bottom: none;
+}
+/* sticky node-teaser */
+.article-teaser.article-sticky {
+  padding: 10px;
+  margin: 0 0 15px;
+}
+.submitted img {
+  border-width: 7px;
+  border-style: solid;
+  border-color: #f5f5f5;
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* Comments */
+#comments h2 {
+  border-bottom: none; 
+}
+.comment {
+  border:none;
+  margin:0 0 10px;
+  padding:10px;
+}
+.comment .comment-title a {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.comment .new {
+  padding-right: 10px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 0.8em;
+  float: right;
+  color: red;
+}
+.comment .user-picture img {
+  height: 30px;
+}
+.comment .user-picture {
+  border: none;
+  float: left;
+  margin: 2px 10px 0 0;
+}
+.comment footer {
+  font-size: 0.92em;
+}
+.with-picture .author-datetime {
+  padding-top: 10px;
+}
+.comment .comment-id {
+  font-size: 1.167em;
+  font-weight: 700;
+  padding-right: 10px;
+}
+.comment ul.links {
+  float: right;
+}
+
+/* Blocks */
+.block {
+  margin-bottom: 15px;
+}
+.block-title {
+  font-size: 1.25em;
+  margin: 0;
+  padding: 0 10px;
+}
+#bipanel .block-title,
+.region-highlighted .block-title,
+.sidebar .block-title {
+  padding: 5px 10px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+.block h3 {
+  font-size: 1.25em;
+  font-weight: 700;
+  padding: 3px 0;
+}
+.block-content-inner {
+  padding: 10px;
+}
+.region-highlighted .block-content-inner,
+.sidebar .block-content-inner {
+  background: url(images/transparent-overlay.png) repeat 0 0;
+}
+#block-system-main .block-content,
+#block-system-main .block-content-inner {
+  padding: 0;
+}
+.block .item-list ul {
+  margin-left:0.3em;
+}
+.block .item-list ul ul,
+.block .item-list ul ul ul {
+  margin-left:1em;
+}
+.block ul.links {
+  margin:0;
+  padding:0 0 5px;
+}
+.block ul.links li {
+  font-size: .94em;
+}
+.block-poll ul.links {
+  text-align: center;
+}
+.block ul.links li {
+  background: transparent;
+  list-style: none;
+}
+/* Region header blocks. */
+.region-header .block {
+  font-size: 0.92em;
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+.region-header .block .content {
+  margin: 0;
+  padding: 0;
+}
+.region-header .block ul {
+  margin: 0;
+  padding: 0;
+}
+.region-header .block li {
+  list-style: none;
+  list-style-image: none;
+  padding: 0;
+}
+.region-header .form-text {
+  background: #fefefe;
+  background: rgba(255, 255, 255, 0.7);
+  margin-right: 2px; /* LTR */
+  width: 120px;
+}
+.region-header .form-text:hover,
+.region-header .form-text:focus,
+.region-header .form-text:active {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+}
+.region-header .form-required {
+  color: #eee;
+}
+/* Region header block menus. */
+.region-header .block-menu {
+  border: 1px solid;
+  border-color: #eee;
+  border-color: rgba(255, 255, 255, 0.2);
+  padding: 0;
+  width: 208px;
+}
+.region-header .block-menu li a {
+  display: block;
+  border-bottom: 1px solid;
+  border-bottom-color: #eee;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  padding: 3px 7px;
+}
+.region-header .block-menu li a:hover,
+.region-header .block-menu li a:focus,
+.region-header .block-menu li a:active {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+.region-header .block-menu li.last a {
+  border-bottom: 0;
+}
+/* User Login block in the header region */
+.region-header #block-user-login {
+  width: auto;
+}
+.region-header #block-user-login .block-title {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+}
+.region-header #block-user-login .content {
+  margin-top: 2px;
+}
+.region-header #block-user-login .form-item {
+  float: left; /* LTR */
+  margin: 0;
+  padding: 0;
+}
+.region-header #block-user-login div.item-list,
+.region-header #block-user-login div.description {
+  font-size: 0.916em;
+  margin: 0;
+}
+.region-header #block-user-login div.item-list {
+  clear: both;
+}
+.region-header #block-user-login div.description {
+  display: inline;
+}
+.region-header #block-user-login .item-list ul {
+  padding: 0;
+  line-height: 1;
+}
+.region-header #block-user-login .item-list li {
+  list-style: none;
+  float: left; /* LTR */
+  padding: 3px 0 1px;
+}
+.region-header #block-user-login .item-list li.last {
+  padding-left: 0.5em; /* LTR */
+}
+.region-header #block-user-login ul.openid-links li.last {
+  padding-left: 0; /* LTR */
+}
+.region-header #user-login-form li.openid-link a,
+.region-header #user-login li.openid-link a {
+  padding-left: 20px; /* LTR */
+}
+.region-header #block-user-login .form-actions {
+  margin: 4px 0 0;
+  padding: 0;
+  clear: both;
+}
+.region-header #block-user-login input.form-submit {
+  margin: 4px 0;
+  padding: 3px 6px;
+}
+.region-header #block-user-login input.form-submit:hover,
+.region-header #block-user-login input.form-submit:focus {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Other block special cases */
+.block .article h2.article-title {
+  font-size: 1.167em;
+}
+#block-search-form form {
+  margin: 0;
+}
+#block-search-form .block-content {
+  padding: 0 10px 2px;
+}
+#block-system-main {
+  margin-bottom: 15px;
+}
+.five-5x20 .block-title {
+  background: transparent;
+}
+.five-5x20 .block-content-inner {
+  padding: 10px 0;
+}
+.five-5x20 .block-content-inner p {
+  margin-top: 0;
+}
+#tripanel .block-title,
+.region-secondary-content .block-title {
+  background: none;
+  border-bottom: none;
+  padding: 0;
+}
+#tripanel .block-title {
+  padding: 0 10px;
+}
+
+/* Fields */
+.field .field-label {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: inherit;
+  margin: 0;
+}
+.field-type-taxonomy-term-reference ul {
+  margin: 0;
+  padding: 0;
+}
+.field-type-taxonomy-term-reference ul li {
+  display: inline;
+  list-style: none;
+  padding: 0 0.75em 0 0; /* LTR */
+}
+.field-lable-inline .field-label {
+  display: inline;
+}
+/* Float field-image images*/
+article .field-type-image {
+  float: right; /* LTR */
+  margin: 0.5em 0 1em 1em; /* LTR */
+}
+article .field-type-image img {
+  display: block;
+  margin: 3px 0 10px;
+  padding: 5px;
+}
+article .field-type-image.field-label-above {
+  margin-top: 0;
+}
+article .field-type-image .field-label {
+  margin-bottom: 0.5em;
+}
+article .field-type-image.field-label-inline .field-label {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+/* Lists */
+ul {
+  margin: 0;
+  padding: 0 0 0 1em;
+}
+li a, 
+li a:visited, 
+li a:active, 
+li a:hover {
+  font-weight: 400;
+}
+.item-list ul {
+}
+.item-list ul li {
+  margin-left: 1em;
+}
+.item-list .title {
+  font-size: 1em;
+}
+#main-content ul.links li {
+  margin: 1px 2px 1px 1px;
+  background: #f9f9f9;
+  font-weight: 400;
+  padding: 2px 6px;
+}
+.comment .links {
+  margin-bottom: 0;
+}
+.submitted {
+  font-size: 0.9em;
+}
+.links a {
+  font-weight: 400;
+}
+
+/* Aggregator */
+#aggregator .feed-source {
+  padding: 0;
+  margin: 1em 0;
+}
+#aggregator .feed-item-title {
+  margin-bottom: 0;
+  font-size: 1.25em;
+}
+#aggregator .feed-item-meta {
+  margin-bottom: 0;
+}
+#aggregator .feed-item-body {
+  margin-bottom: 0.8em;
+}
+
+/* Profile */
+#profile .profile {
+  clear: both;
+  padding: .5em;
+  margin: 1em 0em;
+}
+#profile .profile .name {
+  padding-bottom: 0.5em;
+}
+.block-forum h3 {
+  margin-bottom: .5em;
+}
+
+/* Footer, Feed icon */
+#footer {
+  font-size: 0.92em;
+  border: none;
+}
+.region-footer {
+  text-align: center;
+}
+#footer .region-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0 10px;
+}
+#footer-inner {
+  _height: 90px;
+  min-height: 90px;
+  background-size: 100%; /* CSS3 - one day browsers will support this */
+}
+#footer a {
+  text-decoration: none;
+  font-weight: 400;
+}
+#footer .block {
+  padding: 10px 0 0;
+}
+#footer .region-footer .block {
+  padding: 0;
+  margin-bottom: 0;
+}
+#footer .block-title {
+  text-align: left;
+  padding: 0;
+  color: #999;
+  border-bottom: 0;
+}
+#footer .hs-ts .block-title {
+  text-shadow: 0 1px 0 #000000;
+}
+#footer .block .block-content > ul.menu,
+#footer .block .block-content-inner > ul.menu {
+  padding: 0;
+}
+#footer ul.menu li {
+  list-style: none;
+  list-style-image: none;
+}
+#footer .region-footer .block-inner {
+  padding: 10px 0;
+}
+.feed-icon {
+  clear: both;
+  display: block;
+  padding: 5px 10px 10px;
+  text-align: center;
+}
+#block-node-syndicate .feed-icon {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent overflowing content */
+#content,
+.nav,
+#sidebar-first,
+#sidebar-second,
+#footer {
+  overflow: visible;
+  word-wrap: break-word; /* A very nice CSS3 property */
+}
+
+/* Pager */
+ul.pager {
+  padding: 15px 0 10px;
+  margin: 0;
+}
+div.item-list ul.pager li {
+  padding: 3px 8px;
+  margin: 0 2px;
+}
+div.item-list ul.pager li,
+div.item-list ul.pager li a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Admin */
+div.messages {
+  margin-bottom:0.5em;
+}
+div.admin-panel h3 a {
+  font-size: 1.33em;
+  color: #fff;
+}
+div.admin-panel {
+  border: 0 none;
+}
+div.admin-panel a {
+  font-weight: 400;
+}
+div.admin-panel .description {
+  margin:0 0 3px;
+  padding:2px 0 3px 10px;
+}
+div.admin-panel .body dl .description {
+  margin:0 0 3px;
+  padding:2px 0 3px;
+}
+#block-system-help {
+  background: none;
+  border: 0;
+  margin: 5px 0;
+  padding: 0;
+}
+#block-system-help .block-inner {
+  padding: 0;
+  margin: 0;
+}
+#block-system-help .block-content {
+  padding: 4px 10px 8px;
+}
+ul.action-links li {
+  list-style: none;
+}
+#palette .form-item {
+  width: 24em;
+}
+.color-form label {
+  width: 12em;
+}
+
+/* Image Galleries (deprecated?) */
+ul.galleries li {
+  border: solid 1px #aaa;
+  background: #fff;
+}
+ul.galleries li h3 a {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+ul.images {
+  border: solid 1px #aaa;
+  overflow: hidden;
+}
+ul.images li {
+  text-align: center;
+}
+
+/* Local task tabs */
+ul.primary {
+  border: 0;
+  margin: 0 0 15px;
+  padding: 0;
+  display: inline;
+  line-height: 2.1em;
+}
+ul.primary li {
+  white-space: normal;
+  float: left;
+  margin: 0 3px 0 0;
+}
+ul.primary li a {
+  padding: 0.25em 0.6em 0.3em;
+  margin-right: 0;
+  white-space: nowrap;
+}
+ul.primary li a.active:hover,
+ul.primary li a.active:focus {
+  text-decoration: none;
+}
+ul.secondary {
+  border-bottom: 0;
+  margin: 5px 0;
+  padding: 0.5em 0;
+}
+ul.secondary li {
+  border-right: 0;
+  padding: 0 1em 0 0; /* LTR */
+}
+
+/* Breadcrumb */
+#breadcrumb {
+  margin: 0 10px;
+}
+.breadcrumb-inner {
+  background-image: url(images/transparent-overlay.png) repeat 0 0;
+  background-color: rgba(255,255,255,0.67);
+  padding: 5px 10px;
+}
+.breadcrumb-heading,
+.breadcrumb {
+  display: inline;
+  font-size: 1em;
+}
+ol#crumbs {
+  margin: 0 10px;
+  padding: 0;
+  display: inline;
+}
+ol#crumbs li {
+  list-style: none;
+  display: inline;
+}
+
+/* Search results */
+.search-results {
+  margin: 0;
+}
+
+/* Action links */
+ul.action-links {
+  margin: 15px 0 10px;
+  padding:0;
+  list-style: none;
+}
+ul.action-links li a {
+  background: url(images/add.png) no-repeat 2px center transparent;
+  color: #444;
+  font-weight: 700;
+  padding: 2px 10px 3px 20px;
+  font-size:1.1em;
+}
+ul.action-links li a:hover,
+ul.action-links li a:focus {
+  color: #333;
+}
+
+/* User Profile */
+.profile .user-picture {
+  float: none;
+  margin: 0 0 10px;
+  overflow: hidden;
+}
+
+/* Admin section */
+div.admin-panel {
+  border:1px solid #DDD;
+  margin:0 0 .75em;
+  padding:0;
+}
+div.admin .left,
+div.admin .right {
+  margin-left:0;
+  margin-right:0;
+  width:49%;
+}
+.admin-panel h3 {
+  background:#EEE;
+  color:#222;
+  padding:0 0 0 .5em;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+.admin-panel .body {
+  padding:0 1em;
+}
+.admin-panel p {
+  margin:0;
+  padding:1em 0 0;
+}
+.admin-panel ul,
+.admin-panel ul.menu,
+.admin-panel .item-list ul {
+  padding:0 0 1em;
+}
+.admin-panel ul li {
+  color:#555;
+}
+.admin-panel dl {
+  margin:0;
+  padding:1em 0;
+}
+.admin-panel dd {
+  color:#555;
+  font-size:.94em;
+  margin-left:0;
+}
+.admin .compact-link {
+  margin:0 0 1em;
+}
+.page-admin-by-module .admin-panel .body p {
+  color:#555;
+  font-size:.94em;
+}
+.more-help-link {
+  font-size:.94em;
+  line-height:1.667em;
+}
+#permissions td.permission {
+  padding-left:.5em;
+}
+#permissions td.module {
+  background:#EEE;
+  color:#222;
+  font-weight:700;
+}
+tr .block {
+  border:0;
+}
+.admin-panel dt {
+  font-weight:400;
+}
+.admin-dependencies,
+.admin-required,
+.admin-enabled,
+.admin-disabled,
+.admin-missing {
+  font-weight:700;
+}
+.admin-panel .item-list ul,
+.page-admin-by-module .admin-panel .body {
+  margin:0;
+}

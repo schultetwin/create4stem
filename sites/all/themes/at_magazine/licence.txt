@@ -1,0 +1,55 @@
+This is an End User License Agreement (Agreement) between AdaptiveThemes and you (Licensee). When referring to both Adaptive Themes and Licensee as a collective, the term, “The Parties”, may be used.
+Definitions
+
+For the purposes of this Agreement, the Parties agree that the following terms have these meanings:
+
+“Open Source Software” means any software program, whose source code is made available for use and modification as users or other developers see fit, and which may resultantly be the collaborative work of many different developers.
+
+“GPL” means General Public License, Version 2, as stated in the software license as drafted by Richard Stallman and as accepted within the Open Source Software community as the controlling software license for Open Source Software (http://www.opensource.org/licenses/).
+
+“Drupal” means the Open Source Software content management platform, as written in the PHP programming language, and as referred to in the software development industry as Drupal (www.drupal.org), and as covered by the GPL.
+
+“Theme” means a website template as developed using Drupal as well as parts designed outside of Drupal, including, but not limited to graphics, stylesheets (CSS files), and Javascript coding, which is purchased or otherwise used by Licensee.
+
+“Derivative Works” means any work on a Theme that was developed using Drupal constructs, typically considered the PHP template files, and which are subject to the GPL as a result.
+
+“Licensed Works” means any work on a Theme that was developed outside of Drupal, created and owned by AdaptiveThemes or other parties, that fall outside the GPL, and are considered licensed to Licensee through this Agreement, including, but not limited to graphics, stylesheets (CSS files), and Javascript coding.
+
+“Production Installed System” means a system on which Licensee installs or executes all or a portion of a Theme, including, but not limited to a server, workstation, virtual machine, blade, node, or partition, that is used by within Licensee for dissemination of information or used to provide business functionality to anyone within the general public or within Licensee’s enterprise or for anyone associated in any way with Licensee.
+
+“Test Installed System” means a system on which Licensee installs or executes all or a portion of a Theme, including, but not limited to a server, workstation, virtual machine, blade, node, or partition, that is used solely for Licensee’s development and/or demonstration purposes, but not as a Production Installed System.
+
+“Technical Support” means any assistance provided by AdaptiveThemes to Licensee with regard to a Theme, including, but not limited to, its installation, configuration, or use and as provided via means of telephone, email, or other electronic communications.
+
+The Parties agree as follows:
+
+LICENSE GRANTED AdaptiveThemes grants Licensee a non-exclusive, non-transferable, fully revocable license in each Theme as purchased by Licensee, as follows:
+
+i. Licensee understands and agrees that the License granted under this Agreement applies only to Licensed Works and that Derivative Works, whether created by AdaptiveThemes or Licensee or any other party, are subject to the GPL.
+ii. Licensee may use and or modify the Theme as consistent with the scope of this Agreement.
+iii. Licensee may have unlimited Test Installed Systems.
+iv. AdaptiveThemes will provide Licensee with 1 hour of Technical Support to assist Licensee with implementing the Theme. Licensee understands and agrees that beyond this, should Licensee need further Technical Support from AdaptiveThemes, Licensee may purchase additional Technical Support from AdaptiveThemes.
+
+DUTIES OF LICENSEE Licensee understands and agrees to the following duties with regard to the license of the Theme:
+
+A. Licensee shall follow the GPL with regard to all Derivative Works related to the Theme.
+B. Licensee shall not have more than one (1) Production Installed System for the Theme.
+C. Licensee shall not violate any copyrights, trademarks, and patents as held by AdaptiveThemes or other parties with regard to Licensed Works included with the Theme.
+D. Licensee shall not make any claim of ownership or authorship with regard to any portion of the Theme.
+E. Licensee shall not copy or otherwise redistribute the Licensed Works included with Theme in any fashion except as is necessary for Licensee to implement the Theme.
+F. Licensee shall not attempt to sell or otherwise transfer the Theme to another party, in part or in total.
+
+NO WARRANTY OR GUARANTEE Given the nature of Open Source Software, Licensee understands and agrees that AdaptiveThemes makes no warranty or guarantee of any kind regarding any Theme. This includes, but is not limited to, functionality and operability of any modules; functionality and operability of any changes by AdaptiveThemes to any Themes for corrections or as requested by Licensee; or accuracy and usability of support advice provided to Licensee.
+
+OPEN SOURCE CODE DISCLAIMER Given the nature of Open Source Software and the collaborative nature of our Themes, Licensee understands and agrees that if any portion of a Theme is found to infringe any 3rd party intellectual property rights, AdaptiveThemes, at its discretion, may choose to do one of the following:
+
+A. Obtain the rights necessary for Licensee to continue to use the Theme consistent with this Agreement; or
+B. Disable or remove the functionality that is infringing.
+
+LIMITATION OF LIABILITY/DISCLAIMER OF DAMAGES FOR ALL EVENTS AND CIRCUMSTANCES, AdaptiveThemes AND ITS AFFILIATES’ AGGREGATE AND CUMULATIVE LIABILITY ARISING OUT OF OR RELATING TO THIS AGREEMENT, INCLUDING WITHOUT LIMITATION ON ACCOUNT OF PERFORMANCE OR NON-PERFORMANCE OF OBLIGATIONS, REGARDLESS OF THE FORM OF THE CAUSE OF ACTION, WHETHER IN CONTRACT, TORT (INCLUDING WITHOUT LIMITATION NEGLIGENCE), STATUTE OR OTHERWISE WILL BE LIMITED TO DIRECT DAMAGES AND WILL NOT TO EXCEED THE AMOUNT THAT Licensee PAID TO AdaptiveThemes UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE FIRST EVENT GIVING RISE TO LIABILITY. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED IN THIS AGREEMENT, IN NO EVENT WILL AdaptiveThemes OR ITS AFFILIATES BE LIABLE TO Licensee OR ITS AFFILIATES FOR: ANY CLAIM BASED UPON A THIRD PARTY CLAIM; ANY INCIDENTAL, CONSEQUENTIAL, SPECIAL, INDIRECT, EXEMPLARY OR PUNITIVE DAMAGES, WHETHER ARISING IN TORT, CONTRACT, OR OTHERWISE; OR FOR ANY DAMAGES ARISING OUT OF OR IN CONNECTION WITH ANY MALFUNCTIONS, DELAYS, LOSS OF DATA, LOST PROFITS, LOST SAVINGS, INTERRUPTION OF SERVICE, LOSS OF BUSINESS OR ANTICIPATORY PROFITS, EVEN IF AdaptiveThemes OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+INDEMNIFICATION Licensee represents and warrants to AdaptiveThemes that Licensee will use the licensed Theme as consistent with this Agreement. Licensee agrees to indemnify AdaptiveThemes and to defend AdaptiveThemes against any and all third party claims, suits, demands, causes of action, liabilities and expenses (including, but not limited to, attorneys’ fees and costs of defense) that may arise as a result of or in connection with Licensee’s breach of this Agreement.
+
+TERMINATION Licensee understands and agrees that any violation of these duties or the provisions of this Agreement is grounds for the termination of this Agreement and that AdaptiveThemes may terminate this Agreement at its discretion. In such an event, Licensee understands that all license rights as granted under this Agreement cease as of the termination of this Agreement and that such rights revert back to AdaptiveThemes.
+
+NO OTHER RELATIONSHIP OR LEGAL INTEREST The Parties agree that this Agreement does not create any other relationship or legal interest between The Parties, including, but not limited to, any sales contract, license, title, guarantee of work, or right to use any Confidential Information, except as specified by this Agreement. CHOICE OF LAW The Parties agree that the laws of Sweden govern any conflict regarding the Agreement. INVALIDITY OF PROVISION The Parties agree that even if a court invalidates a provision of this Agreement, the remaining Agreement provisions are still valid and remain in full effect. NO OTHER AGREEMENTS OR REPRESENTATIONS The Parties agree that this Agreement completely expresses their mutual intent and that it supersedes any other agreement or representation, oral or written, between The Parties. MODIFICATION The Parties agree that no modification can be made to this Agreement without another mutual, written agreement. HEADINGS The Parties understand and agree that the headings in this Agreement are included only as a matter of convenience and in no way define, limit or extend the scope of this Agreement or any of its provision.
