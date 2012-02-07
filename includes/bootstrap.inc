@@ -660,6 +660,11 @@ function drupal_override_server_variables($variables = array()) {
  * Initializes the PHP environment.
  */
 function drupal_environment_initialize() {
+  // Export the following settings.php variables to the global namespace
+  global $base_url, $databases, $db_prefix, $cookie_domain, $conf, $installed_profile, $update_free_access, $db_url, $drupal_hash_salt, $is_https, $base_secure_url, $base_insecure_url;
+  if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.php')) {
+    include_once DRUPAL_ROOT . '/' . conf_path() . '/settings.php';
+  }
   if (!isset($_SERVER['HTTP_REFERER'])) {
     $_SERVER['HTTP_REFERER'] = '';
   }
@@ -2687,7 +2692,14 @@ function request_path() {
     // This request is either a clean URL, or 'index.php', or nonsense.
     // Extract the path from REQUEST_URI.
     $request_path = strtok($_SERVER['REQUEST_URI'], '?');
-    $base_path_len = strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/'));
+    //$base_path_len = strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/'));
+    global $base_url;
+    if ($base_url) {
+      $base_path_len = strlen(parse_url($base_url,PHP_URL_PATH));
+    }
+    else {   
+      $base_path_len = strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/'));
+    }      
     // Unescape and strip $base_path prefix, leaving q without a leading slash.
     $path = substr(urldecode($request_path), $base_path_len + 1);
     // If the path equals the script filename, either because 'index.php' was
