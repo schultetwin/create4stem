@@ -1,3 +1,5 @@
+/* @override http://irmse.ejrst.net/sites/all/themes/at_magazine/css/styles.custom.css?lyn5pz */
+
 /** 
  * Use this file to provide overrides to the main styles. This file always loads last
  * so you can override anything in the other style-sheets.
@@ -7,4 +9,101 @@
  * 2: Clear the sites cache. See /admin/config/development/performance
  * 3: Add you styles!
  */
- 
+
+body{
+	background: url(images/MSUbodybackground.png) repeat-x !important;
+}
+
+#page.container{
+	padding: 0;
+}
+
+#header{
+	background-image: url(images/MSUbannerbackground.png);
+	background-color: #18453b;
+	margin: 0;
+} 
+
+#branding{
+	width: auto;
+	height: 120px;
+}
+
+#logo{
+}
+
+h2.block-title{
+	color: #00723f;
+}
+
+
+#menu-bar-wrapper{
+	margin: 0;
+}
+
+.block-region-menu-bar{
+	background-color: #b7b7b1 !important;
+	background-image: url(images/menu-nohover.png) !important;
+}
+
+#menu-bar a.sf-depth-1{
+	color: black !important;
+}
+
+#menu-bar a:hover.sf-depth-1, #menu-bar a:active.sf-depth-1, #menu-bar a.sf-depth-1.active{
+	color: white !important;
+	background: #888881 url(images/menu-hover.png) repeat-x;
+}
+
+#menu-bar .middle a.sf-depth-1, #menu-bar .last a.sf-depth-1{
+	border-left: 1px solid #8b8b81 !important;
+}
+
+#menu-bar a.sf-depth-2, #menu-bar a.sf-depth-3{
+	background-color: #959a8d;
+	border-bottom: 1px solid #8f8f8f !important;
+}
+
+#menu-bar a:hover.sf-depth-2, #menu-bar a:hover.sf-depth-3, #menu-bar a:active.sf-depth-2, #menu-bar a:active.sf-depth-3{
+	background-color: #b3b7ae;
+}
+
+.featured-slide-item{
+	color: white;
+	padding: 10px;
+}
+
+#block-views-featured-front-page-block .block-content-inner{
+	padding: 0;
+}
+
+#block-views-featured-front-page-block .views-slideshow-main{
+	background-color: none;
+}
+
+.featured-slide-item .views-field-title .field-content{
+	color: #e8b909;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.featured-slide-item {
+	background-color: #3f5657;
+}
+
+#main-content{
+	margin: 10px;
+}
+
+.article{
+	padding: 10px;
+}
+
+
+.article-teaser.article-sticky{
+	padding-left: 10px;
+}
+
+.views-row-even .article{
+	background-color: #e2e2e0;
+}
