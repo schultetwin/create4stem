@@ -102,7 +102,6 @@ function biblio_load_keywords_multiple($vids = array()) {
  */
 function biblio_update_keywords($node) {
   $kids = biblio_insert_keywords($node, TRUE);
-  biblio_delete_orphan_keywords();
   return $kids;
 }
 
@@ -134,6 +133,10 @@ function biblio_insert_keywords($node, $update = FALSE) {
          db_delete('biblio_keyword')
             ->condition($and)
             ->execute();
+  }
+  $vocabularies = module_invoke('taxonomy', 'get_vocabularies', 'biblio');
+  if (variable_get('biblio_keyword_freetagging', 0)) {
+    $freetag_vocab = $vocabularies[variable_get('biblio_keyword_vocabulary', 0)];
   }
   if (isset($node->taxonomy) && is_array($node->taxonomy) && variable_get('biblio_copy_taxo_terms_to_keywords', 0)) { //add any taxonomy terms to our keyword list
     foreach ($node->taxonomy as $vid => $term) {
@@ -187,8 +190,30 @@ function biblio_insert_keywords($node, $update = FALSE) {
 
   // now if we are saving keywords into a taxonomy freetagging vocabulary, then create the tags string and add it to the node object.
 
-  if ($freetagging && $kw_vocab ) {
-    $node->taxonomy['tags'][$kw_vocab] =  biblio_implode_keywords($typed_keywords, ',');
+  if ($freetagging && $freetag_vocab ) {
+    $tids = array();
+    $ft_field = 'field_' . $freetag_vocab->machine_name;
+    $lang = isset($freetag_vocab->language) ? $freetag_vocab->language : 'und';
+    if (isset($node->{$ft_field}[$lang])) {
+      foreach($node->{$ft_field}[$lang] as $tag) {
+        $tids[] = $tag['tid'];
+      }
+    }
+    foreach ($typed_keywords as $kw) {
+      if ($possibilities = taxonomy_term_load_multiple(array(), array('name' => trim($kw), 'vid' => $freetag_vocab->vid))) {
+        $term = array_pop($possibilities);
+      }
+      else {
+        $term = new stdClass();
+        $term->vid = $freetag_vocab->vid;
+        $term->name  = $kw;
+        $term->vocabulary_machine_name = $freetag_vocab->machine_name;
+        taxonomy_term_save($term);
+      }
+      if (!in_array($term->tid, $tids)) {
+        $node->{$ft_field}[$lang][] = (array)$term;
+      }
+    }
   }
 
   return array_keys($inserted);
@@ -212,13 +237,27 @@ function biblio_save_keyword(&$keyword) {
 
 function biblio_delete_orphan_keywords($force = FALSE) {
   if (variable_get('biblio_keyword_orphan_autoclean', 0) || $force) {
-//    $sub_select = db_select('biblio_keyword', 'bk');
-//    $sub_select->addField('bk', 'kid');
-//    $sub_select->distinct();
-//    return db_delete('biblio_keyword_data')
-//            ->condition('kid', $sub_select, 'NOT IN')
-//            ->execute();
-     db_query('DELETE FROM {biblio_keyword_data} WHERE kid NOT IN (SELECT DISTINCT(kid) FROM {biblio_keyword})');
+      $query = db_select('biblio_keyword', 'bk');
+    $active_kids = $query
+      ->fields('bk', array('kid'))
+      ->groupBy('kid')
+      ->execute()
+      ->fetchCol();
+
+    $query = db_select('biblio_keyword_data', 'bkd');
+    $all_kids = $query
+      ->fields('bkd', array('kid'))
+      ->groupBy('kid')
+      ->execute()
+      ->fetchCol();
+
+    $orphans = array_diff($all_kids, $active_kids);
+
+    if (!empty($orphans)) {
+      db_delete('biblio_keyword_data')
+        ->condition('kid', $orphans, 'IN')
+        ->execute();
+    }
   }
   return;
 }
@@ -236,7 +275,6 @@ function biblio_delete_keywords($node) {
   $count = db_delete('biblio_keyword')
             ->condition('nid', $node->nid)
             ->execute();
-  biblio_delete_orphan_keywords();
   return $count;
 }
 

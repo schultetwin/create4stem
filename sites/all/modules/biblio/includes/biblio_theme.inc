@@ -904,8 +904,8 @@ function theme_biblio_export_links($variables) {
   if (empty($node) && !empty($links)) {
     $output = t('Export @count results', array('@count' => $pager_total_items[0])) . ': ';
   }
-  return $output . theme('links', array('links' => $links, 'attributes' => array('class' => "biblio-export-buttons")));
 
+  return $output . theme('links', array('links' => $links, 'attributes' => array('class' => array('biblio-export-buttons'))));
 }
 
 
@@ -985,13 +985,9 @@ function theme_biblio_contributors($variables) {
  */
 function theme_biblio_alpha_line($variables) {
   $type    = $variables['type'];
-  $current = $variables['current'];
-  $path    = $variables['path'];
-  $options = array();
-  $base = variable_get('biblio_base', 'biblio');
   $all = '';
   $uri = drupal_parse_url(request_uri());
-  $uri['path'] = $path; //variable_get('biblio_base', 'biblio');
+  $uri['path'] = $_GET['q']; //replace path in case we are in a multi-language environment, otherwise we end up with double language prefixes.
   if (substr($uri['path'], 0, 1) == '/') {
     $uri['path'] = substr($uri['path'], 1);
   }

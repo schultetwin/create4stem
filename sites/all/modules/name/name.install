@@ -156,14 +156,6 @@ function name_update_7000() {
 }
 
 /**
- * Clears the caches to register the new theme callbacks and field formatter
- * settings.
- */
-function name_update_7001() {
-  cache_clear_all();
-}
-
-/**
  * Inserts some common formats.
  */
 function name_install_default_formats() {

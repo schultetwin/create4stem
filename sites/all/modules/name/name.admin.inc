@@ -135,8 +135,8 @@ function name_autocomplete($field_name, $target, $string = '') {
 
     // We should have nice clean parameters to query.
     if (!empty($pieces) && !empty($action['components'])) {
-      $test_string = drupal_strtolower(array_pop($pieces));
-      $base_string = drupal_substr($string, 0, drupal_strlen($string) - drupal_strlen($test_string));
+      $test_string = strtolower(array_pop($pieces));
+      $base_string = substr($string, 0, strlen($string) - strlen($test_string));
 
       // Query order is: vocab, namedb, title, generational, data
       if (count($action['source']['namedb'])) {
@@ -155,7 +155,7 @@ function name_autocomplete($field_name, $target, $string = '') {
       if ($limit > 0 && count($action['source']['title'])) {
         $options = name_field_get_options($field, 'title');
         foreach ($options as $key => $option) {
-          if (strpos(drupal_strtolower($key), $test_string) === 0 || strpos(drupal_strtolower($option), $test_string) === 0) {
+          if (strpos(strtolower($key), $test_string) === 0 || strpos(strtolower($option), $test_string) === 0) {
             $matches[$base_string . $key] = $key;
             $limit--;
           }
@@ -165,7 +165,7 @@ function name_autocomplete($field_name, $target, $string = '') {
       if ($limit > 0 && count($action['source']['generational'])) {
         $options = name_field_get_options($field, 'generational');
         foreach ($options as $key => $option) {
-          if (strpos(drupal_strtolower($key), $test_string) === 0 || strpos(drupal_strtolower($option), $test_string) === 0) {
+          if (strpos(strtolower($key), $test_string) === 0 || strpos(strtolower($option), $test_string) === 0) {
             $matches[$base_string . $key] = $key;
             $limit--;
           }
@@ -218,8 +218,8 @@ function name_admin_settings_form($form, &$form_state) {
 
 function name_admin_settings_form_validate($form, &$form_state) {
   $default_format = trim($form_state['values']['name_settings']['default_format']);
-  if (empty($default_format) && !strlen($default_format)) {
-    form_set_error('name_settings][default_format', t('%title field is required.', array('%title' => $form['name_settings']['default_format']['#title'])));
+  if (empty($default_format) && strlen($default_format) == 0) {
+      form_set_error('name_settings][default_format', t('%title field is required.', array('%title' => $form['name_settings']['default_format']['#title'])));
   }
 }
 /**
@@ -400,12 +400,12 @@ function name_custom_formats_form_validate($form, &$form_state) {
   $values = $form_state['values'];
   // Ensure that the name is unique
   if (empty($values['ncfid'])) {
-    $count = db_query("SELECT 1 FROM {name_custom_format} WHERE name = :name", array(':name' => $values['name']))->fetchField();
-    $mcount = db_query("SELECT 1 FROM {name_custom_format} WHERE machine_name = :machine_name", array(':machine_name' => $values['machine_name']))->fetchField();
+    $count = db_query("SELECT count(*) FROM {name_custom_format} WHERE name = :name", array(':name' => $values['name']))->fetchField();
+    $mcount = db_query("SELECT count(*) FROM {name_custom_format} WHERE machine_name = :machine_name", array(':machine_name' => $values['machine_name']))->fetchField();
   }
   else {
-    $count = db_query("SELECT 1 FROM {name_custom_format} WHERE name = :name AND ncfid <> :ncfid", array(':name' => $values['name'], ':ncfid' => $values['ncfid']))->fetchField();
-    $mcount = db_query("SELECT 1 FROM {name_custom_format} WHERE machine_name = :machine_name AND ncfid <> :ncfid", array(':machine_name' => $values['machine_name'], ':ncfid' => $values['ncfid']))->fetchField();
+    $count = db_query("SELECT count(*) FROM {name_custom_format} WHERE name = :name AND ncfid <> :ncfid", array(':name' => $values['name'], ':ncfid' => $values['ncfid']))->fetchField();
+    $mcount = db_query("SELECT count(*) FROM {name_custom_format} WHERE machine_name = :machine_name AND ncfid <> :ncfid", array(':machine_name' => $values['machine_name'], ':ncfid' => $values['ncfid']))->fetchField();
   }
   if ($count) {
     form_set_error('name', t('The name you have chosen is already in use.'));
@@ -535,11 +535,11 @@ function _name_field_instance_settings_pre_render($form) {
     ),
     'tfoot' => array(
       '#markup' => '<tfoot><tr><td colspan="7"><ol>'
-        . '<li>' . t('The title display controls how the label of the name component is displayed in the form. "%above" is the standard title; "%below" is the standard description; "%hidden" removes the label.',
+        . '<li>' .  t('The title display controls how the label of the name component is displayed in the form. "%above" is the standard title; "%below" is the standard description; "%hidden" removes the label.',
                       array('%above' => t('above'), '%below' => t('below'), '%hidden' => t('hidden'))) . '</li>'
-        . '<li>' . t('The Field type controls how the field is rendered. Autocomplete is a text field with autocomplete, and the behaviour of this is controlled by the field settings.') . '</li>'
-        . '<li>' . t('The HTML size property tells the browser what the width of the field should be when it is rendered. This gets overriden by the themes CSS properties. This must be between 1 and 255.') . '</li>'
-        . '<li>' . t('Additional inline styles for the input element. For example, "width: 45px; background-color: #f3f3f3"') . '</li>'
+        . '<li>' .  t('The Field type controls how the field is rendered. Autocomplete is a text field with autocomplete, and the behaviour of this is controlled by the field settings.') . '</li>'
+        . '<li>' .  t('The HTML size property tells the browser what the width of the field should be when it is rendered. This gets overriden by the themes CSS properties. This must be between 1 and 255.') . '</li>'
+        . '<li>' .  t('Additional inline styles for the input element. For example, "width: 45px; background-color: #f3f3f3"') . '</li>'
         . '</ol></td></tr></tfoot>',
       '#weight' => 2,
     ),

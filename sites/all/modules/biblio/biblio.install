@@ -1499,8 +1499,7 @@ function _add_db_field_data_XML() {
 }
 
 function _add_db_field_data() {
-  global $db_type;
-  if ($db_type == 'mysql' or $db_type == 'mysqli') {
+  if (db_driver() == 'mysql' or db_driver() == 'mysqli') {
     db_query("/*!40000 ALTER TABLE {biblio_field_type_data} DISABLE KEYS */;");
     db_query("/*!40000 ALTER TABLE {biblio_fields} DISABLE KEYS */;");
   }
@@ -1565,7 +1564,7 @@ function _add_db_field_data() {
     $result = array('success' => FALSE, 'query' => 'Could not open ' . $csv_file);
   }
 
-  if ($db_type == 'mysql' or $db_type == 'mysqli') {
+  if (db_driver() == 'mysql' or db_driver() == 'mysqli') {
     db_query("/*!40000 ALTER TABLE {biblio_field_type_data} ENABLE KEYS */;");
     db_query("/*!40000 ALTER TABLE {biblio_fields} ENABLE KEYS */;");
   }
@@ -2069,4 +2068,21 @@ function biblio_update_7016() {
       ->fields(array('type' => 'text_format'))
       ->condition('type', 'textarea')
       ->execute();
+}
+
+/**
+ * Remove views export handlers in sub-modules (if they still exist)
+ */
+function biblio_update_7017() {
+  $dirs = array('bibtexParse', 'endnote', 'RIS', 'rtf');
+  foreach ($dirs as $dir) {
+    $path = drupal_get_path('module', 'biblio') . '/modules/'.$dir.'/views';
+    if (is_dir($path)) {
+      $message = t('You have an inconsistancy in your installation, the directory: @path, should not exist!', array('@path' => $path));
+      drupal_set_message($message, 'error');
+    }
+  }
+  if (module_exists('views')) { // rebuild the data tables
+    views_invalidate_cache();
+  }
 }

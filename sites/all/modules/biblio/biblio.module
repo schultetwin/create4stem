@@ -146,6 +146,20 @@ function biblio_init() {
       $conf['cache'] = FALSE;
   }
 }
+
+function biblio_cron() {
+  require_once(drupal_get_path('module', 'biblio') .'/includes/biblio.contributors.inc');
+  require_once(drupal_get_path('module', 'biblio') .'/includes/biblio.keywords.inc');
+
+  $interval = variable_get('biblio_orphan_clean_interval', 24*60*60); //defaults to once per day
+
+  if (time() >= variable_get('biblio_orphan_clean_next_execution', 0)) {
+    biblio_delete_orphan_authors();
+    biblio_delete_orphan_keywords();
+    variable_set('biblio_orphan_clean_next_execution', time() + $interval);
+  }
+}
+
 function biblio_theme($existing, $type, $theme, $path) {
   $path = drupal_get_path('module', 'biblio');
   return array(
@@ -309,7 +323,7 @@ function biblio_autocomplete($field, $string = '') {
 
     default:
       $field = drupal_strtolower($field);
-      $string = drupal_strtolower($string) . '%';
+      $string = '%' . drupal_strtolower($string) . '%';
       $query = db_select('biblio', 'b')
         ->fields('b', array($field))
         ->condition($field, $string, 'LIKE')
@@ -1148,19 +1162,25 @@ function biblio_form($node, &$form_state) {
     '#default_value' =>  $tid,
     '#options' => $options,
     '#description' => NULL,
-    '#weight' => -15,
+    '#weight' => 2,
     '#attributes' =>  array('onchange' => 'document.getElementById(\'edit-biblio-next\').click()'),
+    '#executes_submit_callback' => TRUE,
+    '#limit_validation_errors' => array(),
     '#multiple' => FALSE,
     '#required' => TRUE
   );
 
-  $form['biblio_next'] = array(
-      '#type'   => 'submit',
-      '#value'  => $step_two ? t('Change Publication Type') : t('Next'),
-      '#limit_validation_errors' => array(),
-      '#weight' => -10,
-      '#submit' => array(),
-  );
+    $form['biblio_next'] = array(
+        '#type'   => 'submit',
+        '#value'  => $step_two ? t('Change Publication Type') : t('Next'),
+        '#limit_validation_errors' => array(),
+        '#attributes' =>  array('style' => array('display: none;')),
+        '#weight' => -10,
+        '#submit' => array(),
+    );
+  if (isset($_COOKIE['has_js']) && !$_COOKIE['has_js']) {
+    unset($form['biblio_next']['#attributes']);
+  }
 
   if ($step_two) {
     $form['title'] = array(
@@ -1169,7 +1189,8 @@ function biblio_form($node, &$form_state) {
       '#required' => TRUE,
       '#default_value' => trim((isset($form_state['values']['title'])?$form_state['values']['title']: $node->title)),
       '#maxlength' => 255,
-      '#weight' => -4
+      '#size' => 120,
+      '#weight' => 1
     );
     // Build the field array used to make the form
     $result = db_query("SELECT * FROM {biblio_fields} b
@@ -1184,7 +1205,7 @@ function biblio_form($node, &$form_state) {
 
     $tabs = array(
       '#type' => 'vertical_tabs',
-      '#weight' => 0,
+      '#weight' => 10,
     );
     $tabs += biblio_node_form_vtabs();
 
@@ -1198,6 +1219,8 @@ function biblio_form($node, &$form_state) {
     );
 
     $tabs['biblio_authors'] += biblio_contributor_widget($node, $form_state);
+
+    $form_state['biblio_fields'] = $fields;
 
     foreach ($fields as $key => $fld) {
       $options = '';
@@ -1224,7 +1247,7 @@ function biblio_form($node, &$form_state) {
             '#title' => check_plain($fld['title']),
             '#size' => $fld['size'],
             '#rows' => 10,
-            '#required' => $fld['required'],
+//            '#required' => $fld['required'],
             '#maxlength' => $fld['maxsize'],
             '#weight' => $fld['weight'] / 10,
             '#autocomplete_path' => ($fld['autocomplete']) ? 'biblio/autocomplete/' . $fld['name'] : '',
@@ -1243,7 +1266,16 @@ function biblio_form($node, &$form_state) {
         $element['#description'] = t('If you are not sure, set this to Unknown or Does Not Apply');
       }
 
-      $tabs[$fld['vtab']][$key] = $element;
+      if ( $fld['common']  || $fld['visible'] ) {
+        $tabs[$fld['vtab']][$key] = $element;
+      }
+
+    }
+  }
+  foreach (element_children($tabs) as $key) {
+    $tab_children = element_children($tabs[$key]);
+    if (empty($tab_children) && $key != 'biblio_full_text') {
+      unset($tabs[$key]);
     }
   }
   // $form['format'] = filter_form($node->format, 20);
@@ -1255,8 +1287,8 @@ function biblio_form($node, &$form_state) {
   return $form;
 }
 
-function biblio_node_form_vtabs() {
-  $vtabs = array(
+function biblio_node_form_vtab_info() {
+  return array(
     array('tab_id' => 1, 'weight' => 10, 'title' => 'Abstract', 'description' => ''),
     array('tab_id' => 'biblio_full_text', 'weight' => 11, 'title' => 'Full text', 'description' => ''),
     array('tab_id' => 2, 'weight' => 12, 'title' => 'Publication', 'description' => ''),
@@ -1268,6 +1300,11 @@ function biblio_node_form_vtabs() {
     array('tab_id' => 8, 'weight' => 18, 'title' => 'Alternate Titles', 'description' => ''),
     array('tab_id' => 9, 'weight' => 19, 'title' => 'Other', 'description' => ''),
     );
+}
+
+function biblio_node_form_vtabs() {
+  $vtabs = biblio_node_form_vtab_info();
+
   foreach ($vtabs as $tab) {
     $form[$tab['tab_id']] = array(
         '#type' => 'fieldset',
@@ -1401,8 +1438,8 @@ function biblio_form_node_form_alter(&$form, &$form_state, $form_id) {
        foreach (element_children($form) as $form_element) {
         if (strstr($form_element, 'biblio_')) continue;
         if (strstr($form_element, 'form_')) continue;
-        if ($form[$form_element]['#type'] != 'value') {
-          unset($form[$form_element]);
+        if (isset($form[$form_element]['#type']) && $form[$form_element]['#type'] != 'value') {
+          $form[$form_element]['#access'] = FALSE;
         }
       }
      }
@@ -1452,6 +1489,22 @@ function biblio_node_form_validate($form, &$form_state) {
       }
     }
   }
+
+
+  if (isset($form_state['biblio_fields'])) {
+    $vtabs = biblio_node_form_vtab_info();
+    foreach($vtabs as $tab) {
+      $tabs[$tab['tab_id']] = $tab['title'];
+    }
+
+    foreach ($form_state['biblio_fields'] as $key => $fld) {
+      if ($fld['required'] && isset($form_state['values'][$key]) && empty($form_state['values'][$key])) {
+        $tab = $tabs[$fld['vtab']];
+        form_set_error($key, t('The <b><u>@fld</u></b> field (on the <b><i>@tab</i></b> tab) is required', array('@fld' => $fld['title'], '@tab' => $tab)));
+      }
+    }
+  }
+
 }
 
 function _biblio_numeric_year($year) {
@@ -1634,7 +1687,6 @@ function biblio_citekey_generate($node) {
  */
 function biblio_view($node, $buildmode = 'full') {
   global $user;
-  if (!user_access('access biblio content', $user)) return $node;
   $links = array();
   $style = biblio_get_style();
   $base  = variable_get('biblio_base', 'biblio');
@@ -1642,7 +1694,6 @@ function biblio_view($node, $buildmode = 'full') {
 
   switch ($buildmode) {
     case 'full':
-      drupal_set_breadcrumb(array(l(t('Home'), NULL), l(drupal_ucfirst($base_title), $base)));
       if (variable_get('biblio_hide_bibtex_braces', 0) && !isset($node->view )) {
         $node->title = biblio_remove_brace($node->title);
         drupal_set_title(filter_xss($node->title, biblio_get_allowed_tags()));
@@ -2201,5 +2252,27 @@ function biblio_node_export_node_alter($node, $original_node) {
     foreach ($node->biblio_contributors as $n => $value) {
       unset($node->biblio_contributors[$n]['cid']);
     }
+  }
+}
+
+function biblio_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_name) {
+  module_load_include('inc', 'biblio', 'includes/biblio.feeds');
+  return  _biblio_feeds_processor_targets_alter($targets, $entity_type, $bundle_name);
+}
+
+function biblio_feeds_importer_default() {
+  module_load_include('inc', 'biblio', 'includes/biblio.feeds');
+  $defaults = array();
+  if (module_exists('feeds_oai_pmh')) {
+    $defaults +=  _biblio_feeds_oai_importer_default();
+  }
+
+  return $defaults;
+  }
+
+function biblio_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "feeds" && $api == "feeds_importer_default") {
+    return array("version" => 1);
   }
 }

@@ -167,7 +167,9 @@ class EndNoteXMLParser {
       case 'subsidiary-authors' :
       case 'translated-authors' :
         $this->contributors_type = '';
-        $this->node->biblio_contributors += $this->contributors;
+        foreach($this->contributors as $contributor) {
+          $this->node->biblio_contributors[] = $contributor;
+        }
         break;
       case 'author' :
         switch ($this->contributors_type) {
@@ -246,7 +248,7 @@ class EndNoteXMLParser {
 
   function endnote8_characterData($parser, $data) {
     //    global $this->node, $this->element, $this->contributors_type, $this->contrib_count, $this->dates, $this->urls, $this->keyword_count;
-    if (trim($data)) {
+    if (trim(htmlspecialchars_decode($data))) {
       switch ($this->element) {
         //Author information
         case 'author' :
@@ -353,7 +355,9 @@ class EndNoteXMLParser {
       case 'TERTIARY_AUTHORS':
       case 'SUBSIDIARY_AUTHORS':
         $this->contributors_type = '';
-        $this->node->biblio_contributors += $this->contributors;
+        foreach($this->contributors as $contributor) {
+          $this->node->biblio_contributors[] = $contributor;
+        }
         break;
       case 'AUTHOR':
         $this->contributors[$this->contrib_count]['auth_category'] = 1;

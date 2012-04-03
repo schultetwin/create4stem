@@ -174,6 +174,21 @@ function _name_field_settings_form_validate($elements, &$form_state, $form) {
 // TODO - hook_field_views_data() if required
 
 /**
+ * Checks that a component is not selected as a minimal component when the
+ * component is not selected.
+ */
+function _name_field_minimal_component_requirements($element, &$form_state) {
+  $required_field_set = array_flip(array('given', 'family'));
+  $value = array_intersect_key($required_field_set, array_filter((array) $element['#value']));
+  if (empty($value)) {
+    $required_fields = array_intersect_key(_name_translations(), $required_field_set);
+    form_set_error(implode('][', $element['#parents']) . '][given]',
+        t('%label must have one of the following components: %components',
+        array('%label' => $element['#title'], '%components' => implode(', ', $required_fields))));
+  }
+}
+
+/**
  * Checks that individual values in the defined options list do not exceed the
  * limits placed on the component.
  */
@@ -307,20 +322,6 @@ function _name_field_instance_settings_form($field, $instance = NULL) {
     '#description' => t('Use this to override the default CSS used when rendering each component. Use "&lt;none&gt;" to prevent the use of inline CSS.'),
   );
 
-  $form['component_layout'] = array(
-    '#type' => 'radios',
-    '#title' => t('Language layout'),
-    '#default_value' => isset($settings['component_layout']) ? $settings['component_layout'] : 'default',
-    '#options' => array(
-      'default' => t('Western names'),
-      'asian' => t('Asian names'),
-    ),
-    '#description' => t(
-    'This controls the order of the widgets that are displayed in the form. Note that when you select the !asian format, the !name_generational field is hidden and defaults to an empty string.',
-        array('!name_generational' => t('Generational'), '!asian' => t('Asian names'))
-    ),
-  );
-
   $form['credentials_inline'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show the credentials inline'),
@@ -350,7 +351,7 @@ function _name_field_instance_settings_form($field, $instance = NULL) {
       '#value' => isset($settings['override_format']) ? $settings['override_format'] : 'default',
     );
   }
-
+  
   return $form;
 
 }
@@ -367,7 +368,7 @@ function _name_field_widget_form(&$form, &$form_state, $field, $instance, $langc
 
   $element += array(
     '#type' => 'name_element',
-    '#title' => check_plain($instance['label']),
+    '#title' => $instance['label'],
     '#label' => $instance['label'],
     '#components' => array(),
     '#minimum_components' => array_filter($fs['minimum_components']),
@@ -375,7 +376,6 @@ function _name_field_widget_form(&$form, &$form_state, $field, $instance, $langc
     '#field' => $field,
     '#credentials_inline' => empty($ws['credentials_inline']) ? 0 : 1,
     '#component_css' => empty($ws['component_css']) ? '' : $ws['component_css'],
-    '#component_layout' => empty($ws['component_layout']) ? 'default' : $ws['component_layout']
   );
 
   $components = array_filter($fs['components']);

@@ -135,7 +135,6 @@ function biblio_delete_contributors($node) {
   $count = db_delete('biblio_contributor')
             ->condition('nid', $node->nid)
             ->execute();
-  biblio_delete_orphan_authors();
   return $count;
 }
 
@@ -143,7 +142,6 @@ function biblio_delete_contributors_revision($node) {
   $count = db_delete('biblio_contributor')
             ->condition('vid', $node->vid)
             ->execute();
-  biblio_delete_orphan_authors();
   return $count;
 }
 
@@ -180,9 +178,6 @@ function biblio_get_orphan_authors() {
 
 function biblio_delete_orphan_authors($force = FALSE) {
   if (variable_get('biblio_auto_orphaned_author_delete', 0) || $force) {
-    //    db_query('DELETE FROM {biblio_contributor_data} WHERE cid NOT IN (SELECT DISTINCT(cid) FROM {biblio_contributor})');
-    //    $sub_select = db_select('biblio_contributor', 'bc')->fields('bc', array('cid'))->distinct();
-
     $query = db_select('biblio_contributor', 'bc');
     $active_cids = $query
       ->fields('bc', array('cid'))
@@ -217,7 +212,6 @@ function biblio_update_contributors($node) {
   if (!empty($node->biblio_contributors)) {
     _save_contributors($node->biblio_contributors, $node->nid, $node->vid, TRUE);
   }
-  biblio_delete_orphan_authors();
   return;
 
 }
@@ -254,11 +248,13 @@ function _biblio_contributor_usort($a, $b) {
 function _save_contributors(&$contributors, $nid, $vid, $update = FALSE) {
   $md5 = _loadMD5();
   $rank = 0;
-  //  db_query('DELETE FROM {biblio_contributor} WHERE nid = :nid AND vid = :vid', array(':nid' => $nid, ':vid' => $vid));
+
   db_delete('biblio_contributor')
-  ->condition(db_and()->condition('nid', $nid)->condition('vid', $vid))
-  ->execute();
+      ->condition(db_and()->condition('nid', $nid)->condition('vid', $vid))
+      ->execute();
+
   _biblio_contributor_sort($contributors);// re-sort the authors by rank because the rank may have changed due to tabledrag on the input form
+
   foreach ($contributors as  $key => $author) {
  //   foreach ($authors as $key => $author) {
       if (!empty($author['name'])) {

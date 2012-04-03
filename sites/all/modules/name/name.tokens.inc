@@ -68,8 +68,8 @@ function name_tokens($type, $tokens, array $data = array(), array $options = arr
     $name = $data['name'];
     $name_components = array();
     foreach (_name_translations() as $key => $title) {
-      if (!empty($name[$key])) {
-        $name_components[$key] = $name[$key];
+      if (!empty($item[$key])) {
+        $name_components[$key] = $item[$key];
       }
       else {
         $name_components[$key] = '';
