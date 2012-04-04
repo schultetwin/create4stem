@@ -1,4 +1,5 @@
 
+
 /** 
  * Use this file to provide overrides to the main styles. This file always loads last
  * so you can override anything in the other style-sheets.
@@ -95,19 +96,30 @@ h2.block-title{
 	padding: 0;
 }
 
+
+#tripanel{
+	margin: 10px 0 0;
+	background-color: transparent;
+	padding: 0;
+}
+
 .featured-slide-item{
 	color: white;
 	padding: 10px;
 }
+
+.three-3x33 .region-three-33-first{
+	width: 66%;
+}
+
+
 #block-views-featured-front-page-block .block-inner{
 	padding-right: 0;
 }
+
 #block-views-featured-front-page-block .block-content-inner{
 	padding: 0;
-}
-
-#block-views-featured-front-page-block .views-slideshow-main{
-	background-color: none;
+	font-size: 1.1em;
 }
 
 .featured-slide-item .views-field-title .field-content{
@@ -118,6 +130,15 @@ h2.block-title{
 
 .featured-slide-item {
 	background-color: #3f5657;
+}
+
+.views-slideshow-controls-bottom {
+	right: 15px;
+}
+
+.region-three-33-third .block-inner{
+	margin: 0;
+	font-size: 1.07em;
 }
 
 .view-news-all.view-display-id-block .views-field-title a{
@@ -141,6 +162,105 @@ h2.block-title{
 	padding-bottom: 0;
 }
 
+#block-block-2{
+	margin-bottom: 3px;
+}
+
+#block-block-2 h1,
+#block-block-2 h4{
+	text-align: center;
+	color: white;
+}
+
+#block-block-2 .block-content-inner{
+	background-image: none;
+}
+
+#block-block-2 .block-content{
+	background-color: #7c1746;
+	height: 90px;
+}
+
+#block-block-2 .block-inner{
+	margin-left: 0;
+}
+
+#block-block-2 a{
+	color: white;
+	font-weight: bold;
+}
+
+#block-block-3{
+	margin-bottom: 3px;
+}
+
+#block-block-3 h2,
+#block-block-3 h3{
+	text-align: center;
+	color: white;
+}
+
+#block-block-3 h2{
+	color: white;
+	font-size: 1.3em;
+}
+
+#block-block-3 p{
+	color: white;
+	font-size: 1.1em;
+	line-height: 1.2em;
+}
+
+#block-block-3 a{
+	color: white;
+	font-style: italic;
+}
+
+#block-block-3 .block-content-inner{
+	background-image: none;
+	height: 180px;
+}
+
+#block-block-3 .block-content{
+	background-color: #007dc5;
+}
+
+#block-block-3 .block-inner{
+	margin-left: 0;
+}
+
+#block-block-4{
+	margin-bottom: 3px;
+}
+
+#block-block-4 h2,
+#block-block-4 h3{
+	text-align: center;
+	color: white;
+}
+
+#block-block-4 p{
+	color: white;
+}
+#block-block-4 a{
+	color: white;
+	font-style: italic;
+}
+
+#block-block-4 .block-content-inner{
+	background-image: none;
+	height: 150px;
+}
+
+#block-block-4 .block-content{
+	background-color:#008183;
+}
+
+#block-block-4 .block-inner{
+	margin-left: 0;
+}
+
+
 .biblio-recent-block .views-field-citation{
 	font-size: 0.9em;
 	line-height: 1.3em;
@@ -162,6 +282,30 @@ h2.block-title{
 
 .views-row-even .article{
 	background-color: #e2e2e0;
+}
+
+#block-views-profile-about-block-1 .block-content{
+	background-color: #F9F9F7;
+}
+
+#block-views-profile-about-block-1 .block-content-inner{
+	background-image: none;
+}
+
+.profile-block{
+	text-align: center;
+	font-size: 1.1em;
+	color: #3f5657;
+}
+.profile-block .views-field-field-user-name{
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 1.1em;
+}
+
+.profile-block .views-field-field-profile-title{
+	font-style: italic;
+	margin-bottom: 5px;
 }
 
 #footer{
