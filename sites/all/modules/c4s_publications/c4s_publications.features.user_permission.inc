@@ -44,6 +44,7 @@ function c4s_publications_user_default_permissions() {
   $permissions['delete any biblio content'] = array(
     'name' => 'delete any biblio content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: delete own biblio content
@@ -59,6 +60,7 @@ function c4s_publications_user_default_permissions() {
   $permissions['edit any biblio content'] = array(
     'name' => 'edit any biblio content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: edit biblio authors
