@@ -1,0 +1,5 @@
+name =  Create4Stem Customizations
+description = Some customizations for the site
+core = 7.x
+package = C4S
+
