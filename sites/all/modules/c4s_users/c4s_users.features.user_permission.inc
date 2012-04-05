@@ -81,6 +81,13 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: delete terms in 3
+  $permissions['delete terms in 3'] = array(
+    'name' => 'delete terms in 3',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any main profile
   $permissions['edit any main profile'] = array(
     'name' => 'edit any main profile',
@@ -98,6 +105,13 @@ function c4s_users_user_default_permissions() {
       1 => 'authenticated user',
     ),
     'module' => 'profile2',
+  );
+
+  // Exported permission: edit terms in 3
+  $permissions['edit terms in 3'] = array(
+    'name' => 'edit terms in 3',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: select account cancellation method
