@@ -447,6 +447,7 @@ function c4s_base_user_default_permissions() {
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: edit any page content
@@ -507,6 +508,7 @@ function c4s_base_user_default_permissions() {
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: search content
@@ -575,6 +577,7 @@ function c4s_base_user_default_permissions() {
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: view the administration theme

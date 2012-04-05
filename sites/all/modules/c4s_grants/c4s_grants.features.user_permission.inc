@@ -14,30 +14,35 @@ function c4s_grants_user_default_permissions() {
   $permissions['create grantc4s content'] = array(
     'name' => 'create grantc4s content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: delete any grantc4s content
   $permissions['delete any grantc4s content'] = array(
     'name' => 'delete any grantc4s content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: delete own grantc4s content
   $permissions['delete own grantc4s content'] = array(
     'name' => 'delete own grantc4s content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: edit any grantc4s content
   $permissions['edit any grantc4s content'] = array(
     'name' => 'edit any grantc4s content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: edit own grantc4s content
   $permissions['edit own grantc4s content'] = array(
     'name' => 'edit own grantc4s content',
     'roles' => array(),
+    'module' => 'node',
   );
 
   return $permissions;
