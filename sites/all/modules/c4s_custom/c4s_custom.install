@@ -29,4 +29,5 @@ function c4s_custom_update_7001(&$sandbox) {
     ->fields(array('weight' => $weight +1))
     ->condition('name', 'c4s_custom', '=')
     ->execute();
+  drupal_flush_all_caches();
 }
