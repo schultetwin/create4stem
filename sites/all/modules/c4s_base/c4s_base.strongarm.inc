@@ -99,6 +99,13 @@ function c4s_base_strongarm() {
     'group_profile_position_2|user|user|form' => FALSE,
     'group_user_password|user|user|form' => FALSE,
     'group_user_groups|user|user|form' => FALSE,
+    'group_stuff|user|user|form' => FALSE,
+    'group_settings|user|user|form' => FALSE,
+    'group_photo|user|user|form' => FALSE,
+    'group_profile_stuff|profile2|main|form' => FALSE,
+    'group_about_me|profile2|main|form' => FALSE,
+    'group_conference_signup|node|conference_session|form' => FALSE,
+    'group_conference_presentation|node|conference_session|form' => FALSE,
   );
   $export['default_field_group'] = $strongarm;
 

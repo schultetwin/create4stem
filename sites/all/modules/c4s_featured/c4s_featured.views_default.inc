@@ -98,6 +98,7 @@ function c4s_featured_views_default_views() {
   $handler->display->display_options['fields']['field_featured_link']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_featured_link']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_featured_link']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_featured_link']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_featured_link']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_featured_link']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_featured_link']['alter']['html'] = 0;
@@ -107,7 +108,7 @@ function c4s_featured_views_default_views() {
   $handler->display->display_options['fields']['field_featured_link']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_featured_link']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_featured_link']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_featured_link']['type'] = 'link_plain';
+  $handler->display->display_options['fields']['field_featured_link']['type'] = 'link_url';
   $handler->display->display_options['fields']['field_featured_link']['field_api_classes'] = 0;
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_featured_image']['id'] = 'field_featured_image';
@@ -144,7 +145,8 @@ function c4s_featured_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_featured_link]';
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['title']['alter']['external'] = 0;
   $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
@@ -152,6 +154,7 @@ function c4s_featured_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;

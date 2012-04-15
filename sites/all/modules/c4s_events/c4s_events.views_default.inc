@@ -141,8 +141,24 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['max_items'] = '0';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'calendar_node';
-  $handler->display->display_options['row_options']['colors']['legend'] = 'type';
+  $handler->display->display_options['row_plugin'] = 'calendar_entity';
+  $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
+    'page' => '#ffffff',
+    'biblio' => '#ffffff',
+    'book' => '#ffffff',
+    'event' => '#ffffff',
+    'featured' => '#ffffff',
+    'grantc4s' => '#ffffff',
+    'posting' => '#ffffff',
+    'project' => '#ffffff',
+    'story' => '#ffffff',
+  );
+  $handler->display->display_options['row_options']['colors']['calendar_colors_group'] = array(
+    1 => '#ffffff',
+    2 => '#ffffff',
+    3 => '#ffffff',
+    4 => '#ffffff',
+  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
@@ -182,7 +198,24 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['max_items'] = '0';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'calendar_node';
+  $handler->display->display_options['row_plugin'] = 'calendar_entity';
+  $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
+    'page' => '#ffffff',
+    'biblio' => '#ffffff',
+    'book' => '#ffffff',
+    'event' => '#ffffff',
+    'featured' => '#ffffff',
+    'grantc4s' => '#ffffff',
+    'posting' => '#ffffff',
+    'project' => '#ffffff',
+    'story' => '#ffffff',
+  );
+  $handler->display->display_options['row_options']['colors']['calendar_colors_group'] = array(
+    1 => '#ffffff',
+    2 => '#ffffff',
+    3 => '#ffffff',
+    4 => '#ffffff',
+  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
@@ -217,7 +250,24 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['max_items'] = '0';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'calendar_node';
+  $handler->display->display_options['row_plugin'] = 'calendar_entity';
+  $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
+    'page' => '#ffffff',
+    'biblio' => '#ffffff',
+    'book' => '#ffffff',
+    'event' => '#ffffff',
+    'featured' => '#ffffff',
+    'grantc4s' => '#ffffff',
+    'posting' => '#ffffff',
+    'project' => '#ffffff',
+    'story' => '#ffffff',
+  );
+  $handler->display->display_options['row_options']['colors']['calendar_colors_group'] = array(
+    1 => '#ffffff',
+    2 => '#ffffff',
+    3 => '#ffffff',
+    4 => '#ffffff',
+  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
@@ -238,6 +288,8 @@ function c4s_events_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'events-upcoming-block';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['pager']['options']['date_id'] = 'mini';
@@ -251,8 +303,126 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['max_items'] = '0';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'calendar_node';
+  $handler->display->display_options['row_plugin'] = 'calendar_entity';
+  $handler->display->display_options['row_options']['colors']['calendar_colors_type'] = array(
+    'page' => '#ffffff',
+    'biblio' => '#ffffff',
+    'book' => '#ffffff',
+    'event' => '#ffffff',
+    'featured' => '#ffffff',
+    'grantc4s' => '#ffffff',
+    'posting' => '#ffffff',
+    'project' => '#ffffff',
+    'story' => '#ffffff',
+  );
+  $handler->display->display_options['row_options']['colors']['calendar_colors_group'] = array(
+    1 => '#ffffff',
+    2 => '#ffffff',
+    3 => '#ffffff',
+    4 => '#ffffff',
+  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Short Title */
+  $handler->display->display_options['fields']['field_project_shorttitle']['id'] = 'field_project_shorttitle';
+  $handler->display->display_options['fields']['field_project_shorttitle']['table'] = 'field_data_field_project_shorttitle';
+  $handler->display->display_options['fields']['field_project_shorttitle']['field'] = 'field_project_shorttitle';
+  $handler->display->display_options['fields']['field_project_shorttitle']['label'] = 'Group';
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_shorttitle']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_shorttitle']['field_api_classes'] = 0;
+  /* Field: Content: Date */
+  $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
+  $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['label'] = '';
+  $handler->display->display_options['fields']['field_date']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_date']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_date']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_date']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_date']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_date']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_date']['field_api_classes'] = 0;
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_event_location']['id'] = 'field_event_location';
+  $handler->display->display_options['fields']['field_event_location']['table'] = 'field_data_field_event_location';
+  $handler->display->display_options['fields']['field_event_location']['field'] = 'field_event_location';
+  $handler->display->display_options['fields']['field_event_location']['label'] = '';
+  $handler->display->display_options['fields']['field_event_location']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_event_location']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_event_location']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_event_location']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_event_location']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';

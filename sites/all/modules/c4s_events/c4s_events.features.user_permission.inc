@@ -13,14 +13,20 @@ function c4s_events_user_default_permissions() {
   // Exported permission: create event content
   $permissions['create event content'] = array(
     'name' => 'create event content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: delete any event content
   $permissions['delete any event content'] = array(
     'name' => 'delete any event content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 
@@ -36,7 +42,10 @@ function c4s_events_user_default_permissions() {
   // Exported permission: edit any event content
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 

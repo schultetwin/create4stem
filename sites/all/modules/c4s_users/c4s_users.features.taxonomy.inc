@@ -15,7 +15,7 @@ function c4s_users_taxonomy_default_vocabularies() {
       'description' => 'Individual user\'s relationship to the Institute (for search/display)',
       'hierarchy' => '0',
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => '-10',
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

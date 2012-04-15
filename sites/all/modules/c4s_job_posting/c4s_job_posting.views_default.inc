@@ -31,7 +31,8 @@ function c4s_job_posting_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['row_options']['links'] = 1;
+  $handler->display->display_options['row_options']['comments'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -67,17 +68,12 @@ function c4s_job_posting_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'posting' => 'posting',
   );
-  /* Filter criterion: Content: Application Deadline (field_position_deadline) */
-  $handler->display->display_options['filters']['field_position_deadline_value']['id'] = 'field_position_deadline_value';
-  $handler->display->display_options['filters']['field_position_deadline_value']['table'] = 'field_data_field_position_deadline';
-  $handler->display->display_options['filters']['field_position_deadline_value']['field'] = 'field_position_deadline_value';
-  $handler->display->display_options['filters']['field_position_deadline_value']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_position_deadline_value']['form_type'] = 'date_text';
-  $handler->display->display_options['filters']['field_position_deadline_value']['default_date'] = 'now -1 month';
-  $handler->display->display_options['filters']['field_position_deadline_value']['year_range'] = '-0:+1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'More information...';
   $handler->display->display_options['path'] = 'opportunities/positions';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Job Postings';

@@ -43,7 +43,9 @@ function c4s_publications_user_default_permissions() {
   // Exported permission: delete any biblio content
   $permissions['delete any biblio content'] = array(
     'name' => 'delete any biblio content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -59,7 +61,9 @@ function c4s_publications_user_default_permissions() {
   // Exported permission: edit any biblio content
   $permissions['edit any biblio content'] = array(
     'name' => 'edit any biblio content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -165,7 +169,9 @@ function c4s_publications_user_default_permissions() {
     'name' => 'view full text',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content editor',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
+      3 => 'content editor',
     ),
     'module' => 'biblio',
   );

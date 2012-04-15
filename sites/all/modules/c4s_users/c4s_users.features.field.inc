@@ -42,19 +42,28 @@ function c4s_users_field_default_fields() {
       'bundle' => 'main',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Please enter general information about yourself, your professional history, and/or your research interests.',
+      'description' => 'Please enter general information about yourself, your professional history, etc.   This will show in the primary view of your profile page.',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'profile2',
       'field_name' => 'field_profile_about',
-      'label' => 'About',
+      'label' => 'About Me',
       'required' => 0,
       'settings' => array(
         'display_summary' => 0,
@@ -65,11 +74,11 @@ function c4s_users_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '20',
+          'rows' => '15',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '0',
+        'weight' => '3',
       ),
     ),
   );
@@ -115,7 +124,13 @@ function c4s_users_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 15,
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'profile2',
@@ -190,7 +205,13 @@ function c4s_users_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 14,
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'profile2',
@@ -206,60 +227,10 @@ function c4s_users_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '20',
+          'rows' => '15',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_profile_email'
-  $fields['profile2-main-field_profile_email'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_profile_email',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'email',
-      'settings' => array(
-        'profile2_private' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'email',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Enter email to be used as your preferred contact email for people who may wish to contact you off your profile page.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'email',
-          'settings' => array(),
-          'type' => 'email_default',
-          'weight' => 5,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_profile_email',
-      'label' => 'Email',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'email',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'email_textfield',
         'weight' => '5',
       ),
     ),
@@ -306,7 +277,13 @@ function c4s_users_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 3,
+          'weight' => '8',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'profile2',
@@ -382,7 +359,13 @@ function c4s_users_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '7',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'profile2',
@@ -446,7 +429,13 @@ function c4s_users_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 8,
+          'weight' => '10',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'profile2',
@@ -522,7 +511,13 @@ function c4s_users_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 6,
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'profile2',
@@ -584,7 +579,13 @@ function c4s_users_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 13,
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'profile2',
@@ -600,7 +601,7 @@ function c4s_users_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '20',
+          'rows' => '15',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
@@ -650,7 +651,13 @@ function c4s_users_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 16,
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '16',
         ),
       ),
       'entity_type' => 'profile2',
@@ -727,7 +734,13 @@ function c4s_users_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 7,
+          'weight' => '9',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'profile2',
@@ -812,7 +825,7 @@ function c4s_users_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => 1,
       ),
       'widget' => array(
         'active' => 1,
@@ -821,7 +834,7 @@ function c4s_users_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '12',
+        'weight' => '6',
       ),
     ),
   );
@@ -875,7 +888,7 @@ function c4s_users_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => 1,
       ),
       'widget' => array(
         'active' => 1,
@@ -884,7 +897,7 @@ function c4s_users_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '13',
+        'weight' => '5',
       ),
     ),
   );
@@ -920,7 +933,11 @@ function c4s_users_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 'Michigan State University',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -938,7 +955,7 @@ function c4s_users_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => 1,
       ),
       'widget' => array(
         'active' => 1,
@@ -947,7 +964,7 @@ function c4s_users_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '7',
       ),
     ),
   );
@@ -956,7 +973,7 @@ function c4s_users_field_default_fields() {
   $fields['user-user-field_profile_role'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_profile_role',
@@ -988,13 +1005,9 @@ function c4s_users_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'user',
-      'default_value' => array(
-        0 => array(
-          'tid' => '14',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Select your relationship(s) with the Institute',
+      'description' => 'Select person\'s relationship with ',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1006,17 +1019,17 @@ function c4s_users_field_default_fields() {
       ),
       'entity_type' => 'user',
       'field_name' => 'field_profile_role',
-      'label' => 'C4S Relationship',
-      'required' => 1,
+      'label' => 'Institute Role',
+      'required' => 0,
       'settings' => array(
-        'user_register_form' => 1,
+        'user_register_form' => 0,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => '14',
+        'type' => 'options_select',
+        'weight' => '8',
       ),
     ),
   );
@@ -1070,7 +1083,7 @@ function c4s_users_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
-        'user_register_form' => 0,
+        'user_register_form' => 1,
       ),
       'widget' => array(
         'active' => 1,
@@ -1079,7 +1092,7 @@ function c4s_users_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '4',
       ),
     ),
   );
@@ -1128,7 +1141,7 @@ function c4s_users_field_default_fields() {
           'family' => 'family',
           'generational' => 'generational',
           'given' => 'given',
-          'middle' => 'middle',
+          'middle' => 0,
           'title' => 'title',
         ),
         'generational_options' => '-- --
@@ -1206,7 +1219,6 @@ Prof.',
       'required' => 1,
       'settings' => array(
         'component_css' => '',
-        'component_layout' => 'default',
         'credentials_inline' => 0,
         'field_type' => array(
           'credentials' => 'text',
@@ -1226,7 +1238,7 @@ Prof.',
           'title' => '',
         ),
         'name_user_preferred' => 1,
-        'override_format' => 'full',
+        'override_format' => 'short_full',
         'size' => array(
           'credentials' => '35',
           'family' => '20',
@@ -1333,14 +1345,11 @@ Prof.',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('About');
-  t('C4S Relationship');
+  t('About Me');
   t('College/Division');
   t('Courses');
   t('Courses Links');
   t('Department');
-  t('Email');
-  t('Enter email to be used as your preferred contact email for people who may wish to contact you off your profile page.');
   t('Enter link to your LinkedIn profile (if any)');
   t('Enter link to your twitter feed (if any).  ');
   t('Enter links to relevant research website(s) related to your research');
@@ -1348,14 +1357,15 @@ Prof.',
   t('Fax');
   t('Group Memberships');
   t('If you have a Facebook page that you would like to share, you may do so here.');
+  t('Institute Role');
   t('Institution');
   t('LinkedIn');
   t('Name');
   t('Phone');
-  t('Please enter general information about yourself, your professional history, and/or your research interests.');
+  t('Please enter general information about yourself, your professional history, etc.   This will show in the primary view of your profile page.');
   t('Research');
   t('Research Links');
-  t('Select your relationship(s) with the Institute');
+  t('Select person\'s relationship with ');
   t('Title');
   t('Twitter');
 

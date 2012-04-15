@@ -47,7 +47,7 @@ function c4s_base_filter_default_formats() {
         'weight' => '-45',
         'status' => '1',
         'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd><img><h2><h3><h4><h5><h6><p><br>',
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd><img><h2><h3><h4><h5><h6><p><br><!--break-->',
           'filter_html_help' => 0,
           'filter_html_nofollow' => 1,
         ),

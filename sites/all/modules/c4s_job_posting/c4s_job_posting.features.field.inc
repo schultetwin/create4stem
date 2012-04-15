@@ -34,7 +34,9 @@ function c4s_job_posting_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_with_summary',
     ),
@@ -102,6 +104,8 @@ function c4s_job_posting_field_default_fields() {
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 0,
@@ -166,7 +170,7 @@ function c4s_job_posting_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_position_deadline',
       'label' => 'Application Deadline',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'default_value' => 'strtotime',
         'default_value2' => 'same',
@@ -466,7 +470,7 @@ function c4s_job_posting_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'full' => array(
           'label' => 'inline',
@@ -632,7 +636,7 @@ function c4s_job_posting_field_default_fields() {
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'inline',
@@ -755,7 +759,7 @@ function c4s_job_posting_field_default_fields() {
           'opt_group' => 'auto',
         ),
         'type' => 'group_audience',
-        'weight' => 10,
+        'weight' => '10',
       ),
       'widget_type' => 'group_audience',
     ),

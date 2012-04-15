@@ -15,7 +15,7 @@ function c4s_stories_taxonomy_default_vocabularies() {
       'description' => 'Tags to direct stories to their appropriate location',
       'hierarchy' => '0',
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => '-9',
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

@@ -73,6 +73,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'access contextual links',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'contextual',
   );
@@ -82,6 +83,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'access dashboard',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'dashboard',
   );
@@ -110,6 +112,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'access site reports',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'system',
   );
@@ -119,6 +122,8 @@ function c4s_base_user_default_permissions() {
     'name' => 'access site-wide contact form',
     'roles' => array(
       0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'contact',
   );
@@ -393,6 +398,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'create page content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'node',
   );
@@ -421,6 +427,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'delete any page content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'node',
   );
@@ -439,6 +446,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'delete own page content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'node',
   );
@@ -446,7 +454,10 @@ function c4s_base_user_default_permissions() {
   // Exported permission: delete revisions
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 
@@ -455,6 +466,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'edit any page content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'node',
   );
@@ -464,6 +476,7 @@ function c4s_base_user_default_permissions() {
     'name' => 'edit own page content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'node',
   );
@@ -507,7 +520,10 @@ function c4s_base_user_default_permissions() {
   // Exported permission: revert revisions
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 
@@ -576,7 +592,10 @@ function c4s_base_user_default_permissions() {
   // Exported permission: view revisions
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
     'module' => 'node',
   );
 

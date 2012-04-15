@@ -15,6 +15,8 @@ function c4s_users_user_default_permissions() {
     'name' => 'access user contact forms',
     'roles' => array(
       0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'contact',
   );
@@ -84,7 +86,9 @@ function c4s_users_user_default_permissions() {
   // Exported permission: delete terms in 3
   $permissions['delete terms in 3'] = array(
     'name' => 'delete terms in 3',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -93,6 +97,7 @@ function c4s_users_user_default_permissions() {
     'name' => 'edit any main profile',
     'roles' => array(
       0 => 'administrator',
+      1 => 'content editor',
     ),
     'module' => 'profile2',
   );
@@ -110,7 +115,9 @@ function c4s_users_user_default_permissions() {
   // Exported permission: edit terms in 3
   $permissions['edit terms in 3'] = array(
     'name' => 'edit terms in 3',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -128,6 +135,8 @@ function c4s_users_user_default_permissions() {
     'name' => 'view any main profile',
     'roles' => array(
       0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'profile2',
   );
