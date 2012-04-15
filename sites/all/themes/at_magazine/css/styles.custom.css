@@ -41,6 +41,18 @@ h2.block-title{
 	margin: 0;
 }
 
+.block-logintoboggan{
+	float: right;
+	height: 12px;
+	width: 110px;
+}
+
+#block-block-5{
+	float: right;
+	height: 12px;
+	width: 40px;
+}
+
 .block-region-menu-bar{
 	background-color: #b7b7b1 !important;
 	background-image: url(images/menu-nohover.png) !important;
@@ -70,12 +82,15 @@ h2.block-title{
 
 #block-views-news-announcements-block .block-inner{
 	border: 2px solid #84082c;
-	}
+	height: 47px;
+	background-color: #f8f8f8;
+	background: url(images/announcement.png) no-repeat #f8f8f8;
+}
 
 #block-views-news-announcements-block .block-content{
-	background: silver;
-	background: url(images/announcement.png) no-repeat #D5D5D5;
-	padding-left: 200px;
+	
+	
+	padding-left: 190px;
 }
 
 #block-views-news-announcements-block .block-content-inner{
@@ -122,7 +137,7 @@ h2.block-title{
 	font-size: 1.1em;
 }
 
-.featured-slide-item .views-field-title .field-content{
+.featured-slide-item .views-field-title .field-content a{
 	color: #e8b909;
 	font-weight: bold;
 	font-size: 1.3em;
@@ -306,6 +321,14 @@ h2.block-title{
 .profile-block .views-field-field-profile-title{
 	font-style: italic;
 	margin-bottom: 5px;
+}
+
+#block-views-event-calendar-block-2 ul li{
+	list-style-type: none;
+}
+#block-views-event-calendar-block-2 .views-field-title a{
+	font-weight: bold;
+	color: #00723f;
 }
 
 #footer{
