@@ -48,5 +48,75 @@ function c4s_base_context_default_contexts() {
   t('Context for all pages in site');
   $export['all_pages'] = $context;
 
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'all_pages_logged_in';
+  $context->description = 'All pages for logged in user';
+  $context->tag = '';
+  $context->conditions = array(
+    'user' => array(
+      'values' => array(
+        'authenticated user' => 'authenticated user',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'logintoboggan-logintoboggan_logged_in' => array(
+          'module' => 'logintoboggan',
+          'delta' => 'logintoboggan_logged_in',
+          'region' => 'menu_bar',
+          'weight' => '-25',
+        ),
+        'superfish-1' => array(
+          'module' => 'superfish',
+          'delta' => 1,
+          'region' => 'menu_bar',
+          'weight' => '-24',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('All pages for logged in user');
+  $export['all_pages_logged_in'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'all_pages_logged_out';
+  $context->description = 'All pages for logged out user';
+  $context->tag = '';
+  $context->conditions = array(
+    'user' => array(
+      'values' => array(
+        'anonymous user' => 'anonymous user',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'superfish-1' => array(
+          'module' => 'superfish',
+          'delta' => 1,
+          'region' => 'menu_bar',
+          'weight' => '-24',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('All pages for logged out user');
+  $export['all_pages_logged_out'] = $context;
+
   return $export;
 }
