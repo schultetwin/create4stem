@@ -102,11 +102,17 @@ function c4s_base_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'c4s_custom-user_login_link' => array(
+          'module' => 'c4s_custom',
+          'delta' => 'user_login_link',
+          'region' => 'menu_bar',
+          'weight' => '-10',
+        ),
         'superfish-1' => array(
           'module' => 'superfish',
           'delta' => 1,
           'region' => 'menu_bar',
-          'weight' => '-24',
+          'weight' => '-9',
         ),
       ),
     ),
