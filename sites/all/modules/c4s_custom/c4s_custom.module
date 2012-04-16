@@ -46,3 +46,30 @@ function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
   }
 
 }
+
+/**
+ * Implementation of hook_block_info().
+ *
+ * Creates a login link
+ */
+function c4s_custom_block_info() {
+  $blocks['user_login_link'] = array(
+    'info' => t('Login Link'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_block_view().
+ *
+ */
+function c4s_custom_block_view($delta = '') {
+  switch ($delta) {
+    case 'user_login_link':
+      $block['content'] = l(t('Log in'), 'user');
+      break;
+  }
+  return $block;
+}
