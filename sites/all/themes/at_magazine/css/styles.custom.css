@@ -44,7 +44,11 @@ h2.block-title{
 .block-logintoboggan{
 	float: right;
 	height: 12px;
-	width: 110px;
+	width: 170px;
+}
+.block-logintoboggan .menu-wrapper {
+  float: right;
+  padding-right: 10px;
 }
 
 #block-c4s-custom-user-login-link {
