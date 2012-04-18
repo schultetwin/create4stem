@@ -47,11 +47,10 @@ h2.block-title{
 	width: 110px;
 }
 
-#block-c4s-custom-user-login-link {
+#block-block-5{
 	float: right;
 	height: 12px;
 	width: 40px;
-  top: -30px;
 }
 
 .block-region-menu-bar{
@@ -361,4 +360,50 @@ h2.block-title{
 
 #footer-inner .block-content-inner a:hover{
 	text-decoration: none;
+}
+
+@media only screen and (max-width:320px) {
+  .block-region-three-33-third{
+	display: none;
+  }
+  
+  #block-block-5{
+	display: none;
+  }
+
+  #branding {
+    height: auto; 
+  }
+  
+  .block-region-menu-bar{
+	background-image: none !important;
+	}
+	
+  #menu-bar a:hover.sf-depth-1, #menu-bar a:active.sf-depth-1, #menu-bar a.sf-depth-1.active{
+	background-image: none;
+  }
+  
+}
+
+@media only screen and (min-width:321px) and (max-width:480px) {
+	  .block-region-three-33-third{
+	display: none;
+  }
+  
+  #block-block-5{
+	display: none;
+  }
+
+  #branding {
+    height: auto; 
+  }
+  
+  .block-region-menu-bar{
+	background-image: none !important;
+	}
+	
+  #menu-bar a:hover.sf-depth-1, #menu-bar a:active.sf-depth-1, #menu-bar a.sf-depth-1.active{
+	background-image: none;
+  }
+  
 }
