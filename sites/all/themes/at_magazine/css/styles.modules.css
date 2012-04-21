@@ -234,3 +234,8 @@ sf-vertical li:hover ul ul ul,
   padding: 3px;
   width: auto;
 }
+
+.calendar-calendar .month-view .full tr.single-day .no-entry,
+.calendar-calendar .month-view .full tr.single-day .no-entry .inner {
+  min-width: 126px;
+}
