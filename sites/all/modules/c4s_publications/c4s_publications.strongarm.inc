@@ -296,9 +296,9 @@ function c4s_publications_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'biblio_orphan_clean_next_execution';
-  $strongarm->value = 1334523914;
-  $export['biblio_orphan_clean_next_execution'] = $strongarm;
+  $strongarm->name = 'biblio_orphan_clean_interval';
+  $strongarm->value = '86400';
+  $export['biblio_orphan_clean_interval'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

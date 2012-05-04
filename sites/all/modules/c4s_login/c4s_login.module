@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the C4S Login feature.
+ */
+
+include_once 'c4s_login.features.inc';
