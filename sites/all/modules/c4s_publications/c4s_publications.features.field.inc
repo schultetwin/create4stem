@@ -53,6 +53,12 @@ function c4s_publications_field_default_fields() {
           'type' => 'text_default',
           'weight' => 0,
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -125,6 +131,12 @@ function c4s_publications_field_default_fields() {
           'settings' => array(),
           'type' => 'og_list_default',
           'weight' => 1,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
