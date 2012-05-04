@@ -60,6 +60,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'text_default',
           'weight' => '5',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -153,6 +159,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'date_default',
           'weight' => '1',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'inline',
           'module' => 'date',
@@ -242,6 +254,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'text_default',
           'weight' => '7',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -317,6 +335,12 @@ function c4s_job_posting_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '8',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -404,6 +428,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'text_default',
           'weight' => '6',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -478,6 +508,12 @@ function c4s_job_posting_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '4',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'inline',
@@ -565,6 +601,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'date_default',
           'weight' => '2',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -650,6 +692,12 @@ function c4s_job_posting_field_default_fields() {
           'type' => 'number_integer',
           'weight' => '3',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -726,6 +774,12 @@ function c4s_job_posting_field_default_fields() {
           'settings' => array(),
           'type' => 'og_list_default',
           'weight' => '0',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
