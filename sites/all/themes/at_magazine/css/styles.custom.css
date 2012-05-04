@@ -44,13 +44,18 @@ h2.block-title{
 .block-logintoboggan{
 	float: right;
 	height: 12px;
-	width: 110px;
+	width: 170px;
+}
+.block-logintoboggan .menu-wrapper {
+  float: right;
+  padding-right: 10px;
 }
 
-#block-block-5{
+#block-c4s-custom-user-login-link {
 	float: right;
 	height: 12px;
 	width: 40px;
+	top: -30px;
 }
 
 .block-region-menu-bar{
@@ -360,4 +365,101 @@ h2.block-title{
 
 #footer-inner .block-content-inner a:hover{
 	text-decoration: none;
+}
+
+@media only screen and (max-width:320px) {
+  .block-region-three-33-third{
+	display: none;
+  }
+  
+  #block-block-5{
+	display: none;
+  }
+
+  #branding {
+    height: auto; 
+  }
+  
+  .block-region-menu-bar{
+	background-image: none !important;
+	}
+	
+  #menu-bar a:hover.sf-depth-1, #menu-bar a:active.sf-depth-1, #menu-bar a.sf-depth-1.active{
+	background-image: none;
+  }
+  
+}
+
+@media only screen and (min-width:321px) and (max-width:480px) {
+	  .block-region-three-33-third{
+	display: none;
+  }
+  
+  #block-block-5{
+	display: none;
+  }
+
+  #branding {
+    height: auto; 
+  }
+  
+  .block-region-menu-bar{
+	background-image: none !important;
+	}
+	
+  #menu-bar a:hover.sf-depth-1, #menu-bar a:active.sf-depth-1, #menu-bar a.sf-depth-1.active{
+	background-image: none;
+  }
+  
+}
+
+.region-sidebar-first .block-menu{
+	margin-top: 50px;
+	margin-bottom: 75px;
+}
+
+.region-sidebar-first .block-menu .block-title{
+	color: #81814b;
+	background-color: #f9f9f7;
+	text-align: left;
+	padding-left: 48px;
+}
+
+.region-sidebar-first .block-menu .block-content{
+	background: none;
+}
+
+.region-sidebar-first .block-menu .block-content-inner{
+	margin-left: 40px;
+	background-image: none;
+}
+.region-sidebar-first .block-menu a{
+	color: #81814b;
+}
+
+.region-sidebar-first .block-menu ul li a{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.region-sidebar-first .block-menu .expanded .leaf a{
+	font-weight: normal;
+	font-style: normal;
+	padding-left: 20px;
+}
+
+.group-context .region-sidebar-second .block-first{
+	margin-top: 50px;
+}
+
+.block .group-news .views-field-title a{
+	font-weight: bold;
+}
+
+.block .group-news .views-field-body{
+	font-size: .9em;
+}
+
+.block .feed-icon{
+	float: right;
 }

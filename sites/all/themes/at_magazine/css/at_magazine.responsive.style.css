@@ -92,6 +92,10 @@
     margin: auto !important;
     text-align: center !important;
   }
+   .region-three-33-third{
+	display: none;
+  }
+
 }
 /* Smartphone landscape */
 @media only screen and (min-width:321px) and (max-width:480px) {
