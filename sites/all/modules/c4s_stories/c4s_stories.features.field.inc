@@ -53,6 +53,12 @@ function c4s_stories_field_default_fields() {
           'type' => 'text_default',
           'weight' => '0',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -127,6 +133,12 @@ function c4s_stories_field_default_fields() {
           ),
           'type' => 'image',
           'weight' => '-1',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -216,6 +228,12 @@ function c4s_stories_field_default_fields() {
           'settings' => array(),
           'type' => 'file_default',
           'weight' => 13,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -309,6 +327,12 @@ Presentation: External presentation by Institute staff (may include file uploads
           'type' => 'taxonomy_term_reference_link',
           'weight' => '12',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -374,6 +398,12 @@ Presentation: External presentation by Institute staff (may include file uploads
           'settings' => array(),
           'type' => 'og_list_default',
           'weight' => '11',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
