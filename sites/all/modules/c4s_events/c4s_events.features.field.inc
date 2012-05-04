@@ -53,6 +53,12 @@ function c4s_events_field_default_fields() {
           'type' => 'text_default',
           'weight' => '4',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -130,6 +136,12 @@ function c4s_events_field_default_fields() {
           ),
           'type' => 'date_default',
           'weight' => '1',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -217,6 +229,12 @@ function c4s_events_field_default_fields() {
           'settings' => array(),
           'type' => 'file_default',
           'weight' => '5',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -306,6 +324,12 @@ function c4s_events_field_default_fields() {
           ),
           'type' => 'image',
           'weight' => '3',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -400,6 +424,12 @@ function c4s_events_field_default_fields() {
           'type' => 'text_default',
           'weight' => '2',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -471,6 +501,12 @@ function c4s_events_field_default_fields() {
           'settings' => array(),
           'type' => 'og_list_default',
           'weight' => '0',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
