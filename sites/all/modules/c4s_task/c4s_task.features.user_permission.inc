@@ -1,0 +1,49 @@
+<?php
+/**
+ * @file
+ * c4s_task.features.user_permission.inc
+ */
+
+/**
+ * Implements hook_user_default_permissions().
+ */
+function c4s_task_user_default_permissions() {
+  $permissions = array();
+
+  // Exported permission: create task content
+  $permissions['create task content'] = array(
+    'name' => 'create task content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: delete any task content
+  $permissions['delete any task content'] = array(
+    'name' => 'delete any task content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: delete own task content
+  $permissions['delete own task content'] = array(
+    'name' => 'delete own task content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: edit any task content
+  $permissions['edit any task content'] = array(
+    'name' => 'edit any task content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: edit own task content
+  $permissions['edit own task content'] = array(
+    'name' => 'edit own task content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  return $permissions;
+}
