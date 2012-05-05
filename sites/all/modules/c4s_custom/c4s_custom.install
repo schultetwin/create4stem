@@ -31,3 +31,11 @@ function c4s_custom_update_7001(&$sandbox) {
     ->execute();
   drupal_flush_all_caches();
 }
+
+/**
+ * Enable new feature, c4s_tasks
+ */
+function c4s_custom_update_7002(&$sandbox) {
+  module_enable(array('c4s_task'));
+  c4s_custom_features_revert(array('c4s_task'));
+}
