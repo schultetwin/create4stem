@@ -36,6 +36,6 @@ function c4s_custom_update_7001(&$sandbox) {
  * Enable new feature, c4s_tasks
  */
 function c4s_custom_update_7002(&$sandbox) {
-  module_enable(array('c4s_projects', 'c4s_task', 'c4s_note'));
-  c4s_custom_features_revert(array('c4s_projects', 'c4s_task', 'c4s_note'));
+  module_enable(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
+  c4s_custom_features_revert(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
 }
