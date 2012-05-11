@@ -277,6 +277,9 @@ function c4s_documents_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_content_access',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -292,6 +295,7 @@ function c4s_documents_field_default_fields() {
           2 => 'Private - accessible only to group members',
         ),
         'allowed_values_function' => '',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'list_integer',
