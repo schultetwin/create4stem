@@ -31,9 +31,9 @@ function c4s_conference_views_api() {
 function c4s_conference_node_info() {
   $items = array(
     'conference_session' => array(
-      'name' => t('Conference Session'),
+      'name' => t('Conference Signup'),
       'base' => 'node_content',
-      'description' => t('An individual paper or presentation as part of a conference.'),
+      'description' => t('Registration for the conference (with or without presentation)'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => t('If you are coming as a participant to the conference, please sign up for conference meals you are planning to attend.   There is no charge for the meals.

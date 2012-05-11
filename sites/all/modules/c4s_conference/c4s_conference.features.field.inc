@@ -571,12 +571,9 @@ function c4s_conference_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          'Session 1: 9:00 to 10:30, Room' => 'Session 1: 9:00 to 10:30, Room',
-          'Session 2: 9:00 to 10:30, Room' => 'Session 2: 9:00 to 10:30, Room',
-          'Session 3: 10:45 to 12:15, Room' => 'Session 3: 10:45 to 12:15, Room',
-          'Session 4: 10:45 to 12:15, Room' => 'Session 4: 10:45 to 12:15, Room',
-          'Session 5: 1:15 to 2:45, Room' => 'Session 5: 1:15 to 2:45, Room',
-          'Session 6: 1:15 to 2:45, Room' => 'Session 6: 1:15 to 2:45, Room',
+          'session1' => 'Session 1: 9:00 to 10:30',
+          'session2' => 'Session 2: 10:45 to 12:15',
+          'session3' => 'Session 3: 1:15 to 2:45',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -595,12 +592,6 @@ function c4s_conference_field_default_fields() {
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '6',
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -621,7 +612,7 @@ function c4s_conference_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '4',
       ),
     ),
   );
@@ -672,12 +663,6 @@ function c4s_conference_field_default_fields() {
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '2',
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',

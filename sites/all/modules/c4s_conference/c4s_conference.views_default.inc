@@ -40,11 +40,12 @@ function c4s_conference_views_default_views() {
     'field_conference_level' => 'field_conference_level',
     'field_conference_topic' => 'field_conference_topic',
     'field_conference_notavail' => 'field_conference_notavail',
+    'field_conference_session' => 'field_conference_session',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -72,6 +73,13 @@ function c4s_conference_views_default_views() {
       'empty_column' => 0,
     ),
     'field_conference_notavail' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_conference_session' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -225,9 +233,178 @@ function c4s_conference_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'conference_session' => 'conference_session',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
 
   /* Display: List */
   $handler = $view->new_display('page', 'List', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Presenters */
+  $handler->display->display_options['fields']['field_conference_presenters']['id'] = 'field_conference_presenters';
+  $handler->display->display_options['fields']['field_conference_presenters']['table'] = 'field_data_field_conference_presenters';
+  $handler->display->display_options['fields']['field_conference_presenters']['field'] = 'field_conference_presenters';
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_conference_presenters']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_conference_presenters']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_conference_presenters']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_conference_presenters']['field_api_classes'] = 0;
+  /* Field: Content: Level */
+  $handler->display->display_options['fields']['field_conference_level']['id'] = 'field_conference_level';
+  $handler->display->display_options['fields']['field_conference_level']['table'] = 'field_data_field_conference_level';
+  $handler->display->display_options['fields']['field_conference_level']['field'] = 'field_conference_level';
+  $handler->display->display_options['fields']['field_conference_level']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_conference_level']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_conference_level']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_conference_level']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_conference_level']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_conference_level']['field_api_classes'] = 0;
+  /* Field: Content: Topic Area */
+  $handler->display->display_options['fields']['field_conference_topic']['id'] = 'field_conference_topic';
+  $handler->display->display_options['fields']['field_conference_topic']['table'] = 'field_data_field_conference_topic';
+  $handler->display->display_options['fields']['field_conference_topic']['field'] = 'field_conference_topic';
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_conference_topic']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_conference_topic']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_conference_topic']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_conference_topic']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_conference_topic']['field_api_classes'] = 0;
+  /* Field: Content: Not Available */
+  $handler->display->display_options['fields']['field_conference_notavail']['id'] = 'field_conference_notavail';
+  $handler->display->display_options['fields']['field_conference_notavail']['table'] = 'field_data_field_conference_notavail';
+  $handler->display->display_options['fields']['field_conference_notavail']['field'] = 'field_conference_notavail';
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_conference_notavail']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_conference_notavail']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_conference_notavail']['field_api_classes'] = 0;
+  /* Field: Content: Assigned Session */
+  $handler->display->display_options['fields']['field_conference_session']['id'] = 'field_conference_session';
+  $handler->display->display_options['fields']['field_conference_session']['table'] = 'field_data_field_conference_session';
+  $handler->display->display_options['fields']['field_conference_session']['field'] = 'field_conference_session';
+  $handler->display->display_options['fields']['field_conference_session']['label'] = 'Assigned';
+  $handler->display->display_options['fields']['field_conference_session']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_conference_session']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_conference_session']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_conference_session']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_conference_session']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'conference_session' => 'conference_session',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'not';
+  $handler->display->display_options['filters']['title']['value'] = 'only';
   $handler->display->display_options['path'] = 'conference/list/presentations';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Presentations';
@@ -458,21 +635,14 @@ function c4s_conference_views_default_views() {
   $handler->display->display_options['title'] = 'Online Meal Signups';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'field_conference_meals',
-      'rendered' => 1,
-      'rendered_strip' => 0,
-    ),
-  );
   $handler->display->display_options['style_options']['columns'] = array(
-    'name' => 'name',
+    'field_user_name' => 'field_user_name',
     'field_conference_diet' => 'field_conference_diet',
     'field_conference_meals' => 'field_conference_meals',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
-    'name' => array(
+    'field_user_name' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -523,7 +693,12 @@ function c4s_conference_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['field_api_classes'] = 0;
+  /* Field: Content: Presenters */
+  $handler->display->display_options['fields']['field_conference_presenters']['id'] = 'field_conference_presenters';
+  $handler->display->display_options['fields']['field_conference_presenters']['table'] = 'field_data_field_conference_presenters';
+  $handler->display->display_options['fields']['field_conference_presenters']['field'] = 'field_conference_presenters';
   /* Field: Content: Dietary Needs */
   $handler->display->display_options['fields']['field_conference_diet']['id'] = 'field_conference_diet';
   $handler->display->display_options['fields']['field_conference_diet']['table'] = 'field_data_field_conference_diet';
@@ -547,33 +722,36 @@ function c4s_conference_views_default_views() {
   $handler->display->display_options['fields']['field_conference_diet']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_conference_diet']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_conference_diet']['field_api_classes'] = 0;
-  /* Field: Content: Meals */
-  $handler->display->display_options['fields']['field_conference_meals']['id'] = 'field_conference_meals';
-  $handler->display->display_options['fields']['field_conference_meals']['table'] = 'field_data_field_conference_meals';
-  $handler->display->display_options['fields']['field_conference_meals']['field'] = 'field_conference_meals';
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_conference_meals']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_conference_meals']['group_rows'] = 1;
-  $handler->display->display_options['fields']['field_conference_meals']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_conference_meals']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['delta_first_last'] = 0;
-  $handler->display->display_options['fields']['field_conference_meals']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'conference_session' => 'conference_session',
+  );
+  /* Filter criterion: Content: Meals (field_conference_meals) */
+  $handler->display->display_options['filters']['field_conference_meals_value']['id'] = 'field_conference_meals_value';
+  $handler->display->display_options['filters']['field_conference_meals_value']['table'] = 'field_data_field_conference_meals';
+  $handler->display->display_options['filters']['field_conference_meals_value']['field'] = 'field_conference_meals_value';
+  $handler->display->display_options['filters']['field_conference_meals_value']['value'] = array(
+    'Dinner (May 8)' => 'Dinner (May 8)',
+    'Breakfast (May 9)' => 'Breakfast (May 9)',
+    'Lunch (May 9)' => 'Lunch (May 9)',
+  );
+  $handler->display->display_options['filters']['field_conference_meals_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_conference_meals_value']['expose']['operator_id'] = 'field_conference_meals_value_op';
+  $handler->display->display_options['filters']['field_conference_meals_value']['expose']['label'] = 'Select Meal';
+  $handler->display->display_options['filters']['field_conference_meals_value']['expose']['operator'] = 'field_conference_meals_value_op';
+  $handler->display->display_options['filters']['field_conference_meals_value']['expose']['identifier'] = 'field_conference_meals_value';
+  $handler->display->display_options['filters']['field_conference_meals_value']['expose']['reduce'] = 1;
   $handler->display->display_options['path'] = 'conference/list/meals';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Meals';
