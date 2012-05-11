@@ -287,6 +287,7 @@ function c4s_users_field_group_info() {
       5 => 'field_profile_msu',
       6 => 'account',
       7 => 'timezone',
+      8 => 'picture',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

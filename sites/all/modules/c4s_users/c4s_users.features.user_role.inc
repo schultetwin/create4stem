@@ -10,13 +10,13 @@
 function c4s_users_user_default_roles() {
   $roles = array();
 
-  // Exported role: administrator
+  // Exported role: administrator.
   $roles['administrator'] = array(
     'name' => 'administrator',
     'weight' => '2',
   );
 
-  // Exported role: content editor
+  // Exported role: content editor.
   $roles['content editor'] = array(
     'name' => 'content editor',
     'weight' => '3',

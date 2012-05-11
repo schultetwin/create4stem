@@ -10,7 +10,7 @@
 function c4s_users_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access user contact forms
+  // Exported permission: access user contact forms.
   $permissions['access user contact forms'] = array(
     'name' => 'access user contact forms',
     'roles' => array(
@@ -21,7 +21,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'contact',
   );
 
-  // Exported permission: access user profiles
+  // Exported permission: access user profiles.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
@@ -33,7 +33,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: administer profile types
+  // Exported permission: administer profile types.
   $permissions['administer profile types'] = array(
     'name' => 'administer profile types',
     'roles' => array(
@@ -42,7 +42,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: administer profiles
+  // Exported permission: administer profiles.
   $permissions['administer profiles'] = array(
     'name' => 'administer profiles',
     'roles' => array(
@@ -52,7 +52,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: administer users
+  // Exported permission: administer users.
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
@@ -62,7 +62,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: cancel account
+  // Exported permission: cancel account.
   $permissions['cancel account'] = array(
     'name' => 'cancel account',
     'roles' => array(
@@ -72,7 +72,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: change own username
+  // Exported permission: change own username.
   $permissions['change own username'] = array(
     'name' => 'change own username',
     'roles' => array(
@@ -83,7 +83,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: delete terms in 3
+  // Exported permission: delete terms in 3.
   $permissions['delete terms in 3'] = array(
     'name' => 'delete terms in 3',
     'roles' => array(
@@ -92,7 +92,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit any main profile
+  // Exported permission: edit any main profile.
   $permissions['edit any main profile'] = array(
     'name' => 'edit any main profile',
     'roles' => array(
@@ -102,7 +102,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: edit own main profile
+  // Exported permission: edit own main profile.
   $permissions['edit own main profile'] = array(
     'name' => 'edit own main profile',
     'roles' => array(
@@ -112,7 +112,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: edit terms in 3
+  // Exported permission: edit terms in 3.
   $permissions['edit terms in 3'] = array(
     'name' => 'edit terms in 3',
     'roles' => array(
@@ -121,7 +121,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: select account cancellation method
+  // Exported permission: select account cancellation method.
   $permissions['select account cancellation method'] = array(
     'name' => 'select account cancellation method',
     'roles' => array(
@@ -130,7 +130,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: view any main profile
+  // Exported permission: view any main profile.
   $permissions['view any main profile'] = array(
     'name' => 'view any main profile',
     'roles' => array(
@@ -141,7 +141,7 @@ function c4s_users_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view own main profile
+  // Exported permission: view own main profile.
   $permissions['view own main profile'] = array(
     'name' => 'view own main profile',
     'roles' => array(

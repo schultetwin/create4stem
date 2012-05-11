@@ -18,6 +18,9 @@ function c4s_users_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_profile_about',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -50,6 +53,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '0',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -91,6 +100,9 @@ function c4s_users_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_profile_courselinks',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'link',
@@ -117,7 +129,7 @@ function c4s_users_field_default_fields() {
       'bundle' => 'main',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Enter the URL to link to a course website (or sites).',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -125,6 +137,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '3',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -149,7 +167,7 @@ function c4s_users_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
-        'title' => 'required',
+        'title' => 'none',
         'title_maxlength' => '80',
         'title_value' => '',
         'url' => 0,
@@ -206,6 +224,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '4',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -278,6 +302,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '8',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -361,6 +391,12 @@ function c4s_users_field_default_fields() {
           'type' => 'text_default',
           'weight' => '7',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -430,6 +466,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '10',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -513,6 +555,12 @@ function c4s_users_field_default_fields() {
           'type' => 'text_default',
           'weight' => '6',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -581,6 +629,12 @@ function c4s_users_field_default_fields() {
           'type' => 'text_default',
           'weight' => '1',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -618,6 +672,9 @@ function c4s_users_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_profile_researchlinks',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'link',
@@ -644,7 +701,7 @@ function c4s_users_field_default_fields() {
       'bundle' => 'main',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Enter links to relevant research website(s) related to your research',
+      'description' => 'Enter the URL to link to your research website(s). ',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -652,6 +709,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '2',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -676,7 +739,7 @@ function c4s_users_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
-        'title' => 'required',
+        'title' => 'none',
         'title_maxlength' => '80',
         'title_value' => '',
         'url' => 0,
@@ -735,6 +798,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'link_default',
           'weight' => '9',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -818,6 +887,12 @@ function c4s_users_field_default_fields() {
           'type' => 'text_default',
           'weight' => 3,
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
       ),
       'entity_type' => 'user',
       'field_name' => 'field_profile_college',
@@ -880,6 +955,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => 4,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'user',
@@ -947,6 +1028,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => 2,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'user',
@@ -1016,6 +1103,12 @@ function c4s_users_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 6,
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
       ),
       'entity_type' => 'user',
       'field_name' => 'field_profile_role',
@@ -1075,6 +1168,12 @@ function c4s_users_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => 5,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'user',
@@ -1207,10 +1306,24 @@ Prof.',
           'label' => 'above',
           'module' => 'name',
           'settings' => array(
+            'format' => 'default',
             'markup' => 0,
+            'multiple' => 'default',
+            'multiple_and' => 'text',
+            'multiple_delimiter' => ', ',
+            'multiple_delimiter_precedes_last' => 'never',
+            'multiple_el_al_first' => 1,
+            'multiple_el_al_min' => 3,
+            'output' => 'default',
           ),
-          'type' => 'name_default',
+          'type' => 'name_formatter',
           'weight' => 1,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'user',
@@ -1219,6 +1332,7 @@ Prof.',
       'required' => 1,
       'settings' => array(
         'component_css' => '',
+        'component_layout' => 'default',
         'credentials_inline' => 0,
         'field_type' => array(
           'credentials' => 'text',
@@ -1300,6 +1414,7 @@ Prof.',
     'field_instance' => array(
       'bundle' => 'user',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1308,6 +1423,12 @@ Prof.',
           'module' => 'og',
           'settings' => array(),
           'type' => 'og_list_default',
+          'weight' => 0,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => 0,
         ),
       ),
@@ -1337,7 +1458,7 @@ Prof.',
           'opt_group' => 'auto',
         ),
         'type' => 'group_audience',
-        'weight' => '5',
+        'weight' => '7',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -1352,7 +1473,8 @@ Prof.',
   t('Department');
   t('Enter link to your LinkedIn profile (if any)');
   t('Enter link to your twitter feed (if any).  ');
-  t('Enter links to relevant research website(s) related to your research');
+  t('Enter the URL to link to a course website (or sites).');
+  t('Enter the URL to link to your research website(s). ');
   t('Facebook');
   t('Fax');
   t('Group Memberships');

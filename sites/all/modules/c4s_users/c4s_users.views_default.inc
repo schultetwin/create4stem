@@ -172,6 +172,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -471,6 +472,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -784,6 +786,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -1068,6 +1071,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -1339,6 +1343,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -1620,6 +1625,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'title';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
@@ -1797,6 +1803,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'family';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
   $handler->display->display_options['fields']['field_user_name']['settings'] = array(
     'markup' => 0,
   );
