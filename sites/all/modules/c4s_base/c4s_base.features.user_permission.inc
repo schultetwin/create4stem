@@ -10,7 +10,7 @@
 function c4s_base_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access administration pages
+  // Exported permission: access administration pages.
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
     'roles' => array(
@@ -20,7 +20,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: access all views
+  // Exported permission: access all views.
   $permissions['access all views'] = array(
     'name' => 'access all views',
     'roles' => array(
@@ -29,7 +29,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'views',
   );
 
-  // Exported permission: access backup and migrate
+  // Exported permission: access backup and migrate.
   $permissions['access backup and migrate'] = array(
     'name' => 'access backup and migrate',
     'roles' => array(
@@ -38,7 +38,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: access backup files
+  // Exported permission: access backup files.
   $permissions['access backup files'] = array(
     'name' => 'access backup files',
     'roles' => array(
@@ -47,7 +47,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: access content
+  // Exported permission: access content.
   $permissions['access content'] = array(
     'name' => 'access content',
     'roles' => array(
@@ -58,7 +58,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: access content overview
+  // Exported permission: access content overview.
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
     'roles' => array(
@@ -68,7 +68,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: access contextual links
+  // Exported permission: access contextual links.
   $permissions['access contextual links'] = array(
     'name' => 'access contextual links',
     'roles' => array(
@@ -78,7 +78,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'contextual',
   );
 
-  // Exported permission: access dashboard
+  // Exported permission: access dashboard.
   $permissions['access dashboard'] = array(
     'name' => 'access dashboard',
     'roles' => array(
@@ -88,7 +88,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'dashboard',
   );
 
-  // Exported permission: access rules debug
+  // Exported permission: access rules debug.
   $permissions['access rules debug'] = array(
     'name' => 'access rules debug',
     'roles' => array(
@@ -97,7 +97,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'rules',
   );
 
-  // Exported permission: access site in maintenance mode
+  // Exported permission: access site in maintenance mode.
   $permissions['access site in maintenance mode'] = array(
     'name' => 'access site in maintenance mode',
     'roles' => array(
@@ -107,7 +107,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: access site reports
+  // Exported permission: access site reports.
   $permissions['access site reports'] = array(
     'name' => 'access site reports',
     'roles' => array(
@@ -117,7 +117,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: access site-wide contact form
+  // Exported permission: access site-wide contact form.
   $permissions['access site-wide contact form'] = array(
     'name' => 'access site-wide contact form',
     'roles' => array(
@@ -128,7 +128,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'contact',
   );
 
-  // Exported permission: access toolbar
+  // Exported permission: access toolbar.
   $permissions['access toolbar'] = array(
     'name' => 'access toolbar',
     'roles' => array(
@@ -138,7 +138,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'toolbar',
   );
 
-  // Exported permission: administer actions
+  // Exported permission: administer actions.
   $permissions['administer actions'] = array(
     'name' => 'administer actions',
     'roles' => array(
@@ -147,7 +147,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: administer backup and migrate
+  // Exported permission: administer backup and migrate.
   $permissions['administer backup and migrate'] = array(
     'name' => 'administer backup and migrate',
     'roles' => array(
@@ -156,7 +156,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: administer blocks
+  // Exported permission: administer blocks.
   $permissions['administer blocks'] = array(
     'name' => 'administer blocks',
     'roles' => array(
@@ -165,7 +165,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'block',
   );
 
-  // Exported permission: administer contact forms
+  // Exported permission: administer contact forms.
   $permissions['administer contact forms'] = array(
     'name' => 'administer contact forms',
     'roles' => array(
@@ -174,7 +174,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'contact',
   );
 
-  // Exported permission: administer content types
+  // Exported permission: administer content types.
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
     'roles' => array(
@@ -183,7 +183,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: administer date tools
+  // Exported permission: administer date tools.
   $permissions['administer date tools'] = array(
     'name' => 'administer date tools',
     'roles' => array(
@@ -192,7 +192,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'date_tools',
   );
 
-  // Exported permission: administer features
+  // Exported permission: administer features.
   $permissions['administer features'] = array(
     'name' => 'administer features',
     'roles' => array(
@@ -201,7 +201,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: administer fieldgroups
+  // Exported permission: administer fieldgroups.
   $permissions['administer fieldgroups'] = array(
     'name' => 'administer fieldgroups',
     'roles' => array(
@@ -210,7 +210,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'field_group',
   );
 
-  // Exported permission: administer filters
+  // Exported permission: administer filters.
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
     'roles' => array(
@@ -219,7 +219,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: administer group
+  // Exported permission: administer group.
   $permissions['administer group'] = array(
     'name' => 'administer group',
     'roles' => array(
@@ -228,7 +228,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'og',
   );
 
-  // Exported permission: administer image styles
+  // Exported permission: administer image styles.
   $permissions['administer image styles'] = array(
     'name' => 'administer image styles',
     'roles' => array(
@@ -237,7 +237,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'image',
   );
 
-  // Exported permission: administer menu
+  // Exported permission: administer menu.
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
     'roles' => array(
@@ -247,7 +247,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'menu',
   );
 
-  // Exported permission: administer modules
+  // Exported permission: administer modules.
   $permissions['administer modules'] = array(
     'name' => 'administer modules',
     'roles' => array(
@@ -256,7 +256,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: administer nodes
+  // Exported permission: administer nodes.
   $permissions['administer nodes'] = array(
     'name' => 'administer nodes',
     'roles' => array(
@@ -266,7 +266,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: administer pathauto
+  // Exported permission: administer pathauto.
   $permissions['administer pathauto'] = array(
     'name' => 'administer pathauto',
     'roles' => array(
@@ -275,7 +275,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'pathauto',
   );
 
-  // Exported permission: administer permissions
+  // Exported permission: administer permissions.
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
     'roles' => array(
@@ -284,7 +284,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: administer rules
+  // Exported permission: administer rules.
   $permissions['administer rules'] = array(
     'name' => 'administer rules',
     'roles' => array(
@@ -293,7 +293,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'rules',
   );
 
-  // Exported permission: administer search
+  // Exported permission: administer search.
   $permissions['administer search'] = array(
     'name' => 'administer search',
     'roles' => array(
@@ -302,7 +302,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'search',
   );
 
-  // Exported permission: administer shortcuts
+  // Exported permission: administer shortcuts.
   $permissions['administer shortcuts'] = array(
     'name' => 'administer shortcuts',
     'roles' => array(
@@ -311,7 +311,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'shortcut',
   );
 
-  // Exported permission: administer site configuration
+  // Exported permission: administer site configuration.
   $permissions['administer site configuration'] = array(
     'name' => 'administer site configuration',
     'roles' => array(
@@ -320,7 +320,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: administer software updates
+  // Exported permission: administer software updates.
   $permissions['administer software updates'] = array(
     'name' => 'administer software updates',
     'roles' => array(
@@ -329,7 +329,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: administer taxonomy
+  // Exported permission: administer taxonomy.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
     'roles' => array(
@@ -338,7 +338,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: administer themes
+  // Exported permission: administer themes.
   $permissions['administer themes'] = array(
     'name' => 'administer themes',
     'roles' => array(
@@ -347,7 +347,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: administer url aliases
+  // Exported permission: administer url aliases.
   $permissions['administer url aliases'] = array(
     'name' => 'administer url aliases',
     'roles' => array(
@@ -356,7 +356,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'path',
   );
 
-  // Exported permission: administer views
+  // Exported permission: administer views.
   $permissions['administer views'] = array(
     'name' => 'administer views',
     'roles' => array(
@@ -365,7 +365,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'views',
   );
 
-  // Exported permission: block IP addresses
+  // Exported permission: block IP addresses.
   $permissions['block IP addresses'] = array(
     'name' => 'block IP addresses',
     'roles' => array(
@@ -374,7 +374,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: bypass node access
+  // Exported permission: bypass node access.
   $permissions['bypass node access'] = array(
     'name' => 'bypass node access',
     'roles' => array(
@@ -384,7 +384,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: bypass rules access
+  // Exported permission: bypass rules access.
   $permissions['bypass rules access'] = array(
     'name' => 'bypass rules access',
     'roles' => array(
@@ -393,7 +393,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'rules',
   );
 
-  // Exported permission: create page content
+  // Exported permission: create page content.
   $permissions['create page content'] = array(
     'name' => 'create page content',
     'roles' => array(
@@ -403,7 +403,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create url aliases
+  // Exported permission: create url aliases.
   $permissions['create url aliases'] = array(
     'name' => 'create url aliases',
     'roles' => array(
@@ -413,7 +413,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'path',
   );
 
-  // Exported permission: customize shortcut links
+  // Exported permission: customize shortcut links.
   $permissions['customize shortcut links'] = array(
     'name' => 'customize shortcut links',
     'roles' => array(
@@ -422,7 +422,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'shortcut',
   );
 
-  // Exported permission: delete any page content
+  // Exported permission: delete any page content.
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
@@ -432,7 +432,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete backup files
+  // Exported permission: delete backup files.
   $permissions['delete backup files'] = array(
     'name' => 'delete backup files',
     'roles' => array(
@@ -441,7 +441,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: delete own page content
+  // Exported permission: delete own page content.
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
@@ -451,7 +451,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete revisions
+  // Exported permission: delete revisions.
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(
@@ -461,7 +461,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any page content
+  // Exported permission: edit any page content.
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
     'roles' => array(
@@ -471,7 +471,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own page content
+  // Exported permission: edit own page content.
   $permissions['edit own page content'] = array(
     'name' => 'edit own page content',
     'roles' => array(
@@ -481,7 +481,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: manage features
+  // Exported permission: manage features.
   $permissions['manage features'] = array(
     'name' => 'manage features',
     'roles' => array(
@@ -490,7 +490,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: notify of path changes
+  // Exported permission: notify of path changes.
   $permissions['notify of path changes'] = array(
     'name' => 'notify of path changes',
     'roles' => array(
@@ -499,7 +499,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'pathauto',
   );
 
-  // Exported permission: perform backup
+  // Exported permission: perform backup.
   $permissions['perform backup'] = array(
     'name' => 'perform backup',
     'roles' => array(
@@ -508,7 +508,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: restore from backup
+  // Exported permission: restore from backup.
   $permissions['restore from backup'] = array(
     'name' => 'restore from backup',
     'roles' => array(
@@ -517,7 +517,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'backup_migrate',
   );
 
-  // Exported permission: revert revisions
+  // Exported permission: revert revisions.
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
     'roles' => array(
@@ -527,7 +527,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: search content
+  // Exported permission: search content.
   $permissions['search content'] = array(
     'name' => 'search content',
     'roles' => array(
@@ -539,7 +539,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'search',
   );
 
-  // Exported permission: switch shortcut sets
+  // Exported permission: switch shortcut sets.
   $permissions['switch shortcut sets'] = array(
     'name' => 'switch shortcut sets',
     'roles' => array(
@@ -548,7 +548,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'shortcut',
   );
 
-  // Exported permission: use advanced search
+  // Exported permission: use advanced search.
   $permissions['use advanced search'] = array(
     'name' => 'use advanced search',
     'roles' => array(
@@ -560,7 +560,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'search',
   );
 
-  // Exported permission: use text format filtered_html
+  // Exported permission: use text format filtered_html.
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
@@ -570,7 +570,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: use text format full_html
+  // Exported permission: use text format full_html.
   $permissions['use text format full_html'] = array(
     'name' => 'use text format full_html',
     'roles' => array(
@@ -579,7 +579,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: view own unpublished content
+  // Exported permission: view own unpublished content.
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(
@@ -589,7 +589,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: view revisions
+  // Exported permission: view revisions.
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
     'roles' => array(
@@ -599,7 +599,7 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: view the administration theme
+  // Exported permission: view the administration theme.
   $permissions['view the administration theme'] = array(
     'name' => 'view the administration theme',
     'roles' => array(
