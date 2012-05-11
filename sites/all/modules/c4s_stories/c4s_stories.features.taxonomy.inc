@@ -13,7 +13,7 @@ function c4s_stories_taxonomy_default_vocabularies() {
       'name' => 'Story Type',
       'machine_name' => 'story_type',
       'description' => 'Tags to direct stories to their appropriate location',
-      'hierarchy' => '0',
+      'hierarchy' => '1',
       'module' => 'taxonomy',
       'weight' => '-9',
       'rdf_mapping' => array(
