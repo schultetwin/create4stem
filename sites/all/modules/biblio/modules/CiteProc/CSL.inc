@@ -792,7 +792,7 @@ class csl_names extends csl_format {
     }
   }
 
-  function render($data, $mode) {
+  function render($data, $mode = NULL) {
     $matches = 0;
     $variable_parts = array();
     if (!isset($this->delimiter)) {
@@ -931,7 +931,7 @@ class csl_date extends csl_format {
 
   }
 
-  function render($data, $mode) {
+  function render($data, $mode = NULL) {
     $date_parts = array();
     $date = '';
     $text = '';
@@ -953,7 +953,7 @@ class csl_date extends csl_format {
 
 class csl_date_part extends csl_format {
 
-  function render($date, $mode) {
+  function render($date, $mode = NULL) {
     $text = '';
 
     switch ($this->name) {
@@ -1001,7 +1001,7 @@ class csl_date_part extends csl_format {
 
 class csl_number extends csl_format {
 
-  function render($data, $mode) {
+  function render($data, $mode = NULL) {
     $var = $this->variable;
 
     if (!$var || empty($data->$var)) return;
@@ -1207,7 +1207,7 @@ class csl_macros extends csl_collection{
 
 class csl_group extends csl_format{
 
-  function render($data, $mode) {
+  function render($data, $mode = NULL) {
     $text = '';
     $text_parts = array();
 
@@ -1254,7 +1254,7 @@ class csl_layout extends csl_format {
     parent::init_formatting();
   }
 
-  function render($data, $mode) {
+  function render($data, $mode = NULL) {
     $text = '';
     $parts = array();
    // $delimiter = $this->delimiter;
