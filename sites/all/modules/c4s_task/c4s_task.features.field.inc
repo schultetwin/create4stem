@@ -358,6 +358,9 @@ function c4s_task_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_content_access',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -373,6 +376,7 @@ function c4s_task_field_default_fields() {
           2 => 'Private - accessible only to group members',
         ),
         'allowed_values_function' => '',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'list_integer',
@@ -381,7 +385,7 @@ function c4s_task_field_default_fields() {
       'bundle' => 'task',
       'default_value' => array(
         0 => array(
-          'value' => 0,
+          'value' => '2',
         ),
       ),
       'deleted' => '0',
@@ -410,7 +414,7 @@ function c4s_task_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'group_content_access',
       'label' => 'Group content visibility',
-      'required' => TRUE,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -425,6 +429,7 @@ function c4s_task_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',

@@ -82,7 +82,7 @@ function c4s_task_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['empty_table'] = 0;
-  /* Relationship: Group membership: Node group membership */
+  /* Relationship: OG membership: OG membership from Node */
   $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
@@ -218,7 +218,7 @@ function c4s_task_views_default_views() {
   $handler->display->display_options['sorts']['field_task_due_value']['id'] = 'field_task_due_value';
   $handler->display->display_options['sorts']['field_task_due_value']['table'] = 'field_data_field_task_due';
   $handler->display->display_options['sorts']['field_task_due_value']['field'] = 'field_task_due_value';
-  /* Contextual filter: OG membership: Group gid */
+  /* Contextual filter: OG membership: OG group gid */
   $handler->display->display_options['arguments']['group']['id'] = 'group';
   $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['group']['field'] = 'group';
