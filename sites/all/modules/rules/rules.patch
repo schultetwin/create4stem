@@ -1,0 +1,19 @@
+diff --git a/includes/rules.core.inc b/includes/rules.core.inc
+index b526017..15df745 100644
+--- a/includes/rules.core.inc
++++ b/includes/rules.core.inc
+@@ -199,12 +199,12 @@ class RulesEntityController extends EntityAPIControllerExportable {
+     $query_conditions =& $query->conditions();
+     foreach ($query_conditions as &$condition) {
+       // Support using 'tags' => array('tag1', 'tag2') as condition.
+-      if ($condition['field'] == 'base.tags') {
++      if (isset($condition['field']) && $condition['field'] == 'base.tags') {
+         $query->join('rules_tags', 'rt', 'base.id = rt.id');
+         $condition['field'] = 'rt.tag';
+       }
+       // Support using 'event' => $name as condition.
+-      if ($condition['field'] == 'base.event') {
++      if (isset($condition['field']) && $condition['field'] == 'base.event') {
+         $query->join('rules_trigger', 'tr', "base.id = tr.id");
+         $condition['field'] = 'tr.event';
+       }
