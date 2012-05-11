@@ -10,7 +10,7 @@
 function c4s_job_posting_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create posting content
+  // Exported permission: create posting content.
   $permissions['create posting content'] = array(
     'name' => 'create posting content',
     'roles' => array(
@@ -20,7 +20,7 @@ function c4s_job_posting_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any posting content
+  // Exported permission: delete any posting content.
   $permissions['delete any posting content'] = array(
     'name' => 'delete any posting content',
     'roles' => array(
@@ -30,7 +30,7 @@ function c4s_job_posting_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own posting content
+  // Exported permission: delete own posting content.
   $permissions['delete own posting content'] = array(
     'name' => 'delete own posting content',
     'roles' => array(
@@ -40,7 +40,7 @@ function c4s_job_posting_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any posting content
+  // Exported permission: edit any posting content.
   $permissions['edit any posting content'] = array(
     'name' => 'edit any posting content',
     'roles' => array(
@@ -50,7 +50,7 @@ function c4s_job_posting_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own posting content
+  // Exported permission: edit own posting content.
   $permissions['edit own posting content'] = array(
     'name' => 'edit own posting content',
     'roles' => array(
