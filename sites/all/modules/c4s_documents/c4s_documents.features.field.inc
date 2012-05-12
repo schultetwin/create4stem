@@ -215,6 +215,7 @@ function c4s_documents_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'documents',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
