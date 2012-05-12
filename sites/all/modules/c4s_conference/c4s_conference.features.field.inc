@@ -593,6 +593,12 @@ function c4s_conference_field_default_fields() {
           'type' => 'hidden',
           'weight' => '6',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -663,6 +669,12 @@ function c4s_conference_field_default_fields() {
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '2',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
