@@ -562,7 +562,7 @@ function c4s_events_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'group_content_access',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
