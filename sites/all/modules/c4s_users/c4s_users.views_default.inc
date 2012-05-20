@@ -589,23 +589,23 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: MSU Relationship (field_profile_msu) */
-  $handler->display->display_options['filters']['field_profile_msu_tid']['id'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['table'] = 'field_data_field_profile_msu';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['field'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['value'] = array(
-    24 => '24',
+  /* Filter criterion: User: Institute Role (field_profile_role) */
+  $handler->display->display_options['filters']['field_profile_role_tid']['id'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['table'] = 'field_data_field_profile_role';
+  $handler->display->display_options['filters']['field_profile_role_tid']['field'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['value'] = array(
+    12 => '12',
   );
-  $handler->display->display_options['filters']['field_profile_msu_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_profile_msu_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['vocabulary'] = 'msu_relationship';
+  $handler->display->display_options['filters']['field_profile_role_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_profile_role_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_profile_role_tid']['vocabulary'] = 'institute_position';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'people/collaborators';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'External Collaborators';
-  $handler->display->display_options['menu']['weight'] = '4';
+  $handler->display->display_options['menu']['weight'] = '3';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $export['people_collaborators'] = $view;
@@ -767,8 +767,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
   $handler->display->display_options['fields']['field_user_name']['label'] = '';
   $handler->display->display_options['fields']['field_user_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['path'] = 'user/[uid]';
+  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['replace_spaces'] = 0;
@@ -776,7 +775,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_user_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['html'] = 0;
@@ -865,6 +863,29 @@ function c4s_users_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['fields']['field_profile_about']['field_api_classes'] = 0;
+  /* Field: User: Institution */
+  $handler->display->display_options['fields']['field_profile_institution']['id'] = 'field_profile_institution';
+  $handler->display->display_options['fields']['field_profile_institution']['table'] = 'field_data_field_profile_institution';
+  $handler->display->display_options['fields']['field_profile_institution']['field'] = 'field_profile_institution';
+  $handler->display->display_options['fields']['field_profile_institution']['label'] = '';
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_profile_institution']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_profile_institution']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_profile_institution']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_profile_institution']['field_api_classes'] = 0;
   /* Sort criterion: User: Name (field_user_name:family) */
   $handler->display->display_options['sorts']['field_user_name_family']['id'] = 'field_user_name_family';
   $handler->display->display_options['sorts']['field_user_name_family']['table'] = 'field_data_field_user_name';
@@ -1052,8 +1073,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
   $handler->display->display_options['fields']['field_user_name']['label'] = '';
   $handler->display->display_options['fields']['field_user_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['path'] = 'user/[uid]';
+  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['replace_spaces'] = 0;
@@ -1061,7 +1081,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_user_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['html'] = 0;
@@ -1165,16 +1184,16 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: MSU Relationship (field_profile_msu) */
-  $handler->display->display_options['filters']['field_profile_msu_tid']['id'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['table'] = 'field_data_field_profile_msu';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['field'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['value'] = array(
-    19 => '19',
+  /* Filter criterion: User: Institute Role (field_profile_role) */
+  $handler->display->display_options['filters']['field_profile_role_tid']['id'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['table'] = 'field_data_field_profile_role';
+  $handler->display->display_options['filters']['field_profile_role_tid']['field'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['value'] = array(
+    14 => '14',
   );
-  $handler->display->display_options['filters']['field_profile_msu_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_profile_msu_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['vocabulary'] = 'msu_relationship';
+  $handler->display->display_options['filters']['field_profile_role_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_profile_role_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_profile_role_tid']['vocabulary'] = 'institute_position';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1324,8 +1343,7 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
   $handler->display->display_options['fields']['field_user_name']['label'] = '';
   $handler->display->display_options['fields']['field_user_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['path'] = 'user/[uid]';
+  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['replace_spaces'] = 0;
@@ -1333,7 +1351,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_user_name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_user_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_user_name']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_user_name']['alter']['html'] = 0;
@@ -1437,16 +1454,16 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: MSU Relationship (field_profile_msu) */
-  $handler->display->display_options['filters']['field_profile_msu_tid']['id'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['table'] = 'field_data_field_profile_msu';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['field'] = 'field_profile_msu_tid';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['value'] = array(
-    20 => '20',
+  /* Filter criterion: User: Institute Role (field_profile_role) */
+  $handler->display->display_options['filters']['field_profile_role_tid']['id'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['table'] = 'field_data_field_profile_role';
+  $handler->display->display_options['filters']['field_profile_role_tid']['field'] = 'field_profile_role_tid';
+  $handler->display->display_options['filters']['field_profile_role_tid']['value'] = array(
+    11 => '11',
   );
-  $handler->display->display_options['filters']['field_profile_msu_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_profile_msu_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_profile_msu_tid']['vocabulary'] = 'msu_relationship';
+  $handler->display->display_options['filters']['field_profile_role_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_profile_role_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_profile_role_tid']['vocabulary'] = 'institute_position';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1589,7 +1606,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['picture']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
@@ -1599,7 +1615,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
   $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = 1;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'thumbnail';
   /* Field: User: Name */
   $handler->display->display_options['fields']['field_user_name']['id'] = 'field_user_name';
   $handler->display->display_options['fields']['field_user_name']['table'] = 'field_data_field_user_name';
@@ -1681,6 +1696,29 @@ function c4s_users_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['fields']['field_profile_about']['field_api_classes'] = 0;
+  /* Field: Profile: Email */
+  $handler->display->display_options['fields']['field_profile_email']['id'] = 'field_profile_email';
+  $handler->display->display_options['fields']['field_profile_email']['table'] = 'field_data_field_profile_email';
+  $handler->display->display_options['fields']['field_profile_email']['field'] = 'field_profile_email';
+  $handler->display->display_options['fields']['field_profile_email']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_profile_email']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_profile_email']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_profile_email']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_profile_email']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_profile_email']['field_api_classes'] = 0;
   /* Field: Profile: Phone */
   $handler->display->display_options['fields']['field_profile_phone']['id'] = 'field_profile_phone';
   $handler->display->display_options['fields']['field_profile_phone']['table'] = 'field_data_field_profile_phone';
@@ -1704,10 +1742,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_profile_phone']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_profile_phone']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_profile_phone']['field_api_classes'] = 0;
-  /* Sort criterion: User: Institute Role (field_profile_role) */
-  $handler->display->display_options['sorts']['field_profile_role_tid']['id'] = 'field_profile_role_tid';
-  $handler->display->display_options['sorts']['field_profile_role_tid']['table'] = 'field_data_field_profile_role';
-  $handler->display->display_options['sorts']['field_profile_role_tid']['field'] = 'field_profile_role_tid';
   /* Sort criterion: User: Name (field_user_name:family) */
   $handler->display->display_options['sorts']['field_user_name_family']['id'] = 'field_user_name_family';
   $handler->display->display_options['sorts']['field_user_name_family']['table'] = 'field_data_field_user_name';
@@ -1728,7 +1762,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['field_profile_role_tid']['table'] = 'field_data_field_profile_role';
   $handler->display->display_options['filters']['field_profile_role_tid']['field'] = 'field_profile_role_tid';
   $handler->display->display_options['filters']['field_profile_role_tid']['value'] = array(
-    9 => '9',
     10 => '10',
   );
   $handler->display->display_options['filters']['field_profile_role_tid']['reduce_duplicates'] = 0;
@@ -1762,7 +1795,6 @@ function c4s_users_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'About Me';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -1986,7 +2018,6 @@ function c4s_users_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'profile-block';
   $handler->display->display_options['block_description'] = 'Profile Picture/Info';
@@ -2014,11 +2045,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* No results behavior: Global: Result summary */
-  $handler->display->display_options['empty']['result']['id'] = 'result';
-  $handler->display->display_options['empty']['result']['table'] = 'views';
-  $handler->display->display_options['empty']['result']['field'] = 'result';
-  $handler->display->display_options['empty']['result']['empty'] = FALSE;
   /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
@@ -2027,31 +2053,39 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'main' => 'main',
   );
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['field_user_name']['id'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['table'] = 'field_data_field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['label'] = '';
+  $handler->display->display_options['fields']['field_user_name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'family';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
+  $handler->display->display_options['fields']['field_user_name']['settings'] = array(
+    'markup' => 0,
+  );
+  $handler->display->display_options['fields']['field_user_name']['field_api_classes'] = 0;
   /* Field: Profile: Courses */
   $handler->display->display_options['fields']['field_profile_courses']['id'] = 'field_profile_courses';
   $handler->display->display_options['fields']['field_profile_courses']['table'] = 'field_data_field_profile_courses';
   $handler->display->display_options['fields']['field_profile_courses']['field'] = 'field_profile_courses';
   $handler->display->display_options['fields']['field_profile_courses']['relationship'] = 'profile';
-  $handler->display->display_options['fields']['field_profile_courses']['label'] = '';
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_profile_courses']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_profile_courses']['hide_empty'] = 1;
-  $handler->display->display_options['fields']['field_profile_courses']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_profile_courses']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_profile_courses']['field_api_classes'] = 0;
   /* Field: Profile: Courses Links */
   $handler->display->display_options['fields']['field_profile_courselinks']['id'] = 'field_profile_courselinks';
   $handler->display->display_options['fields']['field_profile_courselinks']['table'] = 'field_data_field_profile_courselinks';
@@ -2066,7 +2100,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_profile_courselinks']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_profile_courselinks']['alter']['html'] = 0;
@@ -2102,12 +2135,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Profile: Courses (field_profile_courses) */
-  $handler->display->display_options['filters']['field_profile_courses_value']['id'] = 'field_profile_courses_value';
-  $handler->display->display_options['filters']['field_profile_courses_value']['table'] = 'field_data_field_profile_courses';
-  $handler->display->display_options['filters']['field_profile_courses_value']['field'] = 'field_profile_courses_value';
-  $handler->display->display_options['filters']['field_profile_courses_value']['relationship'] = 'profile';
-  $handler->display->display_options['filters']['field_profile_courses_value']['operator'] = 'not empty';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -2153,31 +2180,39 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'main' => 'main',
   );
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['field_user_name']['id'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['table'] = 'field_data_field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['label'] = '';
+  $handler->display->display_options['fields']['field_user_name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_user_name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_user_name']['click_sort_column'] = 'family';
+  $handler->display->display_options['fields']['field_user_name']['type'] = 'name_default';
+  $handler->display->display_options['fields']['field_user_name']['settings'] = array(
+    'markup' => 0,
+  );
+  $handler->display->display_options['fields']['field_user_name']['field_api_classes'] = 0;
   /* Field: Profile: Research */
   $handler->display->display_options['fields']['field_profile_research']['id'] = 'field_profile_research';
   $handler->display->display_options['fields']['field_profile_research']['table'] = 'field_data_field_profile_research';
   $handler->display->display_options['fields']['field_profile_research']['field'] = 'field_profile_research';
   $handler->display->display_options['fields']['field_profile_research']['relationship'] = 'profile';
-  $handler->display->display_options['fields']['field_profile_research']['label'] = '';
-  $handler->display->display_options['fields']['field_profile_research']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_profile_research']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_profile_research']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_profile_research']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_profile_research']['field_api_classes'] = 0;
   /* Field: Profile: Research Links */
   $handler->display->display_options['fields']['field_profile_researchlinks']['id'] = 'field_profile_researchlinks';
   $handler->display->display_options['fields']['field_profile_researchlinks']['table'] = 'field_data_field_profile_researchlinks';
@@ -2228,12 +2263,6 @@ function c4s_users_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Profile: Research (field_profile_research) */
-  $handler->display->display_options['filters']['field_profile_research_value']['id'] = 'field_profile_research_value';
-  $handler->display->display_options['filters']['field_profile_research_value']['table'] = 'field_data_field_profile_research';
-  $handler->display->display_options['filters']['field_profile_research_value']['field'] = 'field_profile_research_value';
-  $handler->display->display_options['filters']['field_profile_research_value']['relationship'] = 'profile';
-  $handler->display->display_options['filters']['field_profile_research_value']['operator'] = 'not empty';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
