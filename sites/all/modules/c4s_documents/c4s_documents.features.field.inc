@@ -305,7 +305,7 @@ function c4s_documents_field_default_fields() {
       'bundle' => 'documents',
       'default_value' => array(
         0 => array(
-          'value' => 0,
+          'value' => '0',
         ),
       ),
       'deleted' => '0',
@@ -334,7 +334,7 @@ function c4s_documents_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'group_content_access',
       'label' => 'Group content visibility',
-      'required' => TRUE,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -349,6 +349,7 @@ function c4s_documents_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
