@@ -189,6 +189,9 @@ function c4s_featured_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_featured_link',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'link',
@@ -202,6 +205,7 @@ function c4s_featured_field_default_fields() {
           'url_cutoff' => 80,
         ),
         'enable_tokens' => 1,
+        'profile2_private' => FALSE,
         'title' => 'optional',
         'title_maxlength' => 128,
         'title_value' => '',
