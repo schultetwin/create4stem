@@ -53,6 +53,12 @@ function c4s_base_field_default_fields() {
           'type' => 'text_default',
           'weight' => '0',
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -124,6 +130,12 @@ function c4s_base_field_default_fields() {
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '1',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -217,6 +229,12 @@ function c4s_base_field_default_fields() {
           'type' => 'og_list_default',
           'weight' => 2,
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -303,6 +321,12 @@ function c4s_base_field_default_fields() {
           'type' => 'list_default',
           'weight' => 3,
         ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -338,12 +362,81 @@ function c4s_base_field_default_fields() {
     ),
   );
 
+  // Exported field: 'og_membership-og_membership_type_default-og_membership_request'
+  $fields['og_membership-og_membership_type_default-og_membership_request'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'og_membership',
+      ),
+      'field_name' => 'og_membership_request',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'og_membership_type_default',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This is the text a user may send to the group administrators.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'og_membership',
+      'field_name' => 'og_membership_request',
+      'label' => 'Request message',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 5,
+        ),
+        'type' => 'text_textarea',
+        'weight' => 0,
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Group content visibility');
   t('Groups audience');
   t('Image');
+  t('Request message');
+  t('This is the text a user may send to the group administrators.');
 
   return $fields;
 }

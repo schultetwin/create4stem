@@ -38,6 +38,7 @@ features[field][] = node-page-body
 features[field][] = node-page-field_basic_image
 features[field][] = node-page-group_audience
 features[field][] = node-page-group_content_access
+features[field][] = og_membership-og_membership_type_default-og_membership_request
 features[filter][] = filtered_html
 features[filter][] = full_html
 features[filter][] = plain_text
