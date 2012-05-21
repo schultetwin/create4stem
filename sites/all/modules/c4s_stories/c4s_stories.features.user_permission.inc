@@ -43,7 +43,9 @@ function c4s_stories_user_default_permissions() {
   // Exported permission: delete terms in 2.
   $permissions['delete terms in 2'] = array(
     'name' => 'delete terms in 2',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -70,7 +72,9 @@ function c4s_stories_user_default_permissions() {
   // Exported permission: edit terms in 2.
   $permissions['edit terms in 2'] = array(
     'name' => 'edit terms in 2',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+    ),
     'module' => 'taxonomy',
   );
 
