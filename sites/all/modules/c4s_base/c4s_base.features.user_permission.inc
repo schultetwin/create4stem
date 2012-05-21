@@ -88,6 +88,24 @@ function c4s_base_user_default_permissions() {
     'module' => 'dashboard',
   );
 
+  // Exported permission: access devel information.
+  $permissions['access devel information'] = array(
+    'name' => 'access devel information',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'devel',
+  );
+
+  // Exported permission: access private fields.
+  $permissions['access private fields'] = array(
+    'name' => 'access private fields',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: access rules debug.
   $permissions['access rules debug'] = array(
     'name' => 'access rules debug',
@@ -199,6 +217,15 @@ function c4s_base_user_default_permissions() {
       0 => 'administrator',
     ),
     'module' => 'features',
+  );
+
+  // Exported permission: administer field permissions.
+  $permissions['administer field permissions'] = array(
+    'name' => 'administer field permissions',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: administer fieldgroups.
@@ -481,6 +508,15 @@ function c4s_base_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: execute php code.
+  $permissions['execute php code'] = array(
+    'name' => 'execute php code',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'devel',
+  );
+
   // Exported permission: manage features.
   $permissions['manage features'] = array(
     'name' => 'manage features',
@@ -546,6 +582,15 @@ function c4s_base_user_default_permissions() {
       0 => 'administrator',
     ),
     'module' => 'shortcut',
+  );
+
+  // Exported permission: switch users.
+  $permissions['switch users'] = array(
+    'name' => 'switch users',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'devel',
   );
 
   // Exported permission: use advanced search.

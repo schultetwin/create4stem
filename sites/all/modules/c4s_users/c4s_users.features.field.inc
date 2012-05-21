@@ -260,6 +260,62 @@ function c4s_users_field_default_fields() {
     ),
   );
 
+  // Exported field: 'profile2-main-field_profile_email'
+  $fields['profile2-main-field_profile_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_profile_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'email',
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter email to be used as your preferred contact email for people who may wish to contact you off your profile page.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => 5,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_profile_email',
+      'label' => 'Email',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'email',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'email_textfield',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'profile2-main-field_profile_facebook'
   $fields['profile2-main-field_profile_facebook'] = array(
     'field_config' => array(
@@ -1471,6 +1527,8 @@ Prof.',
   t('Courses');
   t('Courses Links');
   t('Department');
+  t('Email');
+  t('Enter email to be used as your preferred contact email for people who may wish to contact you off your profile page.');
   t('Enter link to your LinkedIn profile (if any)');
   t('Enter link to your twitter feed (if any).  ');
   t('Enter the URL to link to a course website (or sites).');

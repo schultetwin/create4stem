@@ -10,6 +10,16 @@
 function c4s_projects_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: create group_content_access.
+  $permissions['create group_content_access'] = array(
+    'name' => 'create group_content_access',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: create project content.
   $permissions['create project content'] = array(
     'name' => 'create project content',
@@ -38,11 +48,51 @@ function c4s_projects_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: edit group_content_access.
+  $permissions['edit group_content_access'] = array(
+    'name' => 'edit group_content_access',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: edit own group_content_access.
+  $permissions['edit own group_content_access'] = array(
+    'name' => 'edit own group_content_access',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: edit own project content.
   $permissions['edit own project content'] = array(
     'name' => 'edit own project content',
     'roles' => array(),
     'module' => 'node',
+  );
+
+  // Exported permission: view group_content_access.
+  $permissions['view group_content_access'] = array(
+    'name' => 'view group_content_access',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: view own group_content_access.
+  $permissions['view own group_content_access'] = array(
+    'name' => 'view own group_content_access',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'content editor',
+    ),
+    'module' => 'field_permissions',
   );
 
   return $permissions;

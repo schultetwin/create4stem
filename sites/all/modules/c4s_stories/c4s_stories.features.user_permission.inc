@@ -40,6 +40,13 @@ function c4s_stories_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 2.
+  $permissions['delete terms in 2'] = array(
+    'name' => 'delete terms in 2',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any story content.
   $permissions['edit any story content'] = array(
     'name' => 'edit any story content',
@@ -58,6 +65,13 @@ function c4s_stories_user_default_permissions() {
       1 => 'content editor',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 2.
+  $permissions['edit terms in 2'] = array(
+    'name' => 'edit terms in 2',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   return $permissions;

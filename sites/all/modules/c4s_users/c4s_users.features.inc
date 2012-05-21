@@ -59,3 +59,20 @@ function c4s_users_image_default_styles() {
 
   return $styles;
 }
+
+/**
+ * Implements hook_default_profile2_type().
+ */
+function c4s_users_default_profile2_type() {
+  $items = array();
+  $items['main'] = entity_import('profile2_type', '{
+    "userCategory" : true,
+    "userView" : true,
+    "type" : "main",
+    "label" : "Profile",
+    "weight" : "0",
+    "data" : { "registration" : 1, "use_page" : 0 },
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
