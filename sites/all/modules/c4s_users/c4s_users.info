@@ -30,7 +30,6 @@ features[features_api][] = api:1
 features[field][] = profile2-main-field_profile_about
 features[field][] = profile2-main-field_profile_courselinks
 features[field][] = profile2-main-field_profile_courses
-features[field][] = profile2-main-field_profile_email
 features[field][] = profile2-main-field_profile_facebook
 features[field][] = profile2-main-field_profile_fax
 features[field][] = profile2-main-field_profile_linkedin
