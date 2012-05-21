@@ -253,7 +253,7 @@ function c4s_featured_field_default_fields() {
           'title' => '',
         ),
         'display' => array(
-          'url_cutoff' => '80',
+          'url_cutoff' => '120',
         ),
         'enable_tokens' => 1,
         'title' => 'value',
