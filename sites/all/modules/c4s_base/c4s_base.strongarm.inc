@@ -104,7 +104,7 @@ function c4s_base_strongarm() {
     'group_photo|user|user|form' => FALSE,
     'group_profile_stuff|profile2|main|form' => FALSE,
     'group_about_me|profile2|main|form' => FALSE,
-    'group_conference_signup|node|conference_session|form' => FALSE,
+    'group_conference_signup|node|conference_session|form' => TRUE,
     'group_conference_presentation|node|conference_session|form' => FALSE,
   );
   $export['default_field_group'] = $strongarm;
@@ -161,6 +161,12 @@ function c4s_base_strongarm() {
       'y' => '33',
       'width' => '594',
       'height' => '355',
+    ),
+    100 => array(
+      'x' => '1',
+      'y' => '8',
+      'width' => '798',
+      'height' => '477',
     ),
   );
   $export['imagefield_crop_info'] = $strongarm;
@@ -510,7 +516,7 @@ function c4s_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_update_action';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['pathauto_update_action'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -549,7 +555,7 @@ function c4s_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_403';
-  $strongarm->value = 'toboggan/denied';
+  $strongarm->value = 'r4032login';
   $export['site_403'] = $strongarm;
 
   $strongarm = new stdClass();
