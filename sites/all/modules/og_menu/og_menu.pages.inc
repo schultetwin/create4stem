@@ -162,7 +162,7 @@ function og_menu_edit_item_form($form, &$form_state, $type, $item, $menu, $node)
   module_load_include('inc', 'menu', 'menu.admin');
   $form = drupal_retrieve_form('menu_edit_item', $form_state, $form, $type, $item, $menu);
   $list = array();
-  $menus = og_menu_get_menus(array(og_get_group('node', $node->nid)->gid));
+  $menus = og_menu_get_group_menus(array(og_get_group('node', $node->nid)->gid));
   foreach ($menus as $option) {
     $list[$option->mname] = $option->mtitle;
   }
