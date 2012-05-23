@@ -39,3 +39,13 @@ function c4s_custom_update_7002(&$sandbox) {
   module_enable(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
   c4s_custom_features_revert(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
 }
+
+/**
+ * Enable new features, and revert many
+ */
+function c4s_custom_update_7003(&$sandbox) {
+  module_enable(array('c4s_book_page'));
+  c4s_custom_features_revert(array('c4s_base', 'c4s_conference',
+    'c4s_events', 'c4s_featured', 'c4s_job_posting', 'c4s_projects',
+    'c4s_publications' ,'c4s_stories', 'c4s_users'));
+}
