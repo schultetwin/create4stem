@@ -49,3 +49,10 @@ function c4s_custom_update_7003(&$sandbox) {
     'c4s_events', 'c4s_featured', 'c4s_job_posting', 'c4s_projects',
     'c4s_publications' ,'c4s_stories', 'c4s_users'));
 }
+
+/**
+ * ENable other features
+ */
+function c4s_custom_update_7004(&$sandbox) {
+  module_enable(array('c4s_webpage'));
+}
