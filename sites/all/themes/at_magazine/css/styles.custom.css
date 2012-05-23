@@ -1,5 +1,4 @@
 
-
 /** 
  * Use this file to provide overrides to the main styles. This file always loads last
  * so you can override anything in the other style-sheets.
@@ -462,4 +461,9 @@ h2.block-title{
 
 .block .feed-icon{
 	float: right;
+}
+
+.article-type-event .webform-component-fieldset a.fieldset-title{
+	font-weight: bold;
+	font-size: 1.3em;
 }
