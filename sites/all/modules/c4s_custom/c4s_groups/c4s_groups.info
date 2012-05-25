@@ -3,3 +3,5 @@ description = Some customizations for the site
 core = 7.x
 package = C4S
 
+files[] = c4s_groups.css
+

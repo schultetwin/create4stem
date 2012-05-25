@@ -1,0 +1,16 @@
+/* 
+    Document   : c4s_groups
+    Created on : May 23, 2012, 1:18:50 AM
+    Author     : mark
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#c4s-groups-add-content-form .form-item-content-type {
+  display: inline-block;
+}
+
+#c4s-groups-add-content-form .form-submit {
+  display: inline-block;
+}
+
