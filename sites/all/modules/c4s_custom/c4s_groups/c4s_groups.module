@@ -1,6 +1,42 @@
 <?php
 
 /**
+ * Implements hook_menu().
+ */
+function c4s_groups_menu() {
+  // Don't use hook_load here for the access callback
+  $items['node/%/group_admin'] = array(
+    'title' => 'Group Admin',
+    'page callback' => 'c4s_groups_admin_page',
+    'page arguments' => array(1),
+    'access callback' => 'og_user_access_by_entity',
+    'access arguments' => array('administer group', 'node', 1),
+    'file' => 'c4s_groups.pages.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['group/%/%/unsubscribe/%'] = array(
+    'page callback' => 'c4s_group_unsubscribe_user',
+    'page arguments' => array(1,2,4),
+    'access callback' => 'og_user_access_entity',
+    'access arguments' => array('administer group', 1, 2),
+    'file' => 'c4s_groups.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function c4s_groups_views_api() {
+  return array(
+    'version' => '3',
+    'path' => drupal_get_path('module', 'c4s_groups') . '/includes/views',
+  );
+}
+
+/**
  * Implements hook_block_info().
  */
 function c4s_groups_block_info() {
@@ -67,4 +103,18 @@ function c4s_groups_add_content_form_submit($form, &$form_state) {
       ),
     ),
   );
+}
+
+/**
+ * Ajax/Form submit callback for view
+ */
+function c4s_group_og_membership_state_ajax($form, $form_state) {
+  $trigger = $form_state['triggering_element']['#array_parents'];
+  $state = drupal_array_get_nested_value($form_state['values'], $trigger);
+  array_pop($trigger);
+  array_push($trigger, 'id');
+  $membership_id = drupal_array_get_nested_value($form_state['values'], $trigger);
+  $membership = og_membership_load($membership_id);
+  $membership->state = $state;
+  $membership->save();
 }

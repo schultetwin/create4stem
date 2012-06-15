@@ -3,5 +3,9 @@ description = Some customizations for the site
 core = 7.x
 package = C4S
 
-files[] = c4s_groups.css
+dependencies[] = views
 
+files[] = c4s_groups.css
+files[] = includes/views/c4s_groups_views_handler_field_membership_form.inc
+files[] = includes/views/c4s_groups_views_handler_field_delete_link.inc
+files[] = includes/views/c4s_groups_views_handler_role_form.inc
