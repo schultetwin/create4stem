@@ -346,21 +346,21 @@ function c4s_publications_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'biblio_settings__active_tab';
-  $strongarm->value = 'edit-links';
+  $strongarm->value = 'edit-sort';
   $export['biblio_settings__active_tab'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'biblio_show_crossref_profile_form';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['biblio_show_crossref_profile_form'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'biblio_show_openurl_profile_form';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['biblio_show_openurl_profile_form'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -374,7 +374,7 @@ function c4s_publications_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'biblio_show_user_profile_form';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['biblio_show_user_profile_form'] = $strongarm;
 
   $strongarm = new stdClass();
