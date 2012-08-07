@@ -28,7 +28,7 @@ function c4s_webform_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'webform_default_from_address';
-  $strongarm->value = 'schultetwin+irmse@gmail.com';
+  $strongarm->value = 'siteadmin@create4stem.org';
   $export['webform_default_from_address'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -78,6 +78,7 @@ function c4s_webform_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'webform_node_types';
   $strongarm->value = array(
+    0 => 'event',
     1 => 'webform',
   );
   $export['webform_node_types'] = $strongarm;
