@@ -4,8 +4,10 @@ core = 7.x
 package = C4S
 
 dependencies[] = views
+dependencies[] = entity
 
 files[] = c4s_groups.css
 files[] = includes/views/c4s_groups_views_handler_field_membership_form.inc
 files[] = includes/views/c4s_groups_views_handler_field_delete_link.inc
 files[] = includes/views/c4s_groups_views_handler_role_form.inc
+files[] = includes/views/c4s_groups_views_handler_content_visibility_form.inc

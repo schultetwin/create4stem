@@ -31,4 +31,22 @@ function c4s_groups_views_data_alter(&$data) {
       'click sortable' => FALSE,
     ),
   );
+  /*
+  $data['field_data_group_content_access']['alter_form'] = array(
+    'title' => t('Content Visibility Form'),
+    'group' => t('Content'),
+    'help' => t('Content visibility (private/public) change'),
+    'real field' => 'group_content_access_value',
+    'field' => array(
+      'handler' => 'c4s_groups_views_handler_content_visibility_form',
+      'click sortable' => FALSE,
+    ),
+  );
+   */
+  $data['field_data_group_content_access']['alter_form'] = $data['field_data_group_content_access']['group_content_access'];
+  $field = &$data['field_data_group_content_access']['alter_form'];
+  $field['field']['handler'] = 'c4s_groups_views_handler_content_visibility_form';
+  $field['field']['click sortable'] = FALSE;
+  $field['title'] = t('Content Access (Form)');
+  $field['short title'] = t('Content Access (Form)');
 }

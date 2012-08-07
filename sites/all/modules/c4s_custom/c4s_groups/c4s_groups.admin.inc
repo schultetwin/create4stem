@@ -10,6 +10,7 @@ function c4s_group_unsubscribe_user($entity_type, $etid, $membership_id = NULL) 
   if (!empty($entities)) {
     $entity = array_pop($entities);
     og_ungroup($group->gid, $membership->entity_type, $entity);
+    $membership->delete();
   }
   drupal_goto();
 }

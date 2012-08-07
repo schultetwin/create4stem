@@ -118,3 +118,67 @@ function c4s_group_og_membership_state_ajax($form, $form_state) {
   $membership->state = $state;
   $membership->save();
 }
+
+/**
+ * AJAX callback to change content access
+ */
+function c4s_group_ajax_content_access($form, &$form_state) {
+  $array_parents = $form_state['triggering_element']['#array_parents'];
+  array_pop($array_parents);
+  $values = drupal_array_get_nested_value($form_state['values'], $array_parents);
+  $entity = entity_load($values['entity_type'], array($values['etid']));
+  $entity_wrapper = entity_metadata_wrapper($values['entity_type'], array_pop($entity));
+  $entity_wrapper->{OG_CONTENT_ACCESS_FIELD}->set($values['content']);
+  $entity_wrapper->save();
+}
+
+/**
+ * Form that will add a user to a group
+ */
+function c4s_groups_add_user_group($form, &$form_state, $group) {
+  $form['#group'] = $group;
+  $form['og_user'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Add User'),
+    '#collapsible' => TRUE,
+    '#collapsed' =>TRUE,
+  );
+  $form['og_user']['og_add_user'] = array(
+    '#type' => 'textfield',
+    '#title' => t('User name'),
+    '#autocomplete_path' => 'user/autocomplete',
+    '#required' => TRUE,
+  );
+  $form['og_user']['og_add_user_state'] = array(
+    '#type' => 'select',
+    '#title' => t('Membership state'),
+    '#options' => og_group_content_states(),
+    '#description' => t('Select the state of the membership.'),
+  );
+  $form['og_user']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add User to Group'),
+  );
+
+  return $form;
+}
+
+/**
+ * c4s_groups add a user to a group
+ */
+function c4s_groups_add_user_group_submit($form, &$form_state) {
+  $account = user_load_by_name($form_state['values']['og_add_user']);
+  $state = $form_state['values']['og_add_user_state'];
+  $membership = og_get_group_membership($form['#group']->gid, 'user', $account->uid);
+  if ($membership) {
+    drupal_set_message(t('User %user is already a member of group %group', array(
+      '%user' => $account->name,
+      '%group' => og_label($form['#group']->gid),
+    )), 'warning');
+  }
+  else  {
+    $membership = og_membership_create($form['#group']->gid, 'user', $account->uid);
+    $membership->state = $state;
+    $membership->save();
+  }
+}
