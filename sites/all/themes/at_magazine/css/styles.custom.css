@@ -467,3 +467,19 @@ h2.block-title{
 	font-weight: bold;
 	font-size: 1.3em;
 }
+
+.block ul li {
+  list-style-type: circle;
+}
+
+.block .view ul li {
+  padding-top: 3px;
+}
+
+.block .view ul li a {
+  font-weight: bold;
+}
+
+.view-featured-projects-groups- .views-row article {
+  background-color: #E2E2E0;
+}
