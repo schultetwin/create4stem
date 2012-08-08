@@ -58,6 +58,7 @@ function c4s_custom_update_7004(&$sandbox) {
 }
 
 function c4s_custom_update_7005(&$sandbox) {
+  module_enable(array('flag'));
   if (module_exists('flag')) {
     drupal_load('module', 'flag');
     module_load_include('inc', 'flag');
