@@ -67,6 +67,38 @@ function c4s_projects_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'projects_main_page';
+  $context->description = '';
+  $context->tag = 'C4S';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'projects' => 'projects',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-projects_home-block_1' => array(
+          'module' => 'views',
+          'delta' => 'projects_home-block_1',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('C4S');
+  $export['projects_main_page'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'specific_group_crcstl';
   $context->description = 'Context for a specific group (for group menu)';
   $context->tag = 'Group';
