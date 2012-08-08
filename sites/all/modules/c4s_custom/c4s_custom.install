@@ -57,6 +57,9 @@ function c4s_custom_update_7004(&$sandbox) {
   module_enable(array('c4s_webpage'));
 }
 
+/**
+ * Enable flag module as well as delete standard flags.
+ */
 function c4s_custom_update_7005(&$sandbox) {
   module_enable(array('flag'));
   if (module_exists('flag')) {
@@ -78,4 +81,11 @@ function c4s_custom_update_7005(&$sandbox) {
     }
   }
   c4s_custom_features_revert(array('c4s_projects'));
+}
+
+/**
+ * Enable c4s_groups custom module.
+ */
+function c4s_custom_update_7006(&$sandbox) {
+  module_enable(array('c4s_groups'));
 }
