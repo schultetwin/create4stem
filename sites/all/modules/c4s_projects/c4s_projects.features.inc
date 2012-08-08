@@ -38,7 +38,7 @@ function c4s_projects_flag_default_flags() {
     'types' => array(
       0 => 'project',
     ),
-    'flag_short' => 'Featured',
+    'flag_short' => 'Feature',
     'flag_long' => 'Feature this project',
     'flag_message' => '',
     'unflag_short' => 'Unfeature',
