@@ -1,114 +1,90 @@
 <?php
 
 /**
- * Implementation of hook_menu_alter().
- *
- * This alther puts tabs for the user profile in this order
- * view (named about, core)
- * Research (views)
- * Publications (biblio)
- * Courses (views)
- * Contact (contact module)
- * Edit (core)
- * Shortcuts (core)
- * Devel (devel)
+ * Implements hook_block_info().
  */
-function c4s_custom_menu_alter(&$items) {
-  // Set the user weights
-  $items['user/%user/biblio']['weight'] = 4;
-  $items['user/%user/biblio']['title'] = 'Publications';
-  $items['user/%user/contact']['weight'] = 8;
-  $items['user/%user/edit']['weight'] = 10;
-  $items['user/%user/shortcuts']['weight'] = 12;
-}
+function group_menu_block_info() {
+  $blocks = array();
 
-/**
- * Implementation of hook_form_alter().
- *
- * Alters the registartion page setting the weight of the profile2 fields after
- * the other fields
- */
-function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
-  foreach (profile2_get_types() as $type_name => $profile_type) {
-    if (!empty($profile_type->data['registration'])) {
-      if (empty($form_state['profiles'][$type_name])) {
-        $form_state['profiles'][$type_name] = profile2_create(array('type' => $type_name));
-      }
-      if (isset($form['#fieldgroups']['group_user_password'])) {
-        $weight = $form['#fieldgroups']['group_user_password']->weight + 1;
-      }
-      else {
-        $weight = 3;
-      }
-      $form['profile_' . $type_name] += array(
-        '#weight' => $weight,
-      );
-    }
-  }
-
-}
-
-/**
- * Implementation of hook_block_info().
- *
- * Creates a login link
- */
-function c4s_custom_block_info() {
-  $blocks['user_login_link'] = array(
-    'info' => t('Login Link'),
-    'cache' => DRUPAL_NO_CACHE,
+  $blocks['group_menu'] = array(
+    'info' => t('Localized Menu for Group'),
   );
 
   return $blocks;
 }
 
 /**
- * Implementation of hook_block_view().
- *
+ * Implements hook_block_view().
  */
-function c4s_custom_block_view($delta = '') {
+function group_menu_block_view($delta = '') {
+  $block = array();
   switch ($delta) {
-    case 'user_login_link':
-      $block['content'] = l(t('Log in'), 'user');
-      break;
+    case 'group_menu':
+      $og_context = og_context();
+      if ($og_context) {
+        $block['subject'] = t("Group Navigation");
+        $block['content'] = group_menu_render_menu($og_context);
+      }
   }
   return $block;
 }
 
 /**
- * Implementation of hook_page_build().
- *
- * Change user/%user/biblio page title
+ * Implements hook_theme().
  */
-function c4s_custom_page_build(&$page) {
-  if (arg(0) == 'user' && is_numeric(arg(1)) && arg(2) == 'biblio') {
-    drupal_set_title(t('Publications'));
-  }
+function group_menu_theme($existing, $type, $theme, $path) {
+  return array(
+    'group_menu' => array(
+      'variables' => array('items' => array()),
+    ),
+  );
 }
 
-/**
-* Revert specified features.
-*
-* @TODO Check that it really is Forced features revert.  Currently an exact
-* copy of the function initially placed in feature_projects.install.
-*
-* Code mostly taken from drush.
-*/
-function c4s_custom_features_revert($modules) {
-  module_load_include('inc', 'features', 'features.export');
-  features_include();
-  foreach ($modules as $module) {
-    if (($feature = feature_load($module, TRUE)) && module_exists($module)) {
-      $components = array();
-      // Forcefully revert all components of a feature.
-      foreach (array_keys($feature->info['features']) as $component) {
-        if (features_hook($component, 'features_revert')) {
-          $components[] = $component;
-        }
+function theme_group_menu($variables) {
+  global $user;
+  $items = is_array($variables['items']) ? $variables['items'] : array();
+  uasort($items, 'drupal_sort_weight');
+  $links = array();
+  foreach ($items as $item) {
+    $link_info = $item['link'];
+    $link = l($link_info['label'], $link_info['path'], $link_info['options']);
+    $links[] = $link;
+  }
+  return theme('item_list', array('items' => $links));
+}
+
+function group_menu_get_menu($group, $reset = FALSE) {
+  $links = &drupal_static(__FUNCTION__, array(), $reset);
+  if (empty($links) || !isset($links[$group->gid])) {
+    $links[$group->gid] = array();
+    foreach (module_implements('og_group_menu') as $module) {
+      $function = $module . "_og_group_menu";
+      $module_links = $function($group);
+      foreach ($module_links as &$module_link) {
+        $module_link += array(
+          'weight' => 0,
+        );
+        $module_link['link']['options'] = isset($module_link['link']['options']) && is_array($module_link['link']['options']) ? $module_link['link']['options'] : array();
+        $module_link['link']['path'] = $module_link['link']['path'];
       }
+      $links[$group->gid] = array_merge($links[$group->gid], $module_links);
     }
-    foreach ($components as $component) {
-      features_revert(array($module => array($component)));
+    drupal_alter('og_group_menu', $links, $group);
+  }
+  return $links[$group->gid];
+}
+
+function group_menu_build_menu($group) {
+  $links = group_menu_get_menu($group);
+  foreach ($links as $key => $link) {
+    if (!url_is_external($link['link']['path']) && !drupal_valid_path($link['link']['path'])) {
+      unset($links[$key]);
     }
   }
+  return $links;
+}
+
+function group_menu_render_menu($group) {
+  $links = group_menu_build_menu($group);
+  return theme('group_menu', array('items' => $links));
 }

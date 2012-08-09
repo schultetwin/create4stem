@@ -1,5 +1,5 @@
-name =  Create4Stem Customizations
-description = Some customizations for the site
+name =  Custom Built Group Menu Module
+description = Custom menus for groups on this site
 core = 7.x
 package = C4S
 
