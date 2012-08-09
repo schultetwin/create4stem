@@ -8,6 +8,7 @@ dependencies[] = context_og
 dependencies[] = features
 dependencies[] = field_permissions
 dependencies[] = flag
+dependencies[] = group_menu
 dependencies[] = image
 dependencies[] = list
 dependencies[] = menu
