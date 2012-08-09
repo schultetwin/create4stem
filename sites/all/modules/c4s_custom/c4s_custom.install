@@ -92,4 +92,5 @@ function c4s_custom_update_7006(&$sandbox) {
 
 function c4s_custom_update_7007(&$sandbox) {
   module_enable(array('group_menu'));
+  c4s_custom_features_revert(array('c4s_projects'));
 }
