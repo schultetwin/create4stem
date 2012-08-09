@@ -9,9 +9,15 @@ function c4s_groups_admin_page($nid) {
   if (views_get_view_result('og_admin_members_users_', 'default', $group->gid)) {
     $output['user_view'] = array('#type' => 'markup', '#markup' => views_embed_view('og_admin_members_users_', 'default', $group->gid));
   }
+  else {
+    $output['user_view'] = array('#type' => 'markup', '#markup' => t('No Users found in Group'));
+  }
   $output['add_user_form'] = drupal_get_form('c4s_groups_add_user_group', $group);
   if (views_get_view_result('group_content_publicity', 'default', $group->gid)) {
     $output['content_view'] = array('#type' => 'markup', '#markup' => views_embed_view('group_content_publicity', 'default', $group->gid));
+  }
+  else {
+    $output['content_view'] = array('#type' => 'markup', '#markup' => t('No Content Found in Group'));
   }
   return $output;
 }

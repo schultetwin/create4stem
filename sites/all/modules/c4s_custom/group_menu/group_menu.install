@@ -1,0 +1,91 @@
+<?php
+
+
+/**
+ * Implementation of hook_install().
+ */
+function c4s_custom_install() {
+  $weight = db_select('system', 's')
+              ->fields('s', array('weight'))
+              ->condition('name', 'profile2', '=')
+              ->execute()
+              ->fetchField();
+  db_update('system')
+    ->fields(array('weight' => $weight +1))
+    ->condition('name', 'c4s_custom', '=')
+    ->execute();
+}
+
+/**
+ * Set weight to be greater than profile2 so we can alter profile2.
+ */
+function c4s_custom_update_7001(&$sandbox) {
+  $weight = db_select('system', 's')
+              ->fields('s', array('weight'))
+              ->condition('name', 'profile2', '=')
+              ->execute()
+              ->fetchField();
+  db_update('system')
+    ->fields(array('weight' => $weight +1))
+    ->condition('name', 'c4s_custom', '=')
+    ->execute();
+  drupal_flush_all_caches();
+}
+
+/**
+ * Enable new feature, c4s_tasks
+ */
+function c4s_custom_update_7002(&$sandbox) {
+  module_enable(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
+  c4s_custom_features_revert(array('c4s_projects', 'c4s_task', 'c4s_note', 'c4s_documents'));
+}
+
+/**
+ * Enable new features, and revert many
+ */
+function c4s_custom_update_7003(&$sandbox) {
+  module_enable(array('c4s_book_page'));
+  c4s_custom_features_revert(array('c4s_base', 'c4s_conference',
+    'c4s_events', 'c4s_featured', 'c4s_job_posting', 'c4s_projects',
+    'c4s_publications' ,'c4s_stories', 'c4s_users'));
+}
+
+/**
+ * ENable other features
+ */
+function c4s_custom_update_7004(&$sandbox) {
+  module_enable(array('c4s_webpage'));
+}
+
+/**
+ * Enable flag module as well as delete standard flags.
+ */
+function c4s_custom_update_7005(&$sandbox) {
+  module_enable(array('flag'));
+  if (module_exists('flag')) {
+    drupal_load('module', 'flag');
+    module_load_include('inc', 'flag');
+    // Flag deletion doesn't use the machine names.  '1' is bookmarks.
+    $flag = flag_get_flag(NULL, 1);
+    if ($flag->name == "bookmarks") {
+      $flag->delete();
+      $flag->disable();
+      // This is the code of _flag_clear_cache(); taken from flag.admin.inc.
+      if (module_exists('views')) {
+        views_invalidate_cache();
+      }
+      // Reset our flags cache, thereby making the following code aware of the
+      // modifications.
+      flag_get_flags(NULL, NULL, NULL, TRUE);
+      menu_rebuild();
+    }
+  }
+  c4s_custom_features_revert(array('c4s_projects'));
+}
+
+/**
+ * Enable c4s_groups custom module.
+ */
+function c4s_custom_update_7006(&$sandbox) {
+  module_enable(array('c4s_groups'));
+}
