@@ -123,3 +123,10 @@ function c4s_custom_update_7010(&$sandbox) {
 function c4s_custom_update_7011(&$sandbox) {
   module_enable(array('c4s_discussions'));
 }
+
+/**
+ * Revert the c4s_tasks feature
+ */
+function c4s_custom_update_7012(&$sandbox) {
+  c4s_custom_features_revert(array('c4s_tasks'));
+}

@@ -90,6 +90,20 @@ function c4s_custom_og_group_menu($group) {
     ),
     'weight' => 10,
   );
+  $links[] = array(
+    'link' => array(
+      'path' => $path . '/tasks',
+      'label' => t('Tasks'),
+    ),
+    'weight' => 15,
+  );
+  $links[] = array(
+    'link' => array(
+      'path' => $path . '/notes',
+      'label' => t('Notes'),
+    ),
+    'weight' => 20,
+  );
   return $links;
 }
 
