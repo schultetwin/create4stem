@@ -35,6 +35,42 @@ function c4s_projects_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-10',
         ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Context for all group pages');
+  t('Group');
+  $export['group_all'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'group_home_page';
+  $context->description = 'Context for all group pages';
+  $context->tag = 'Group';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'project' => 'project',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'group_menu-group_menu' => array(
+          'module' => 'group_menu',
+          'delta' => 'group_menu',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
         'views-group_members-block' => array(
           'module' => 'views',
           'delta' => 'group_members-block',
@@ -68,7 +104,7 @@ function c4s_projects_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('Context for all group pages');
   t('Group');
-  $export['group_all'] = $context;
+  $export['group_home_page'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */

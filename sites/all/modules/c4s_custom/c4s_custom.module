@@ -52,28 +52,29 @@ function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
  * Implements hook_og_group_menu()
  */
 function c4s_custom_og_group_menu($group) {
+  $path = entity_uri($group->entity_type, entity_load_single($group->entity_type, $group->etid));
+  $path = $path['path'];
   $links = array();
   $links[] = array(
     'link' => array(
-      'path' => 'node/add/event',
-      'label' => t('Add Event'),
+      'path' => $path,
+      'label' => t('Project Home'),
     ),
     'weight' => -10,
   );
   $links[] = array(
     'link' => array(
-      'path' => 'node/add/task',
-      'label' => t('Add Task'),
+      'path' => $path . '/news',
+      'label' => t('News'),
     ),
     'weight' => 0,
   );
-  $path = entity_uri($group->entity_type, entity_load_single($group->entity_type, $group->etid));
-  $path = $path['path'];
   $links[] = array(
     'link' => array(
-      'path' => $path,
-      'label' => t('Entity'),
+      'path' => $path . '/wiki',
+      'label' => t('Wiki'),
     ),
+    'weight' => 3,
   );
   return $links;
 }

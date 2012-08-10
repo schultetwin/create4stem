@@ -18,6 +18,7 @@ dependencies[] = og_context
 dependencies[] = strongarm
 dependencies[] = views
 features[context][] = group_all
+features[context][] = group_home_page
 features[context][] = projects_main_page
 features[context][] = specific_group_crcstl
 features[ctools][] = context:context:3

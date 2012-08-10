@@ -20,6 +20,9 @@ function c4s_stories_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -98,6 +101,9 @@ function c4s_stories_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -114,6 +120,7 @@ function c4s_stories_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -170,15 +177,21 @@ function c4s_stories_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
-          'insert' => 0,
+          'insert' => 1,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_featured_front_page' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_small_thumb' => 0,
+            'image_thumbnail' => 0,
+            'image_user_profile' => 0,
+            'link' => 0,
           ),
-          'insert_width' => '',
+          'insert_width' => '400',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),

@@ -1,17 +1,17 @@
 <?php
 /**
  * @file
- * c4s_base.features.field.inc
+ * c4s_wiki.features.field.inc
  */
 
 /**
  * Implements hook_field_default_fields().
  */
-function c4s_base_field_default_fields() {
+function c4s_wiki_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-page-body'
-  $fields['node-page-body'] = array(
+  // Exported field: 'node-wiki-body'
+  $fields['node-wiki-body'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -44,7 +44,7 @@ function c4s_base_field_default_fields() {
       'type' => 'text_with_summary',
     ),
     'field_instance' => array(
-      'bundle' => 'page',
+      'bundle' => 'wiki',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -69,7 +69,7 @@ function c4s_base_field_default_fields() {
             'trim_length' => 600,
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '0',
+          'weight' => 1,
         ),
       ),
       'entity_type' => 'node',
@@ -88,19 +88,22 @@ function c4s_base_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-page-field_basic_image'
-  $fields['node-page-field_basic_image'] = array(
+  // Exported field: 'node-wiki-field_wiki_attachments'
+  $fields['node-wiki-field_wiki_attachments'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_basic_image',
+      'field_name' => 'field_wiki_attachments',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -114,24 +117,26 @@ function c4s_base_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'module' => 'image',
+      'module' => 'file',
       'settings' => array(
-        'default_image' => 0,
+        'display_default' => 0,
+        'display_field' => 0,
         'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
+        'uri_scheme' => 'private',
       ),
       'translatable' => '0',
-      'type' => 'image',
+      'type' => 'file',
     ),
     'field_instance' => array(
-      'bundle' => 'page',
+      'bundle' => 'wiki',
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
+          'module' => 'file',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'file_default',
           'weight' => '1',
         ),
         'ical' => array(
@@ -141,30 +146,26 @@ function c4s_base_field_default_fields() {
           'weight' => 0,
         ),
         'teaser' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_basic_image',
-      'label' => 'Image',
+      'field_name' => 'field_wiki_attachments',
+      'label' => 'Attachments',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
-        'default_image' => 0,
-        'file_directory' => 'pages/images',
-        'file_extensions' => 'png gif jpg jpeg',
+        'description_field' => 0,
+        'file_directory' => 'wiki/attachments',
+        'file_extensions' => 'pdf txt odt odp doc docx xls mp3 m4a wav jpeg jpg tiff png ols zip tar gz',
         'max_filesize' => '',
-        'max_resolution' => '640x640',
-        'min_resolution' => '',
-        'title_field' => 0,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'image',
+        'module' => 'file',
         'settings' => array(
           'insert' => 1,
           'insert_class' => '',
@@ -175,22 +176,22 @@ function c4s_base_field_default_fields() {
             'image_featured_front_page' => 0,
             'image_large' => 0,
             'image_medium' => 0,
+            'image_small_thumb' => 0,
             'image_thumbnail' => 0,
             'image_user_profile' => 0,
             'link' => 0,
           ),
-          'insert_width' => '',
-          'preview_image_style' => 'thumbnail',
+          'insert_width' => '400',
           'progress_indicator' => 'throbber',
         ),
-        'type' => 'image_image',
-        'weight' => '2',
+        'type' => 'file_generic',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-page-group_audience'
-  $fields['node-page-group_audience'] = array(
+  // Exported field: 'node-wiki-group_audience'
+  $fields['node-wiki-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -219,7 +220,7 @@ function c4s_base_field_default_fields() {
       'type' => 'group',
     ),
     'field_instance' => array(
-      'bundle' => 'page',
+      'bundle' => 'wiki',
       'default_value' => NULL,
       'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
@@ -227,10 +228,9 @@ function c4s_base_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'og',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => 2,
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'ical' => array(
           'label' => 'above',
@@ -270,14 +270,14 @@ function c4s_base_field_default_fields() {
           'opt_group' => 'auto',
         ),
         'type' => 'group_audience',
-        'weight' => 4,
+        'weight' => '1',
       ),
       'widget_type' => 'group_audience',
     ),
   );
 
-  // Exported field: 'node-page-group_content_access'
-  $fields['node-page-group_content_access'] = array(
+  // Exported field: 'node-wiki-group_content_access'
+  $fields['node-wiki-group_content_access'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -308,7 +308,7 @@ function c4s_base_field_default_fields() {
       'type' => 'list_integer',
     ),
     'field_instance' => array(
-      'bundle' => 'page',
+      'bundle' => 'wiki',
       'default_value' => array(
         0 => array(
           'value' => '2',
@@ -319,10 +319,9 @@ function c4s_base_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 3,
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'ical' => array(
           'label' => 'above',
@@ -359,87 +358,18 @@ function c4s_base_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 5,
+        'weight' => '4',
       ),
       'widget_type' => 'options_select',
     ),
   );
 
-  // Exported field: 'og_membership-og_membership_type_default-og_membership_request'
-  $fields['og_membership-og_membership_type_default-og_membership_request'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(
-        0 => 'og_membership',
-      ),
-      'field_name' => 'og_membership_request',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'og_membership_type_default',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'This is the text a user may send to the group administrators.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'og_membership',
-      'field_name' => 'og_membership_request',
-      'label' => 'Request message',
-      'required' => FALSE,
-      'settings' => array(
-        'text_processing' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'text',
-        'settings' => array(
-          'rows' => 5,
-        ),
-        'type' => 'text_textarea',
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
+  t('Attachments');
   t('Body');
   t('Group content visibility');
   t('Groups audience');
-  t('Image');
-  t('Request message');
-  t('This is the text a user may send to the group administrators.');
 
   return $fields;
 }

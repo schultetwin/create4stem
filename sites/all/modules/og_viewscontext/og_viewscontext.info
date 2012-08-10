@@ -1,0 +1,9 @@
+name = Organic Groups Views Contextual Filter
+description = Provides a Views contextual filter to load organic groups from a node ID.
+core = 7.x
+package = Custom
+
+files[] = og_viewscontext.module
+files[] - og_viewscontext.views.inc
+
+dependencies[] = og

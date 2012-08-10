@@ -94,3 +94,18 @@ function c4s_custom_update_7007(&$sandbox) {
   module_enable(array('group_menu'));
   c4s_custom_features_revert(array('c4s_projects'));
 }
+
+/**
+ * Enable the og_viewscontext module.
+ */
+function c4s_custom_update_7008(&$sandbox) {
+  module_enable(array('og_viewscontext'));
+  c4s_custom_features_revert(array('c4s_projects'));
+}
+
+/**
+ * Enable the new c4s_wiki feature
+ */
+function c4s_custom_update_7009(&$sandbox) {
+  module_enable(array('c4s_wiki'));
+}
