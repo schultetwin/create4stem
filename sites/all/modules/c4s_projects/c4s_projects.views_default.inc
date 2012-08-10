@@ -143,11 +143,22 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['links'] = FALSE;
-  /* Relationship: OG membership: OG membership from Node */
-  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
-  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
-  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
-  $handler->display->display_options['relationships']['og_membership_rel']['required'] = 0;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
+  $handler->display->display_options['header']['area']['content'] = '<a href="/node/!1/events/past">Past Events</a>';
+  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['header']['area']['tokenize'] = 1;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No Upcoming events';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -168,19 +179,19 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
-  /* Contextual filter: OG membership: OG group gid */
-  $handler->display->display_options['arguments']['group']['id'] = 'group';
-  $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
-  $handler->display->display_options['arguments']['group']['field'] = 'group';
-  $handler->display->display_options['arguments']['group']['relationship'] = 'og_membership_rel';
-  $handler->display->display_options['arguments']['group']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['group']['default_argument_type'] = 'og_context';
-  $handler->display->display_options['arguments']['group']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['group']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['group']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['group']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['group']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['group']['not'] = 0;
+  /* Contextual filter: Group: Group Node ID */
+  $handler->display->display_options['arguments']['gid']['id'] = 'gid';
+  $handler->display->display_options['arguments']['gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['arguments']['gid']['field'] = 'gid';
+  $handler->display->display_options['arguments']['gid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['gid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['gid']['not'] = 0;
+  $handler->display->display_options['arguments']['gid']['set_group_context'] = 1;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -204,7 +215,7 @@ function c4s_projects_views_default_views() {
 
   /* Display: Upcoming Page */
   $handler = $view->new_display('page', 'Upcoming Page', 'page');
-  $handler->display->display_options['path'] = 'group/%/events';
+  $handler->display->display_options['path'] = 'node/%/events';
   $handler->display->display_options['menu']['title'] = 'Upcoming';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
@@ -214,6 +225,24 @@ function c4s_projects_views_default_views() {
   $handler = $view->new_display('page', 'Past Page', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Recent Events';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
+  $handler->display->display_options['header']['area']['content'] = '<a href="/node/!1/events/">Upcoming Events</a>';
+  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['header']['area']['tokenize'] = 1;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No Past events';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Date -  start date (field_date) */
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
@@ -241,7 +270,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
   $handler->display->display_options['filters']['field_date_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_date_value']['default_date'] = 'now';
-  $handler->display->display_options['path'] = 'group/%/events/past';
+  $handler->display->display_options['path'] = 'node/%/events/past';
   $handler->display->display_options['menu']['title'] = 'Recent';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
