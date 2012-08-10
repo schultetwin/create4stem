@@ -83,6 +83,13 @@ function c4s_custom_og_group_menu($group) {
     ),
     'weight' => 6,
   );
+  $links[] = array(
+    'link' => array(
+      'path' => $path . '/discussions',
+      'label' => t('Discussions'),
+    ),
+    'weight' => 10,
+  );
   return $links;
 }
 

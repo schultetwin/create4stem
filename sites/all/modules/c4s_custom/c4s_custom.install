@@ -116,3 +116,10 @@ function c4s_custom_update_7009(&$sandbox) {
 function c4s_custom_update_7010(&$sandbox) {
   c4s_custom_features_revert(array('c4s_events'));
 }
+
+/**
+ * Enable the c4s_discussions feature
+ */
+function c4s_custom_update_7011(&$sandbox) {
+  module_enable(array('c4s_discussions'));
+}
