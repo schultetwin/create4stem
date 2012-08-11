@@ -126,6 +126,7 @@ features[variable][] = date_format_long
 features[variable][] = date_format_medium
 features[variable][] = date_format_short
 features[variable][] = default_field_group
+features[variable][] = field_bundle_settings_node__page
 features[variable][] = imagefield_crop_info
 features[variable][] = menu_options_page
 features[variable][] = menu_parent_page

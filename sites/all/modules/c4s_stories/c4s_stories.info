@@ -38,6 +38,7 @@ features[variable][] = comment_form_location_story
 features[variable][] = comment_preview_story
 features[variable][] = comment_story
 features[variable][] = comment_subject_field_story
+features[variable][] = field_bundle_settings_node__story
 features[variable][] = menu_options_story
 features[variable][] = menu_parent_story
 features[variable][] = node_options_story

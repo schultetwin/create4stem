@@ -221,19 +221,22 @@ function c4s_task_views_default_views() {
   $handler->display->display_options['sorts']['field_task_due_value']['id'] = 'field_task_due_value';
   $handler->display->display_options['sorts']['field_task_due_value']['table'] = 'field_data_field_task_due';
   $handler->display->display_options['sorts']['field_task_due_value']['field'] = 'field_task_due_value';
-  /* Contextual filter: Group: Group Node ID */
-  $handler->display->display_options['arguments']['gid']['id'] = 'gid';
-  $handler->display->display_options['arguments']['gid']['table'] = 'field_data_group_audience';
-  $handler->display->display_options['arguments']['gid']['field'] = 'gid';
-  $handler->display->display_options['arguments']['gid']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['gid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['gid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['gid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['gid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['gid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['gid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['gid']['not'] = 0;
-  $handler->display->display_options['arguments']['gid']['set_group_context'] = 1;
+  /* Contextual filter: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['arguments']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['arguments']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group_audience_gid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate']['type'] = 'nid_as_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['must_be_member'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['set_group_context'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['not'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';

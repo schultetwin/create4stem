@@ -48,6 +48,7 @@ features[user_permission][] = edit terms in 4
 features[user_permission][] = edit terms in 5
 features[user_permission][] = view field_conference_session
 features[user_permission][] = view own field_conference_session
+features[variable][] = field_bundle_settings_node__conference_session
 features[variable][] = menu_options_conference_session
 features[variable][] = menu_parent_conference_session
 features[variable][] = node_options_conference_session

@@ -27,6 +27,7 @@ features[variable][] = comment_form_location_grantc4s
 features[variable][] = comment_grantc4s
 features[variable][] = comment_preview_grantc4s
 features[variable][] = comment_subject_field_grantc4s
+features[variable][] = field_bundle_settings_node__grantc4s
 features[variable][] = menu_options_grantc4s
 features[variable][] = menu_parent_grantc4s
 features[variable][] = node_options_grantc4s

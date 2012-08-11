@@ -40,6 +40,7 @@ features[variable][] = comment_form_location_posting
 features[variable][] = comment_posting
 features[variable][] = comment_preview_posting
 features[variable][] = comment_subject_field_posting
+features[variable][] = field_bundle_settings_node__posting
 features[variable][] = menu_options_posting
 features[variable][] = menu_parent_posting
 features[variable][] = node_options_posting

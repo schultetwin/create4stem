@@ -4,6 +4,7 @@ core = 7.x
 package = Custom
 
 files[] = og_viewscontext.module
-files[] - og_viewscontext.views.inc
+files[] = og_viewscontext.views.inc
+files[] = og_viewscontext_argument_validate_nid_as_gid.inc
 
 dependencies[] = og
