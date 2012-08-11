@@ -8,6 +8,7 @@ dependencies[] = date
 dependencies[] = features
 dependencies[] = list
 dependencies[] = og
+dependencies[] = og_viewscontext
 dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = user_reference

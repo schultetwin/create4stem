@@ -10,6 +10,7 @@ dependencies[] = features
 dependencies[] = file
 dependencies[] = image
 dependencies[] = og
+dependencies[] = og_viewscontext
 dependencies[] = strongarm
 dependencies[] = views
 features[ctools][] = strongarm:strongarm:1

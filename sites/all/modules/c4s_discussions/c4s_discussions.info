@@ -9,6 +9,7 @@ dependencies[] = file
 dependencies[] = list
 dependencies[] = node
 dependencies[] = og
+dependencies[] = og_viewscontext
 dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = text
