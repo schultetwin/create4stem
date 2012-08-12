@@ -54,6 +54,10 @@ ul.sf-horizontal {
 .nav .contextual-links-wrapper {
   display: none;
 }
+
+ul.contextual-links li {
+  list-style-type: none !important;
+}
 /* .sf-navbar - drop down nav bar style */
 ul.sf-navbar {
   padding: 0;
@@ -238,4 +242,11 @@ sf-vertical li:hover ul ul ul,
 .calendar-calendar .month-view .full tr.single-day .no-entry,
 .calendar-calendar .month-view .full tr.single-day .no-entry .inner {
   min-width: 126px;
+}
+
+.view-header .views-header-content-link {
+  text-align: right;
+}
+.view-header .views-header-content-link a:before {
+  content: "+ ";
 }

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Implements hook_views_plugins().
+ */
 function og_viewscontext_views_plugins() {
   return array(
     'argument validator' => array(
@@ -10,4 +13,19 @@ function og_viewscontext_views_plugins() {
       ),
     ),
   );
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function og_viewscontext_views_data() {
+  $data['views']['add_content_link'] = array(
+    'title' => t('Add Content Link'),
+    'help' => t('Provide a link to add content of a given type'),
+    'area' => array(
+      'handler' => 'views_handler_area_add_content_link',
+    ),
+  );
+
+  return $data;
 }

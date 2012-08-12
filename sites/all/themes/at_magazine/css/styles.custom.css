@@ -480,6 +480,13 @@ h2.block-title{
   font-weight: bold;
 }
 
-.view-featured-projects-groups- .views-row article {
+.view-featured-projects-groups- {
   background-color: #E2E2E0;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.view-featured-projects-groups- .view-content {
+  padding: 5px;
 }

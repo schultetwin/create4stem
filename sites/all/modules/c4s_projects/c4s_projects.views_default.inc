@@ -151,6 +151,14 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['header']['area']['content'] = '<a href="/node/!1/events/past">Past Events</a>';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['header']['area']['tokenize'] = 1;
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['empty'] = TRUE;
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'event';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 1;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add new Event';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
@@ -1239,6 +1247,15 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['label'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['empty'] = TRUE;
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'story';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 1;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add New Story';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
