@@ -32,7 +32,7 @@ function c4s_projects_context_default_contexts() {
         'group_menu-group_menu' => array(
           'module' => 'group_menu',
           'delta' => 'group_menu',
-          'region' => 'sidebar_first',
+          'region' => 'sidebar_second',
           'weight' => '-10',
         ),
       ),
@@ -65,35 +65,29 @@ function c4s_projects_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'group_menu-group_menu' => array(
-          'module' => 'group_menu',
-          'delta' => 'group_menu',
-          'region' => 'sidebar_first',
-          'weight' => '-10',
-        ),
-        'views-group_members-block' => array(
-          'module' => 'views',
-          'delta' => 'group_members-block',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
         'views-group_events-block_1' => array(
           'module' => 'views',
           'delta' => 'group_events-block_1',
           'region' => 'sidebar_second',
-          'weight' => '-9',
+          'weight' => '-6',
         ),
         'views-group_news-block' => array(
           'module' => 'views',
           'delta' => 'group_news-block',
           'region' => 'sidebar_second',
-          'weight' => '-8',
+          'weight' => '-4',
         ),
         'views-group_notes-block_1' => array(
           'module' => 'views',
           'delta' => 'group_notes-block_1',
           'region' => 'sidebar_second',
-          'weight' => '-7',
+          'weight' => '-2',
+        ),
+        'views-group_members-block' => array(
+          'module' => 'views',
+          'delta' => 'group_members-block',
+          'region' => 'sidebar_second',
+          'weight' => '-8',
         ),
       ),
     ),

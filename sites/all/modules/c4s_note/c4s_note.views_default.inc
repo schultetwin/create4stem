@@ -294,6 +294,23 @@ function c4s_note_views_default_views() {
   $handler->display->display_options['fields']['title_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['title_1']['link_to_node'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['arguments']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['arguments']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group_audience_gid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate']['type'] = 'nid_as_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['must_be_member'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['set_group_context'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['not'] = 0;
   $handler->display->display_options['block_description'] = 'Project Notes';
   $export['group_notes'] = $view;
 

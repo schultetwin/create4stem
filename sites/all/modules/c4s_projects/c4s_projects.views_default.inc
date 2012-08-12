@@ -183,6 +183,37 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Date */
+  $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
+  $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['label'] = '';
+  $handler->display->display_options['fields']['field_date']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_date']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_date']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_date']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_date']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_date']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_date']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_date']['field_api_classes'] = 0;
   /* Sort criterion: Content: Date -  start date (field_date) */
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
@@ -192,7 +223,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['arguments']['group_audience_gid']['table'] = 'field_data_group_audience';
   $handler->display->display_options['arguments']['group_audience_gid']['field'] = 'group_audience_gid';
   $handler->display->display_options['arguments']['group_audience_gid']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['group_audience_gid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['group_audience_gid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['group_audience_gid']['summary']['format'] = 'default_summary';
@@ -294,9 +325,40 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'field_date' => 'field_date',
+  );
+  $handler->display->display_options['row_options']['separator'] = ' - ';
   $handler->display->display_options['row_options']['hide_empty'] = 1;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['empty'] = TRUE;
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'event';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 1;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add new Event';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['arguments']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['arguments']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group_audience_gid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate']['type'] = 'nid_as_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['must_be_member'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['set_group_context'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['not'] = 0;
   $handler->display->display_options['block_description'] = 'Group Upcoming Events';
   $export['group_events'] = $view;
 
@@ -1332,7 +1394,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
-  $handler->display->display_options['path'] = 'group/%/news.xml';
+  $handler->display->display_options['path'] = 'node/%/news.xml';
   $handler->display->display_options['displays'] = array(
     'default' => 'default',
     'page' => 'page',
@@ -1396,6 +1458,23 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['fields']['body']['empty_zero'] = 0;
   $handler->display->display_options['fields']['body']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['arguments']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['arguments']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['group_audience_gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group_audience_gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group_audience_gid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate']['type'] = 'nid_as_gid';
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['must_be_member'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['validate_options']['set_group_context'] = '1';
+  $handler->display->display_options['arguments']['group_audience_gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group_audience_gid']['not'] = 0;
   $handler->display->display_options['block_description'] = 'Group News';
   $export['group_news'] = $view;
 

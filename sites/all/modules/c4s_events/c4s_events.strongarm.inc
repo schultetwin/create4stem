@@ -105,6 +105,10 @@ function c4s_events_strongarm() {
             'weight' => '5',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '4',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),
