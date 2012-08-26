@@ -1,0 +1,97 @@
+<?php
+
+// define the source database
+define("AACR_SOURCE_DATABASE", 'crcstl');
+define("AACR_SOURCE_FILES_DIR", '/srv/http/crcstl/');;
+define("AACR_NID", 55);
+
+function aacr_migrate_migrate_api() {
+  $api = array(
+    'api' => 2,
+  );
+  return $api;
+}
+
+/**
+ * Retrieve the url alias associated with the node from the migration database.
+ */
+function aacr_migrate_get_url_alias($nid) {
+  $result = db_select(AACR_SOURCE_DATABASE . '.url_alias', 'ua')
+    ->fields('ua', array('dst'))
+    ->condition('ua.src', 'node/' . $nid, '=')
+    ->execute()
+    ->fetchObject();
+
+  return is_object($result) && !empty($result->dst) ? $result->dst : NULL;
+}
+
+/**
+ * Translate between D6 input format id and D7 text format name.
+ */
+function aacr_migrate_get_text_format($format) {
+  $output = '';
+
+  switch ($format) {
+    case 1:
+      $output = 'filtered_html';
+      break;
+    case 2:
+      $output = 'plain_text';
+      break;
+    case 3:
+      $output = 'full_html';
+      break;
+    case 4:
+      $output = 'full_html_with_markdown';
+      break;
+    default:
+      $output = 'plain_text';
+  }
+
+  return $output;
+}
+
+/**
+ * Retrieve the file data for file uploads.
+ */
+function aacr_migrate_get_file_uploads($vid) {
+  $output = array();
+  $output['fid'] = array();
+  $output['file_dir'] = array();
+  $output['file_name'] = array();
+  $output['description'] = array();
+
+  // An advanced feature of the file field handler is that in addition to the
+  // path to the image itself, we can add image properties like ALT text,
+  // encapsulating them as JSON
+  $query = db_select(AACR_SOURCE_DATABASE . '.upload', 'u')
+    ->fields('u', array('fid', 'vid', 'description', 'list'))
+    ->condition('u.vid', $vid, '=');
+  $query->join(AACR_SOURCE_DATABASE . '.files', 'f', 'u.fid = f.fid');
+  $query->addField('f', 'filepath');
+  $query->addField('f', 'timestamp');
+  $query->orderBy('u.fid', 'ASC');
+  $result = $query->execute();
+
+  foreach ($result as $row) {
+    $output['fid'][] = $row->fid;
+    $output['file_name'][] = $row->filepath;
+    $output['description'][] = $row->description;
+  }
+
+  return $output;
+}
+
+function aacr_migrate_img_assist($nid) {
+  $images = array();
+  $query = db_select(AACR_SOURCE_DATABASE . '.files', 'f')
+      ->fields('f', array('filepath'));
+  $query->innerJoin(AACR_SOURCE_DATABASE . '.image', 'i', 'i.fid = f.fid');
+  $query->innerJoin(AACR_SOURCE_DATABASE . '.image_attach', 'ia','i.nid = ia.iid');
+  $query->condition('ia.nid', $nid, '=');
+  $result = $query->execute();
+  foreach ($result as $row) {
+    $images[] = $row->filepath;
+  }
+  return $images;
+}

@@ -1,0 +1,23 @@
+name = "AACR migration"
+description = "The aacr to c4s migration"
+package = "Migrate"
+core = 7.x
+dependencies[] = taxonomy
+dependencies[] = image
+dependencies[] = comment
+dependencies[] = migrate
+dependencies[] = migrate_extras
+dependencies[] = date
+dependencies[] = list
+dependencies[] = number
+dependencies[] = node
+dependencies[] = user
+
+
+files[] = aacr_group_create.inc
+files[] = aacr_users.inc
+files[] = aacr_users_profile.inc
+files[] = aacr_biblio_user_settings.inc
+files[] = aacr_import_notebooks.inc
+files[] = aacr_group_membership.inc
+files[] = aacr_import_profile_pictures.inc

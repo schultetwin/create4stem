@@ -20,7 +20,7 @@ function c4s_documents_ctools_plugin_api() {
 function c4s_documents_node_info() {
   $items = array(
     'documents' => array(
-      'name' => t('Documents'),
+      'name' => t('Resources'),
       'base' => 'node_content',
       'description' => t('A general feature type for hosting downloadable documents.'),
       'has_title' => '1',
