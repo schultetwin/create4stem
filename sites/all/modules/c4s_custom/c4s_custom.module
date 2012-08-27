@@ -52,56 +52,33 @@ function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
  * Implements hook_og_group_menu()
  */
 function c4s_custom_og_group_menu($group) {
-  $path = entity_uri($group->entity_type, entity_load_single($group->entity_type, $group->etid));
-  $path = $path['path'];
   $links = array();
-  $links[] = array(
-    'link' => array(
-      'path' => $path,
-      'label' => t('Project Home'),
-    ),
+  $links['[node:url]'] = array(
+    'label' => t('Project Home'),
     'weight' => -10,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/news',
-      'label' => t('News'),
-    ),
+  $links['[node:url]/news'] = array(
+    'label' => t('News'),
     'weight' => 0,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/wiki',
-      'label' => t('Wiki'),
-    ),
+  $links['[node:url]/wiki'] = array(
+    'label' => t('Wiki'),
     'weight' => 3,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/events',
-      'label' => t('Events'),
-    ),
+  $links['[node:url]/events'] = array(
+    'label' => t('Events'),
     'weight' => 6,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/discussions',
-      'label' => t('Discussions'),
-    ),
+  $links['[node:url]/discussions'] = array(
+    'label' => t('Discussions'),
     'weight' => 10,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/tasks',
-      'label' => t('Tasks'),
-    ),
+  $links['[node:url]/tasks'] = array(
+    'label' => t('Tasks'),
     'weight' => 15,
   );
-  $links[] = array(
-    'link' => array(
-      'path' => $path . '/notes',
-      'label' => t('Notes'),
-    ),
+  $links['[node:url]/notes'] = array(
+    'label' => t('Notes'),
     'weight' => 20,
   );
   return $links;
