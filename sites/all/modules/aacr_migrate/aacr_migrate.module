@@ -4,6 +4,7 @@
 define("AACR_SOURCE_DATABASE", 'crcstl');
 define("AACR_SOURCE_FILES_DIR", '/srv/http/crcstl/');;
 define("AACR_NID", 55);
+define('AACR_DOMAIN', 3);
 
 function aacr_migrate_migrate_api() {
   $api = array(

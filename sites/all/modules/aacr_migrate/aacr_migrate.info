@@ -21,3 +21,4 @@ files[] = aacr_biblio_user_settings.inc
 files[] = aacr_import_notebooks.inc
 files[] = aacr_group_membership.inc
 files[] = aacr_import_profile_pictures.inc
+files[] = aacr_import_instructions.inc

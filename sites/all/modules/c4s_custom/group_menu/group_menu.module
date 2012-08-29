@@ -302,6 +302,8 @@ function group_menu_field_widget_form(&$form, &$form_state, $field, $instance, $
     ),
   );
 
+  $element['#value_callback'] = 'group_menu_table_value_callback';
+
   return $element;
 }
 
@@ -415,6 +417,9 @@ function group_menu_build_widget_form_row($path = '', $item = array()) {
   return $element;
 }
 
+function group_menu_table_value_callback($element, $input = FALSE, $form_state = array()) {
+  $one = 1;
+}
 /**
  * Ajax callback for the "add row" button on the form. All it does is specify which
  * part of the form to replace.
