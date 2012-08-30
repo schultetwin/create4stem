@@ -130,3 +130,22 @@ function c4s_custom_update_7011(&$sandbox) {
 function c4s_custom_update_7012(&$sandbox) {
   c4s_custom_features_revert(array('c4s_task', 'c4s_note'));
 }
+
+/**
+ * Revert the c4s_projects feature.
+ */
+function c4s_custom_update_7013(&$sandbox) {
+  module_enable(array('group_menu'));
+  c4s_custom_features_revert(array('c4s_projects'));
+
+  $nodes = node_load_multiple(array(), array('type' => 'project'));
+
+  $default_items = group_menu_get_menu_default_value('', '', '', '', '');
+
+  foreach ($nodes as $node) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $wrapper->{OG_GROUP_MENU_FIELD}->set($default_items);
+    $wrapper->save();
+    $wrapper = null;
+  }
+}
