@@ -1285,6 +1285,98 @@ function c4s_projects_views_default_views() {
   $export['group_members'] = $view;
 
   $view = new view;
+  $view->name = 'group_menu';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Group menu';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Group Navigation';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: OG group: OG group from Node */
+  $handler->display->display_options['relationships']['og_rel']['id'] = 'og_rel';
+  $handler->display->display_options['relationships']['og_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['og_rel']['field'] = 'og_rel';
+  $handler->display->display_options['relationships']['og_rel']['required'] = 1;
+  /* Field: Content: Group Menu Items */
+  $handler->display->display_options['fields']['og_group_menu']['id'] = 'og_group_menu';
+  $handler->display->display_options['fields']['og_group_menu']['table'] = 'field_data_og_group_menu';
+  $handler->display->display_options['fields']['og_group_menu']['field'] = 'og_group_menu';
+  $handler->display->display_options['fields']['og_group_menu']['label'] = '';
+  $handler->display->display_options['fields']['og_group_menu']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['og_group_menu']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['empty_zero'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['og_group_menu']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['og_group_menu']['group_rows'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['og_group_menu']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['og_group_menu']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Group Menu Items (og_group_menu:delta) */
+  $handler->display->display_options['sorts']['delta']['id'] = 'delta';
+  $handler->display->display_options['sorts']['delta']['table'] = 'field_data_og_group_menu';
+  $handler->display->display_options['sorts']['delta']['field'] = 'delta';
+  /* Contextual filter: OG group: Og group ID */
+  $handler->display->display_options['arguments']['gid']['id'] = 'gid';
+  $handler->display->display_options['arguments']['gid']['table'] = 'og';
+  $handler->display->display_options['arguments']['gid']['field'] = 'gid';
+  $handler->display->display_options['arguments']['gid']['relationship'] = 'og_rel';
+  $handler->display->display_options['arguments']['gid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['gid']['default_argument_type'] = 'og_context';
+  $handler->display->display_options['arguments']['gid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['gid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['gid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['gid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['gid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['gid']['not'] = 0;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project' => 'project',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['block_description'] = 'Group Menu';
+  $export['group_menu'] = $view;
+
+  $view = new view;
   $view->name = 'group_news';
   $view->description = 'Group or project news items and announcements';
   $view->tag = 'group';

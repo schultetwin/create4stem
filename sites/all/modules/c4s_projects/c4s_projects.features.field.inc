@@ -410,11 +410,109 @@ function c4s_projects_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-og_group_menu'
+  $fields['node-project-og_group_menu'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'og_group_menu',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'default_value_function' => 'group_menu_get_menu_default_value',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'og_group_menu',
+      'label' => 'Group Menu Items',
+      'required' => FALSE,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 0,
+      ),
+      'view modes' => array(
+        'default' => array(
+          'label' => 'Default',
+          'type' => 'hidden',
+        ),
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Menu Links',
+          'type' => 'hidden',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'hidden',
+        ),
+      ),
+      'widget' => array(
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => 6,
+      ),
+      'widget_type' => 'link_field',
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Determine if this is an OG group.');
   t('Group');
+  t('Group Menu Items');
   t('Group visibility');
   t('Image');
   t('Short Title');

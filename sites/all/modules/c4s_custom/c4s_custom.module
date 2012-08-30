@@ -51,34 +51,41 @@ function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
 /**
  * Implements hook_og_group_menu()
  */
-function c4s_custom_og_group_menu($group) {
+function c4s_custom_og_group_menu() {
   $links = array();
-  $links['[node:url]'] = array(
-    'label' => t('Project Home'),
+  $links[] = array(
+    'url' => '[node:url]',
+    'title' => t('Project Home'),
     'weight' => -10,
   );
-  $links['[node:url]/news'] = array(
-    'label' => t('News'),
+  $links[] = array(
+    'url' => '[node:url]/news',
+    'title' => t('News'),
     'weight' => 0,
   );
-  $links['[node:url]/wiki'] = array(
-    'label' => t('Wiki'),
+  $links[] = array(
+    'url' => '[node:url]/wiki',
+    'title' => t('Wiki'),
     'weight' => 3,
   );
-  $links['[node:url]/events'] = array(
-    'label' => t('Events'),
+  $links[] = array(
+    'url' => '[node:url]/events',
+    'title' => t('Events'),
     'weight' => 6,
   );
-  $links['[node:url]/discussions'] = array(
-    'label' => t('Discussions'),
+  $links[] = array(
+    'url' => '[node:url]/discussions',
+    'title' => t('Discussions'),
     'weight' => 10,
   );
-  $links['[node:url]/tasks'] = array(
-    'label' => t('Tasks'),
+  $links[] = array(
+    'url' => '[node:url]/tasks',
+    'title' => t('Tasks'),
     'weight' => 15,
   );
-  $links['[node:url]/notes'] = array(
-    'label' => t('Notes'),
+  $links[] = array(
+    'url' => '[node:url]/notes',
+    'title' => t('Notes'),
     'weight' => 20,
   );
   return $links;

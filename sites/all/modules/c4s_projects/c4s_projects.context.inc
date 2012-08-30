@@ -29,9 +29,9 @@ function c4s_projects_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'group_menu-group_menu' => array(
-          'module' => 'group_menu',
-          'delta' => 'group_menu',
+        'views-group_menu-block' => array(
+          'module' => 'views',
+          'delta' => 'group_menu-block',
           'region' => 'sidebar_second',
           'weight' => '-10',
         ),

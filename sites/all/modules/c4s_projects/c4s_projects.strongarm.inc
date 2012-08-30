@@ -105,6 +105,9 @@ function c4s_projects_strongarm() {
         'path' => array(
           'weight' => '5',
         ),
+        'og_menu' => array(
+          'weight' => '0',
+        ),
       ),
       'display' => array(),
     ),

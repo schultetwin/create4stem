@@ -5,4 +5,5 @@ package = C4S
 
 dependencies[] = og
 dependencies[] = entity
+dependencies[] = ctools
 

@@ -2,359 +2,45 @@
 
 // Define the og_group_menu field
 define('OG_GROUP_MENU_FIELD', 'og_group_menu');
-/**
- * Implements hook_block_info().
- */
-function group_menu_block_info() {
-  $blocks = array();
-
-  $blocks['group_menu'] = array(
-    'info' => t('Localized Menu for Group'),
-  );
-
-  return $blocks;
-}
 
 /**
- * Implements hook_block_view().
- */
-function group_menu_block_view($delta = '') {
-  $block = array();
-  switch ($delta) {
-    case 'group_menu':
-      $og_context = og_context();
-      if ($og_context) {
-        $block['subject'] = t("Group Navigation");
-        $block['content'] = group_menu_render_menu($og_context);
-      }
-  }
-  return $block;
-}
-
-/**
- * Implements hook_theme().
- */
-function group_menu_theme($existing, $type, $theme, $path) {
-  return array(
-    'group_menu' => array(
-      'variables' => array('items' => array(), 'group' => null),
-    ),
-    'group_menu_field_element' => array(
-      'render element' => 'element',
-    ),
-  );
-}
-
-function theme_group_menu($variables) {
-  $items = is_array($variables['items']) ? $variables['items'] : array();
-  $group = $variables['group'];
-  $entity = entity_load_single($group->entity_type, $group->etid);
-  uasort($items, 'drupal_sort_weight');
-  $links = array();
-  foreach ($items as $path => $item) {
-    $path = token_replace($path, array($group->entity_type => $entity, 'group' => $group));
-    if (!url_is_external($path) && !drupal_valid_path($path)) {
-      continue;
-    }
-    $item['label'] = token_replace($item['label'], array($group->entity_type => $entity, 'group' => $group));
-    $link = l($item['label'], $path, $item['options']);
-    $links[] = $link;
-  }
-  return theme('item_list', array('items' => $links));
-}
-
-function theme_group_menu_field_element($variables) {
-  $element = $variables['element'];
-
-  // Initialize the variable which will store our table rows
-  $rows = array();
-
-  // Iterate over each element in our $form['example_items'] array
-  foreach (element_children($element['links']) as $id) {
-
-    // Before we add our 'weight' column to the row, we need to give the
-    // element a custom class so that it can be identified in the
-    // drupal_add_tabledrag call.
-    //
-    // This could also have been done during the form declaration by adding
-    //     '#attributes' => array('class' => 'example-item-weight'),
-    // directy to the 'weight' element in tabledrag_example_simple_form().
-    $element['links'][$id]['weight']['#attributes']['class'] = array('group-menu-item-weight');
-
-    // We are now ready to add each element of our $form data to the $rows
-    // array, so that they end up as individual table cells when rendered
-    // in the final table.  We run each element through the drupal_render()
-    // function to generate the final html markup for that element.
-    $rows[] = array(
-      'data' => array(
-        // Add our 'name' column
-        drupal_render($element['links'][$id]['link_label']),
-        // Add our 'description' column
-        drupal_render($element['links'][$id]['link_path']),
-        // Add our 'weight' column
-        drupal_render($element['links'][$id]['weight']),
-
-        drupal_render($element['links'][$id]['remove'])
-      ),
-      // To support the tabledrag behaviour, we need to assign each row of the
-      // table a class attribute of 'draggable'. This will add the 'draggable'
-      // class to the <tr> element for that row when the final table is
-      // rendered.
-      'class' => array('draggable'),
-    );
-  }
-
-  // We now define the table header values.  Ensure that the 'header' count
-  // matches the final column count for your table.
-  $header = array(t('Label'), t('Path'), t('Weight'), t('Remove'));
-
-  // We also need to pass the drupal_add_tabledrag() function an id which will
-  // be used to identify the <table> element containing our tabledrag form.
-  // Because an element's 'id' should be unique on a page, make sure the value
-  // you select is NOT the same as the form ID used in your form declaration.
-  $table_id = 'group-menu-items-table';
-
-  // We can render our tabledrag table for output.
-  $output = theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => $table_id)));
-
-  // And then render any remaining form elements (such as our submit button)
-  $output .= drupal_render_children($element);
-
-  // We now call the drupal_add_tabledrag() function in order to add the
-  // tabledrag.js goodness onto our page.
-  //
-  // For a basic sortable table, we need to pass it:
-  //   - the $table_id of our <table> element,
-  //   - the $action to be performed on our form items ('order'),
-  //   - a string describing where $action should be applied ('siblings'),
-  //   - and the class of the element containing our 'weight' element.
-  drupal_add_tabledrag($table_id, 'order', 'sibling', 'group-menu-item-weight');
-
-  return $output;
-}
-
-/**
- * Invokes hook_og_group_menu(). hook_og_group_menu takes one parameter (the group entity)
- * and should return an array of links with each link being an array consisting of the following:
- * array(
- *   'path' => '/node/1545', // Whatever path you want.
- *   'label' => 'Documentation', // That label you want to the link to appear as.
- *   'options' => array(), // An array of options that would normally be the third argument of l()
- *   'weight' => 5, // The weight to sort the menu,
- * ),
- */
-function group_menu_get_menu($group, $reset = FALSE) {
-  $links = &drupal_static(__FUNCTION__, array(), $reset);
-  if (!$group) {
-    $group = new stdClass();
-    $group->gid = 0;
-  }
-  if (empty($links) || !isset($links[$group->gid])) {
-    $links[$group->gid] = array();
-    foreach (module_implements('og_group_menu') as $module) {
-      $function = $module . "_og_group_menu";
-      $module_links = $function($group);
-      foreach ($module_links as $key => $module_link) {
-        $module_link += array(
-          'weight' => 0,
-        );
-        $module_link['options'] = isset($module_link['options']) && is_array($module_link['options']) ? $module_link['options'] : array();
-        $module_link['module'] = isset($module_link['module']) ? $module_link['module'] : $module;
-        $module_link['disabled'] = isset($module_link['disabled']) ? $module_link['disabled'] : 0;
-        $links[$group->gid][$key] = $module_link;
-      }
-    }
-    drupal_alter('og_group_menu', $links, $group);
-  }
-  return $links[$group->gid];
-}
-
-function group_menu_build_menu($group) {
-  $links = group_menu_get_menu($group);
-
-  return $links;
-}
-
-function group_menu_render_menu($group) {
-  $links = group_menu_build_menu($group);
-  return theme('group_menu', array('items' => $links, 'group' => $group));
-}
-
-/**
- * Implements hook_field_info()
- */
-function group_menu_field_info() {
-  return array(
-    OG_GROUP_MENU_FIELD => array(
-      'label' => t('Group Menu Entries'),
-      'description' => t('Allows one to enter custom menu entries for a group'),
-      'settings' => array(), // No settings
-      'instance_settings' => array(),
-      'default_widget' => 'og_group_menu',
-      'default_formatter' => 'og_group_menu_no_display',
-      'no_ui' => TRUE,
-    ),
-  );
-}
-
-/**
- * Implements hook_field_is_empty()
- */
-function group_menu_field_is_empty($item, $field) {
-  if (!isset($item['link_path'])) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/**
- * Implements hook_field_load().
- */
-function group_menu_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
-  foreach ($entities as $etid => $entity) {
-    $group = og_get_group($entity_type, $etid);
-    if ($group != null) {
-      $menu_entries = group_menu_get_menu($group);
-    }
-  }
-}
-
-/**
- * Implements hook_field_presave().
- */
-function group_menu_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
-  $one = 1;
-}
-
-/**
- * Implements hook_field_insert().
- */
-function group_menu_field_insert($entity_type, $entity, $field, $instance, $langcode, &$items) {
-  $one =1 ;
-}
-
-/**
- * Implements hook_field_widget_info().
- */
-function group_menu_field_widget_info() {
-  return array(
-    'og_group_menu' => array(
-      'label' => t('Group Menu Entries'),
-      'description' => t('Widget to add group menu entries for an individual group'),
-      'field types' => array(OG_GROUP_MENU_FIELD),
-      'settings' => array(),
-      'behaviors' => array(
-        'multiple values' => FIELD_BEHAVIOR_CUSTOM,
-      ),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_widget_form().
- */
-function group_menu_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  $entity = clone $element['#entity'];
-  $entity_type = $element['#entity_type'];
-  $group = og_get_group($entity_type, entity_id($entity_type, $entity));
-  $menu_items = group_menu_get_menu($group);
-
-  $delta = 0;
-  $divid = 'group-menu-field-table';
-
-  $element += array(
-    '#type' => 'fieldset',
-    '#title' => t('OG Menu Entries'),
-    '#prefix' => "<div id=$divid>",
-    '#suffix' => '</div>',
-  );
-  $element['#theme'] = 'group_menu_field_element';
-  $form_state += array(
-    'new_count' => 1,
-  );
-  
-  foreach ($menu_items as $path => $item) {
-    $element['links'][$delta] = group_menu_build_widget_form_row($path, $item);
-    $delta++;
-  }
-  for ($i = 0; $i < $form_state['new_count']; $i++) {
-    $element['links'][$delta] = group_menu_build_widget_form_row();
-    $delta++;
-  }
-  foreach ($element['links'] as &$add_wrapper) {
-    $add_wrapper['remove']['#ajax']['wrapper'] = $divid;
-  }
-
-  $element['custom'] = array(
-    '#type' => 'value',
-    '#value' => $delta,
-  );
-  
-  $element['add'] = array(
-    '#type' => 'submit',
-    '#name' => 'add_menu_entry',
-    '#value' => t('Add Another Menu Entry'),
-    '#limit_validation_errors' => array(),
-    '#submit' => array('group_menu_add_submit'),
-    '#ajax' => array(
-      'callback' => 'group_menu_ajax_add_row',
-      'wrapper' => $divid,
-    ),
-  );
-
-  $element['#value_callback'] = 'group_menu_table_value_callback';
-
-  return $element;
-}
-
-/**
- * Implements hook_field_formatter_info().
- */
-function group_menu_field_formatter_info() {
-  return array(
-    'og_group_menu_no_display' => array(
-      'label' => t('Default menu formatter, outputs no display'),
-      'field types' => array(OG_GROUP_MENU_FIELD),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_formatter_view().
- */
-function group_menu_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  return array(); // outputs nothing
-}
-
-/**
- * Implements hook_og_fields_info().
+ * Implements hook_og_fileds
  */
 function group_menu_og_fields_info() {
   $items = array();
   $items[OG_GROUP_MENU_FIELD] = array(
     'type' => array('group'),
-    'description' => t('Allows custom entries to the group menu'),
+    'description' => t('List of menu links for a group'),
     'field' => array(
       'field_name' => OG_GROUP_MENU_FIELD,
-      'type' => OG_GROUP_MENU_FIELD,
+      'type' => 'link_field',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
       'settings' => array(),
+      //'locked' => TRUE,
     ),
     'instance' => array(
-      'label' => t('Group Menu Entries'),
-      'widget_type' => 'og_group_menu',
-      'required' => FALSE,
+      'label' => t('Group Menu Items'),
+      'widget_type' => 'link_field',
       // Make the group type default.
+      'default_value_function' => 'group_menu_get_menu_default_value',
+      //'locked' => TRUE,
+      'settings' => array(
+        'validate_url' => 0,
+      ),
       'view modes' => array(
         'full' => array(
-          'label' => t('Full'),
-          'type' => 'og_group_menu_no_display',
+          'label' => t('Menu Links'),
+          'type' => 'hidden',
           'custom settings' => FALSE,
         ),
         'teaser' => array(
           'label' => t('Teaser'),
-          'type' => 'og_group_menu_no_display',
+          'type' => 'hidden',
           'custom settings' => FALSE,
+        ),
+        'default' => array(
+          'label' => t('Default'),
+          'type' => 'hidden',
         ),
       ),
     ),
@@ -363,120 +49,389 @@ function group_menu_og_fields_info() {
 }
 
 /**
- * Builds an individual row of form elements for the og_menu_widget.
- *
- * @param divid - The id of the encompassing
+ * Make this field a required field for the view to have any results.
  */
-function group_menu_build_widget_form_row($path = '', $item = array()) {
-  $item += array(
-    'label' => '',
-    'module' => '',
-    'weight' => 0,
-    'module' => 'group_menu',
-    'disabled' => 0,
-  );
-
-  $element = array(
-    'link_label' => array(
-      '#type' => 'textfield',
-      '#default_value' => $item['label'],
-      '#disabled' => $item['module'] != 'group_menu',
-    ),
-    'link_path' => array(
-      '#type' => 'textfield',
-      '#default_value' => $path,
-      '#disabled' => $item['module'] != 'group_menu',
-    ),
-    'weight' => array(
-      '#type' => 'weight',
-      '#title' => t('Weight'),
-      '#default_value' => $item['weight'],
-      '#delta' => 20,
-      '#title-display' => 'invisible',
-    ),
-    'module' => array(
-      '#type' => 'value',
-      '#value' => $item['module'],
-    ),
-    'disabled' => array(
-      '#type' => 'value',
-      '#value' => $item['disabled'],
-    ),
-    'remove' => array(
-      '#type' => 'submit',
-      '#value' => $item['module'] != 'group_menu' ? ($item['disabled'] ? t('Enable') : t('Disable')) : t('Delete'),
-      '#submit' => array('group_menu_remove_row'),
-      '#limit_validation_errors' => array(),
-      '#op' => $item['module'] != 'group_menu' ? 'disable' : 'delete',
-      '#ajax' => array(
-        'callback' => 'group_menu_ajax_remove',
-      ),
-      '#after_build' => array('group_menu_set_remove_label')
-    ),
-  );
-  return $element;
-}
-
-function group_menu_table_value_callback($element, $input = FALSE, $form_state = array()) {
-  $one = 1;
-}
-/**
- * Ajax callback for the "add row" button on the form. All it does is specify which
- * part of the form to replace.
- */
-function group_menu_ajax_add_row($form, $form_state) {
-  $parents = $form_state['triggering_element']['#array_parents'];
-  array_pop($parents);
-  $element = drupal_array_get_nested_value($form, $parents);
-  return $element;
-}
-/**
- * Submit handler for the "add row" button. Increments the new_count counter (number of new rows added
- * since the form was last saved) so we can keep track of what to add and what not to add.
- */
-function group_menu_add_submit($form, &$form_state) {
-  $form_state['new_count']++;
-  $form_state['rebuild'] = TRUE;
-}
-
-function group_menu_ajax_remove($form, $form_state) {
-  $parents = $form_state['triggering_element']['#array_parents'];
-  array_pop($parents);
-  array_pop($parents);
-  array_pop($parents);
-  $element = drupal_array_get_nested_value($form, $parents);
-  return $element;
-}
-
-function group_menu_remove_row(&$form, &$form_state) {
-  $parents = $form_state['triggering_element']['#array_parents'];
-  array_pop($parents);
-  if ($form_state['triggering_element']['#op'] == 'delete') {
-    drupal_array_set_nested_value($form, $parents, null);
-    drupal_array_set_nested_value($form_state['values'], $parents, null);
-    $form_state['new_count']--;
+function group_menu_views_query_alter(&$view, &$query) {
+  if ($view->name == 'group_menu') {
+    $query->table_queue['field_data_' . OG_GROUP_MENU_FIELD]['join']->type = "INNER";
   }
-  else {
-    //drupal_array_set_nes
-    array_push($parents, 'disabled');
-    $disabled = drupal_array_get_nested_value($form_state['values'], $parents);
-    drupal_array_set_nested_value($form_state['values'], $parents, !$disabled);
-  }
-  $form_state['rebuild'] = TRUE;
 }
 
-function group_menu_set_remove_label($element, &$form_state) {
-  $parents = $element['#array_parents'];
-  array_pop($parents);
-  array_push($parents, 'disabled');
-  $disabled = drupal_array_get_nested_value($form_state['values'], $parents);
-  if ($element['#op'] == 'disable') {
-    if ($disabled) {
-      $element['#value'] = t('Enable');
+function group_menu_get_menu($reset = FALSE) {
+  $links = &drupal_static(__FUNCTION__, array(), $reset);
+  if (empty($links)) {
+    $links = array();
+    foreach (module_implements('og_group_menu') as $module) {
+      $function = $module . "_og_group_menu";
+      $module_links = $function();
+      foreach ($module_links as $module_link) {
+        $module_link += array(
+          'weight' => 0,
+        );
+        if (isset($module_link['url']) && is_string($module_link['url'])
+            && isset($module_link['title']) && is_string($module_link['title'])) {
+          $links[] = $module_link;
+        }
+      }
     }
-    else {
-      $element['#value'] = t('Disable');
+    drupal_alter('og_group_menu', $links);
+    uasort($links, 'drupal_sort_weight');
+    foreach ($links as $link) {
+      unset($link['weight']);
     }
   }
-  return $element;
+  return $links;
 }
+
+function group_menu_get_menu_default_value($entity_type, $entity, $field, $instance, $langcode) {
+  $links = group_menu_get_menu();
+  return $links;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+//
+//function group_menu_block_info() {
+//  $blocks = array();
+//
+//  $blocks['group_menu'] = array(
+//    'info' => t('Localized Menu for Group'),
+//  );
+//
+//  return $blocks;
+//}
+//
+///**
+// * Implements hook_block_view().
+// */
+//function group_menu_block_view($delta = '') {
+//  $block = array();
+//  switch ($delta) {
+//    case 'group_menu':
+//      $og_context = og_context();
+//      if ($og_context) {
+//        $block['subject'] = t("Group Navigation");
+//        $block['content'] = group_menu_render_menu($og_context);
+//      }
+//  }
+//  return $block;
+//}
+//
+///**
+// * Implements hook_theme().
+// */
+//function group_menu_theme($existing, $type, $theme, $path) {
+//  return array(
+//    'group_menu' => array(
+//      'variables' => array('items' => array(), 'group' => null),
+//    ),
+//    'group_menu_field_element' => array(
+//      'render element' => 'element',
+//    ),
+//  );
+//}
+//
+//function theme_group_menu($variables) {
+//  $items = is_array($variables['items']) ? $variables['items'] : array();
+//  $group = $variables['group'];
+//  $entity = entity_load_single($group->entity_type, $group->etid);
+//  uasort($items, 'drupal_sort_weight');
+//  $links = array();
+//  foreach ($items as $path => $item) {
+//    $path = token_replace($path, array($group->entity_type => $entity, 'group' => $group));
+//    if (!url_is_external($path) && !drupal_valid_path($path)) {
+//      continue;
+//    }
+//    $item['label'] = token_replace($item['label'], array($group->entity_type => $entity, 'group' => $group));
+//    $link = l($item['label'], $path, $item['options']);
+//    $links[] = $link;
+//  }
+//  return theme('item_list', array('items' => $links));
+//}
+//
+//function theme_group_menu_field_element($variables) {
+//  $element = $variables['element'];
+//
+//  // Initialize the variable which will store our table rows
+//  $rows = array();
+//
+//  // Iterate over each element in our $form['example_items'] array
+//  foreach (element_children($element['links']) as $id) {
+//
+//    // Before we add our 'weight' column to the row, we need to give the
+//    // element a custom class so that it can be identified in the
+//    // drupal_add_tabledrag call.
+//    //
+//    // This could also have been done during the form declaration by adding
+//    //     '#attributes' => array('class' => 'example-item-weight'),
+//    // directy to the 'weight' element in tabledrag_example_simple_form().
+//    $element['links'][$id]['weight']['#attributes']['class'] = array('group-menu-item-weight');
+//
+//    // We are now ready to add each element of our $form data to the $rows
+//    // array, so that they end up as individual table cells when rendered
+//    // in the final table.  We run each element through the drupal_render()
+//    // function to generate the final html markup for that element.
+//    $rows[] = array(
+//      'data' => array(
+//        // Add our 'name' column
+//        drupal_render($element['links'][$id]['link_label']),
+//        // Add our 'description' column
+//        drupal_render($element['links'][$id]['link_path']),
+//        // Add our 'weight' column
+//        drupal_render($element['links'][$id]['weight']),
+//
+//        drupal_render($element['links'][$id]['remove'])
+//      ),
+//      // To support the tabledrag behaviour, we need to assign each row of the
+//      // table a class attribute of 'draggable'. This will add the 'draggable'
+//      // class to the <tr> element for that row when the final table is
+//      // rendered.
+//      'class' => array('draggable'),
+//    );
+//  }
+//
+//  // We now define the table header values.  Ensure that the 'header' count
+//  // matches the final column count for your table.
+//  $header = array(t('Label'), t('Path'), t('Weight'), t('Remove'));
+//
+//  // We also need to pass the drupal_add_tabledrag() function an id which will
+//  // be used to identify the <table> element containing our tabledrag form.
+//  // Because an element's 'id' should be unique on a page, make sure the value
+//  // you select is NOT the same as the form ID used in your form declaration.
+//  $table_id = 'group-menu-items-table';
+//
+//  // We can render our tabledrag table for output.
+//  $output = theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => $table_id)));
+//
+//  // And then render any remaining form elements (such as our submit button)
+//  $output .= drupal_render_children($element);
+//
+//  // We now call the drupal_add_tabledrag() function in order to add the
+//  // tabledrag.js goodness onto our page.
+//  //
+//  // For a basic sortable table, we need to pass it:
+//  //   - the $table_id of our <table> element,
+//  //   - the $action to be performed on our form items ('order'),
+//  //   - a string describing where $action should be applied ('siblings'),
+//  //   - and the class of the element containing our 'weight' element.
+//  drupal_add_tabledrag($table_id, 'order', 'sibling', 'group-menu-item-weight');
+//
+//  return $output;
+//}
+//
+///**
+// * Invokes hook_og_group_menu(). hook_og_group_menu takes one parameter (the group entity)
+// * and should return an array of links with each link being an array consisting of the following:
+// * array(
+// *   'path' => '/node/1545', // Whatever path you want.
+// *   'label' => 'Documentation', // That label you want to the link to appear as.
+// *   'options' => array(), // An array of options that would normally be the third argument of l()
+// *   'weight' => 5, // The weight to sort the menu,
+// * ),
+// */
+//function group_menu_get_menu($group, $reset = FALSE) {
+//  $links = &drupal_static(__FUNCTION__, array(), $reset);
+//  if (!$group) {
+//    $group = new stdClass();
+//    $group->gid = 0;
+//  }
+//  if (empty($links) || !isset($links[$group->gid])) {
+//    $links[$group->gid] = array();
+//    foreach (module_implements('og_group_menu') as $module) {
+//      $function = $module . "_og_group_menu";
+//      $module_links = $function($group);
+//      foreach ($module_links as $key => $module_link) {
+//        $module_link += array(
+//          'weight' => 0,
+//        );
+//        $module_link['options'] = isset($module_link['options']) && is_array($module_link['options']) ? $module_link['options'] : array();
+//        $module_link['module'] = isset($module_link['module']) ? $module_link['module'] : $module;
+//        $module_link['disabled'] = isset($module_link['disabled']) ? $module_link['disabled'] : 0;
+//        $links[$group->gid][$key] = $module_link;
+//      }
+//    }
+//    drupal_alter('og_group_menu', $links, $group);
+//  }
+//  return $links[$group->gid];
+//}
+//
+//function group_menu_build_menu($group) {
+//  $links = group_menu_get_menu($group);
+//
+//  return $links;
+//}
+//
+//function group_menu_render_menu($group) {
+//  $links = group_menu_build_menu($group);
+//  return theme('group_menu', array('items' => $links, 'group' => $group));
+//}
+//
+//
+///**
+// * Implements hook_field_widget_form().
+// */
+//function group_menu_field_widget_form($group, &$form, &$form_state) {
+//  $menu_items = group_menu_get_menu($group);
+//
+//  $delta = 0;
+//  $divid = 'group-menu-field-table';
+//
+//  $element = array(
+//    '#type' => 'fieldset',
+//    '#title' => t('OG Menu Entries'),
+//    '#prefix' => "<div id=$divid>",
+//    '#suffix' => '</div>',
+//  );
+//  $element['#theme'] = 'group_menu_field_element';
+//  $form_state += array(
+//    'new_count' => 1,
+//  );
+//
+//  foreach ($menu_items as $path => $item) {
+//    $element['links'][$delta] = group_menu_build_widget_form_row($path, $item);
+//    $delta++;
+//  }
+//  for ($i = 0; $i < $form_state['new_count']; $i++) {
+//    $element['links'][$delta] = group_menu_build_widget_form_row();
+//    $delta++;
+//  }
+//  foreach ($element['links'] as &$add_wrapper) {
+//    $add_wrapper['remove']['#ajax']['wrapper'] = $divid;
+//  }
+//
+//  $element['custom'] = array(
+//    '#type' => 'value',
+//    '#value' => $delta,
+//  );
+//
+//  $element['add'] = array(
+//    '#type' => 'submit',
+//    '#name' => 'add_menu_entry',
+//    '#value' => t('Add Another Menu Entry'),
+//    '#limit_validation_errors' => array(),
+//    '#submit' => array('group_menu_add_submit'),
+//    '#ajax' => array(
+//      'callback' => 'group_menu_ajax_add_row',
+//      'wrapper' => $divid,
+//    ),
+//  );
+//
+//  return $element;
+//}
+//
+///**
+// * Builds an individual row of form elements for the og_menu_widget.
+// *
+// * @param divid - The id of the encompassing
+// */
+//function group_menu_build_widget_form_row($path = '', $item = array()) {
+//  $item += array(
+//    'label' => '',
+//    'module' => '',
+//    'weight' => 0,
+//    'module' => 'group_menu',
+//    'disabled' => 0,
+//  );
+//
+//  $element = array(
+//    'link_label' => array(
+//      '#type' => 'textfield',
+//      '#default_value' => $item['label'],
+//      '#disabled' => $item['module'] != 'group_menu',
+//    ),
+//    'link_path' => array(
+//      '#type' => 'textfield',
+//      '#default_value' => $path,
+//      '#disabled' => $item['module'] != 'group_menu',
+//    ),
+//    'weight' => array(
+//      '#type' => 'weight',
+//      '#title' => t('Weight'),
+//      '#default_value' => $item['weight'],
+//      '#delta' => 20,
+//      '#title-display' => 'invisible',
+//    ),
+//    'module' => array(
+//      '#type' => 'value',
+//      '#value' => $item['module'],
+//    ),
+//    'disabled' => array(
+//      '#type' => 'value',
+//      '#value' => $item['disabled'],
+//    ),
+//    'remove' => array(
+//      '#type' => 'submit',
+//      '#value' => $item['module'] != 'group_menu' ? ($item['disabled'] ? t('Enable') : t('Disable')) : t('Delete'),
+//      '#submit' => array('group_menu_remove_row'),
+//      '#limit_validation_errors' => array(),
+//      '#op' => $item['module'] != 'group_menu' ? 'disable' : 'delete',
+//      '#ajax' => array(
+//        'callback' => 'group_menu_ajax_remove',
+//      ),
+//      '#after_build' => array('group_menu_set_remove_label')
+//    ),
+//  );
+//  return $element;
+//}
+//
+///**
+// * Ajax callback for the "add row" button on the form. All it does is specify which
+// * part of the form to replace.
+// */
+//function group_menu_ajax_add_row($form, $form_state) {
+//  $parents = $form_state['triggering_element']['#array_parents'];
+//  array_pop($parents);
+//  $element = drupal_array_get_nested_value($form, $parents);
+//  return $element;
+//}
+///**
+// * Submit handler for the "add row" button. Increments the new_count counter (number of new rows added
+// * since the form was last saved) so we can keep track of what to add and what not to add.
+// */
+//function group_menu_add_submit($form, &$form_state) {
+//  $form_state['new_count']++;
+//  $form_state['rebuild'] = TRUE;
+//}
+//
+//function group_menu_ajax_remove($form, $form_state) {
+//  $parents = $form_state['triggering_element']['#array_parents'];
+//  array_pop($parents);
+//  array_pop($parents);
+//  array_pop($parents);
+//  $element = drupal_array_get_nested_value($form, $parents);
+//  return $element;
+//}
+//
+//function group_menu_remove_row(&$form, &$form_state) {
+//  $parents = $form_state['triggering_element']['#array_parents'];
+//  array_pop($parents);
+//  if ($form_state['triggering_element']['#op'] == 'delete') {
+//    drupal_array_set_nested_value($form, $parents, null);
+//    drupal_array_set_nested_value($form_state['values'], $parents, null);
+//    $form_state['new_count']--;
+//  }
+//  else {
+//    //drupal_array_set_nes
+//    array_push($parents, 'disabled');
+//    $disabled = drupal_array_get_nested_value($form_state['values'], $parents);
+//    drupal_array_set_nested_value($form_state['values'], $parents, !$disabled);
+//  }
+//  $form_state['rebuild'] = TRUE;
+//}
+//
+//function group_menu_set_remove_label($element, &$form_state) {
+//  $parents = $element['#array_parents'];
+//  array_pop($parents);
+//  array_push($parents, 'disabled');
+//  $disabled = drupal_array_get_nested_value($form_state['values'], $parents);
+//  if ($element['#op'] == 'disable') {
+//    if ($disabled) {
+//      $element['#value'] = t('Enable');
+//    }
+//    else {
+//      $element['#value'] = t('Disable');
+//    }
+//  }
+//  return $element;
+//}

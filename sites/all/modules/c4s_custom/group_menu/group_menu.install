@@ -1,49 +1,8 @@
 <?php
 
 /**
- * Implements hook_field_schema().
+ * Implements hook_schema().
  */
-function group_menu_field_schema($field) {
-  return array(
-    'columns' => array(
-      'link_path' => array(
-        'type' => 'varchar',
-        'not null' => TRUE,
-        'length' => 255,
-        'description' => 'Path that the link will resolve too',
-      ),
-      'link_label' => array(
-        'type' => 'varchar',
-        'not null' => FALSE,
-        'length' => 255,
-        'description' => 'Label to use with the link. <a href="link_path">label</a>',
-      ),
-      'link_options' => array(
-        'type' => 'text',
-        'not null' => FALSE,
-        'serialize' => TRUE,
-      ),
-      'weight' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'description' => 'Weight of the link to determine order of display',
-      ),
-      'module' => array(
-        'type' => 'varchar',
-        'not null' => TRUE,
-        'length' => 64,
-        'description' => 'Because we can override other modules, we need to keep the originating module here',
-      ),
-      'disabled' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'description' => 'We cannot delete other modules links, but we can disable them',
-      ),
-    ),
-    'indexes' => array(
-      'module' => array('module'),
-    ),
-  );
+function group_menu_schema() {
+  
 }
