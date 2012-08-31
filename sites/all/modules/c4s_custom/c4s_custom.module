@@ -54,37 +54,37 @@ function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
 function c4s_custom_og_group_menu() {
   $links = array();
   $links[] = array(
-    'url' => '[node:url]',
+    'url' => 'node/[node:nid]',
     'title' => t('Project Home'),
     'weight' => -10,
   );
   $links[] = array(
-    'url' => '[node:url]/news',
+    'url' => 'node/[node:nid]/news',
     'title' => t('News'),
     'weight' => 0,
   );
   $links[] = array(
-    'url' => '[node:url]/wiki',
+    'url' => 'node/[node:nid]/wiki',
     'title' => t('Wiki'),
     'weight' => 3,
   );
   $links[] = array(
-    'url' => '[node:url]/events',
+    'url' => 'node/[node:nid]/events',
     'title' => t('Events'),
     'weight' => 6,
   );
   $links[] = array(
-    'url' => '[node:url]/discussions',
+    'url' => 'node/[node:nid]/discussions',
     'title' => t('Discussions'),
     'weight' => 10,
   );
   $links[] = array(
-    'url' => '[node:url]/tasks',
+    'url' => 'node/[node:nid]/tasks',
     'title' => t('Tasks'),
     'weight' => 15,
   );
   $links[] = array(
-    'url' => '[node:url]/notes',
+    'url' => 'node/[node:nid]/notes',
     'title' => t('Notes'),
     'weight' => 20,
   );
