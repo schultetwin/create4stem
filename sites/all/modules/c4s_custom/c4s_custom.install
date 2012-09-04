@@ -154,19 +154,5 @@ function c4s_custom_update_7013(&$sandbox) {
  * Delete the "Conference" link from the menu and properly set the Projects tab.
  */
 function c4s_custom_update_7014(&$sandbox) {
-  $query = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :name AND link_title = :title", array(':name' => 'main-menu', ':title' => 'Conference'));
-  $result = $query->fetchField();
-  menu_link_delete($result);
-  $weight1 = db_query("SELECT weight FROM {menu_links} WHERE menu_name = :name AND link_title = :title", array(':name' => 'main-menu', ':title' => 'People'))
-      ->fetchField();
-  $weight2 = db_query("SELECT weight FROM {menu_links} WHERE menu_name = :name AND link_title = :title", array(':name' => 'main-menu', ':title' => 'Events'))
-      ->fetchField();
-  $lid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :name AND link_title = :title", array(':name' => 'main-menu', ':title' => 'Projects'))
-      ->fetchField();
-
-  $new_weight = (int) (($weight1 + $weight2) / 2);
-
-  $menu_link = menu_link_load($lid);
-  $menu_link->weight = $new_weight;
-  menu_link_save($menu_link);
+  c4s_custom_features_revert(array('c4s_projects', 'c4s_conference'));
 }
