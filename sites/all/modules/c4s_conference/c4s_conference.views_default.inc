@@ -414,7 +414,6 @@ function c4s_conference_views_default_views() {
   $handler->display->display_options['tab_options']['type'] = 'normal';
   $handler->display->display_options['tab_options']['title'] = 'Conference';
   $handler->display->display_options['tab_options']['weight'] = '0';
-  $handler->display->display_options['tab_options']['name'] = 'main-menu';
 
   /* Display: Scheduling */
   $handler = $view->new_display('page', 'Scheduling', 'page_1');

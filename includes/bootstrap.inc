@@ -660,11 +660,6 @@ function drupal_override_server_variables($variables = array()) {
  * Initializes the PHP environment.
  */
 function drupal_environment_initialize() {
-  // Export the following settings.php variables to the global namespace
-  global $base_url, $databases, $db_prefix, $cookie_domain, $conf, $installed_profile, $update_free_access, $db_url, $drupal_hash_salt, $is_https, $base_secure_url, $base_insecure_url;
-  if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.php')) {
-    include_once DRUPAL_ROOT . '/' . conf_path() . '/settings.php';
-  }
   if (!isset($_SERVER['HTTP_REFERER'])) {
     $_SERVER['HTTP_REFERER'] = '';
   }

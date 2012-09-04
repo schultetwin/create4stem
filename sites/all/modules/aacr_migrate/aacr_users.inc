@@ -18,6 +18,9 @@ class aacr_users extends Migration {
     $this->description = t("Imports all members from the old AACR group. (Only Active members)");
     //$this->dependencies = array('aacr_import_profile_pictures');
 
+    $this->rules_to_disable[] = 'rules_og_member_active';
+    $this->rules_to_disable[] = 'rules_og_group_content_notification';
+
     $source_fields = array(
       'uid' => t('User ID'),
       'biblio_show_profile' => t('Show on Biblio on profile'),
@@ -129,6 +132,26 @@ class aacr_users extends Migration {
    $this->addFieldMapping('pathauto')->defaultValue(0);
   }
 
+  public function preImport() {
+    parent::preImport();
+    // Disable given active rules
+    db_update('rules_config')
+      ->fields(array('active' => 0))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
+  public function postImport() {
+    parent::postImport();
+    // Re-enable rules
+    db_update('rules_config')
+      ->fields(array('active' => 1))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
   function prepareRow($row) {
     $data = $row->data;
     if (unserialize($data)) $data = unserialize($data);
@@ -139,6 +162,7 @@ class aacr_users extends Migration {
     $row->biblio_crossref_pid = isset($data['biblio_crossref_pid']) ? $data['biblio_crossref_pid'] : null;
     $row->biblio_baseopenurl = isset($data['biblio_baseopenurl']) ? $data['biblio_baseopenurl'] : null;
     $row->biblio_openurl_sid = isset($data['biblio_openurl_sid']) ? $data['biblio_openurl_sid'] : null;
+
   }
 }
 

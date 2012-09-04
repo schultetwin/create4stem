@@ -18,6 +18,9 @@ class aacr_import_notebooks extends Migration{
     $this->description = t('Imports the old notebooks into the notes content type');
 
     $this->dependencies = array('aacr_users');
+
+    $this->rules_to_disable[] = 'rules_og_member_active';
+    $this->rules_to_disable[] = 'rules_og_group_content_notification';
     
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -117,6 +120,26 @@ class aacr_import_notebooks extends Migration{
 
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('log', 'tnid'));
+  }
+
+    public function preImport() {
+    parent::preImport();
+    // Disable given active rules
+    db_update('rules_config')
+      ->fields(array('active' => 0))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
+  public function postImport() {
+    parent::postImport();
+    // Re-enable rules
+    db_update('rules_config')
+      ->fields(array('active' => 1))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
   }
 
   function prepareRow($current_row) {

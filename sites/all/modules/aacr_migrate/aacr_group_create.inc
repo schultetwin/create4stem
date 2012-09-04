@@ -16,6 +16,9 @@ class aacr_group_create extends Migration {
 
     $this->description = t("First Migration, creates a new group for them");
     $this->dependencies = array('aacr_users');
+
+    $this->rules_to_disable[] = 'rules_og_member_active';
+    $this->rules_to_disable[] = 'rules_og_group_content_notification';
     // Create a map object for tracking the relationships between source rows
     // and their resulting Drupal objects. Usually, you'll use the MigrateSQLMap
     // class, which uses database tables for tracking. Pass the machine name
@@ -99,6 +102,26 @@ class aacr_group_create extends Migration {
     // Unmapped destination fields
     //$this->addUnmigratedDestinations(array( 'tnid', 'log', 'revision_uid', 'group_group'));
   
+  }
+
+    public function preImport() {
+    parent::preImport();
+    // Disable given active rules
+    db_update('rules_config')
+      ->fields(array('active' => 0))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
+  public function postImport() {
+    parent::postImport();
+    // Re-enable rules
+    db_update('rules_config')
+      ->fields(array('active' => 1))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
   }
 
   public function prepareRow($current_row) {

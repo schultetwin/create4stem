@@ -114,7 +114,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['path'] = 'projects';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Projects';
-  $handler->display->display_options['menu']['weight'] = '20';
+  $handler->display->display_options['menu']['weight'] = '-48';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $export['featured_projects_groups_'] = $view;

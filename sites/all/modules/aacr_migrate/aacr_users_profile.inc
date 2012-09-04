@@ -16,6 +16,9 @@ class aacr_users_profile extends Migration {
 
     $this->description = t("Imports additional user profile infor the users from the old system.");
 
+
+    $this->rules_to_disable[] = 'rules_og_member_active';
+    $this->rules_to_disable[] = 'rules_og_group_content_notification';
     $this->dependencies = array('aacr_users');
     
     $source_fields = array(
@@ -92,6 +95,26 @@ class aacr_users_profile extends Migration {
       'field_profile_research', 'field_profile_research:summary', 'field_profile_research:format', 'field_profile_research:language',
       'field_profile_courses', 'field_profile_courses:summary', 'field_profile_courses:format', 'field_profile_courses:language',
       'field_profile_courselinks', 'field_profile_researchlinks', 'path'), 'DNM');
+  }
+
+  public function preImport() {
+    parent::preImport();
+    // Disable given active rules
+    db_update('rules_config')
+      ->fields(array('active' => 0))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
+  public function postImport() {
+    parent::postImport();
+    // Re-enable rules
+    db_update('rules_config')
+      ->fields(array('active' => 1))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
   }
 
   public function prepareRow($current_row) {

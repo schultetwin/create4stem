@@ -28,6 +28,9 @@ class aacr_group_membership extends Migration {
     $this->source = new MigrateSourceSQL($query, $source_fields);
     $this->destination = new MigrateDestinationOGMembership();
 
+    $this->rules_to_disable[] = 'rules_og_member_active';
+    $this->rules_to_disable[] = 'rules_og_group_content_notification';
+
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'nid' => array(
@@ -60,6 +63,26 @@ class aacr_group_membership extends Migration {
     $this->addFieldMapping(NULL, 'og_role')
         ->description(t('No roles used in old group'))
         ->issueGroup('DNM');
+  }
+
+    public function preImport() {
+    parent::preImport();
+    // Disable given active rules
+    db_update('rules_config')
+      ->fields(array('active' => 0))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
+  }
+
+  public function postImport() {
+    parent::postImport();
+    // Re-enable rules
+    db_update('rules_config')
+      ->fields(array('active' => 1))
+      ->condition('name', $this->rules_to_disable, 'IN')
+      ->execute();
+    rules_clear_cache(TRUE);
   }
 
   function prepareRow($row) {
