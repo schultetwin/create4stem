@@ -480,13 +480,30 @@ h2.block-title{
   font-weight: bold;
 }
 
-.view-featured-projects-groups- {
+.view-featured-projects-groups- .view-content {
   background-color: #E2E2E0;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 15px;
 }
 
-.view-featured-projects-groups- .view-content {
-  padding: 5px;
+.view-featured-projects-groups- .attachment .view-content {
+  background-color: white;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.attachment .views-row-even .article{
+	background-color: white;
+}
+
+.view-featured-projects-groups- .views-slideshow-controls-bottom {
+  position: relative;
+  text-align: right;
+  width: 30px;
+  bottom: 50px;
+  float: right;
 }
