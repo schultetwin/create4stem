@@ -10,7 +10,7 @@
 function c4s_publications_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'biblio_recent_block';
   $view->description = '';
   $view->tag = 'default';
@@ -24,6 +24,7 @@ function c4s_publications_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Recent Publications';
   $handler->display->display_options['css_class'] = 'biblio-recent-block';
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -38,24 +39,7 @@ function c4s_publications_views_default_views() {
   $handler->display->display_options['fields']['citation']['table'] = 'biblio';
   $handler->display->display_options['fields']['citation']['field'] = 'citation';
   $handler->display->display_options['fields']['citation']['label'] = '';
-  $handler->display->display_options['fields']['citation']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['citation']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['citation']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['citation']['alter']['html'] = 0;
   $handler->display->display_options['fields']['citation']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['citation']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['citation']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['citation']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['citation']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['citation']['export_links'] = 0;
   $handler->display->display_options['fields']['citation']['file_attachments'] = 0;
   $handler->display->display_options['fields']['citation']['open_url_link'] = 0;
@@ -86,6 +70,7 @@ function c4s_publications_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['block_description'] = 'Recent Publications (all)';
   $export['biblio_recent_block'] = $view;
 

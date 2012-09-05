@@ -10,7 +10,7 @@ function c4s_groups_menu() {
     'page callback' => 'c4s_groups_admin_page',
     'page arguments' => array(1),
     'access callback' => 'og_user_access_by_entity',
-    'access arguments' => array('administer group', 'node', 1),
+    'access arguments' => array('group_admin_page', 'node', 1),
     'file' => 'c4s_groups.pages.inc',
     'type' => MENU_LOCAL_TASK,
   );
@@ -24,6 +24,19 @@ function c4s_groups_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_og_permission().
+ */
+function c4s_groups_og_permission() {
+  return array(
+    'group_admin_page' => array(
+      'title' => t('Use group admin page'),
+      'description' => t("Allow user to use group admin page."),
+      'roles' => array(OG_ADMINISTRATOR_ROLE),
+    ),
+  );
 }
 
 /**

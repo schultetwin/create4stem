@@ -163,3 +163,10 @@ function c4s_custom_update_7014(&$sandbox) {
 function c4s_custom_update_7015(&$sandbox) {
   c4s_custom_features_revert(array('c4s_projects'));
 }
+
+/**
+ * Addign views attachments for group feature.
+ */
+function c4s_custom_update_7016(&$sandbox) {
+  c4s_custom_features_revert(array('c4s_projects'));
+}
