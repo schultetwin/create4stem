@@ -156,3 +156,10 @@ function c4s_custom_update_7013(&$sandbox) {
 function c4s_custom_update_7014(&$sandbox) {
   c4s_custom_features_revert(array('c4s_projects', 'c4s_conference'));
 }
+
+/**
+ * Revert the c4s_projects feature to remove the group feature link and move it to the edit form
+ */
+function c4s_custom_update_7015(&$sandbox) {
+  c4s_custom_features_revert(array('c4s_projects'));
+}

@@ -103,10 +103,13 @@ function c4s_projects_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
         'og_menu' => array(
           'weight' => '0',
+        ),
+        'flag' => array(
+          'weight' => '5',
         ),
       ),
       'display' => array(),
