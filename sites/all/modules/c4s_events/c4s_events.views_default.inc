@@ -79,13 +79,31 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['filters']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['filters']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['operator'] = 'empty';
+  $handler->display->display_options['filters']['group_audience_gid']['group'] = 2;
+  /* Filter criterion: Content: Promote to Main Site (field_promote_to_main_site) */
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['id'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['table'] = 'field_data_field_promote_to_main_site';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['field'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['group'] = 2;
 
   /* Display: Month */
   $handler = $view->new_display('page', 'Month', 'page_1');

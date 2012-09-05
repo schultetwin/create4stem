@@ -188,6 +188,10 @@ function c4s_stories_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -202,6 +206,21 @@ function c4s_stories_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'story' => 'story',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['filters']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['filters']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['operator'] = 'empty';
+  $handler->display->display_options['filters']['group_audience_gid']['group'] = 2;
+  /* Filter criterion: Content: Promote to Main Site (field_promote_to_main_site) */
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['id'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['table'] = 'field_data_field_promote_to_main_site';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['field'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['group'] = 2;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -637,6 +656,10 @@ function c4s_stories_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -651,6 +674,7 @@ function c4s_stories_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'story' => 'story',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Has taxonomy term */
   $handler->display->display_options['filters']['tid']['id'] = 'tid';
   $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
@@ -658,8 +682,23 @@ function c4s_stories_views_default_views() {
   $handler->display->display_options['filters']['tid']['value'] = array(
     6 => '6',
   );
+  $handler->display->display_options['filters']['tid']['group'] = 1;
   $handler->display->display_options['filters']['tid']['type'] = 'select';
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'story_type';
+  /* Filter criterion: Field: Groups audience (group_audience:gid) */
+  $handler->display->display_options['filters']['group_audience_gid']['id'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['table'] = 'field_data_group_audience';
+  $handler->display->display_options['filters']['group_audience_gid']['field'] = 'group_audience_gid';
+  $handler->display->display_options['filters']['group_audience_gid']['operator'] = 'empty';
+  $handler->display->display_options['filters']['group_audience_gid']['group'] = 2;
+  /* Filter criterion: Content: Promote to Main Site (field_promote_to_main_site) */
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['id'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['table'] = 'field_data_field_promote_to_main_site';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['field'] = 'field_promote_to_main_site_value';
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_promote_to_main_site_value']['group'] = 2;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

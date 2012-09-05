@@ -102,7 +102,7 @@ function c4s_events_strongarm() {
       'display' => array(
         'webform' => array(
           'default' => array(
-            'weight' => '6',
+            'weight' => '5',
             'visible' => TRUE,
           ),
           'teaser' => array(
