@@ -25,6 +25,7 @@ features[field][] = node-posting-field_position_qualifications
 features[field][] = node-posting-field_position_salary
 features[field][] = node-posting-field_position_start
 features[field][] = node-posting-field_position_time
+features[field][] = node-posting-field_promote_to_main_site
 features[field][] = node-posting-group_audience
 features[field][] = node-posting-group_content_access
 features[node][] = posting

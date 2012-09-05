@@ -729,6 +729,77 @@ function c4s_job_posting_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-posting-field_promote_to_main_site'
+  $fields['node-posting-field_promote_to_main_site'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_promote_to_main_site',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'posting',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Promote your group job posting to the main listing of the site (outside of your group)',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_promote_to_main_site',
+      'label' => 'Promote to Main Site',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '13',
+      ),
+    ),
+  );
+
   // Exported field: 'node-posting-group_audience'
   $fields['node-posting-group_audience'] = array(
     'field_config' => array(
@@ -868,7 +939,7 @@ function c4s_job_posting_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'ical' => array(
           'label' => 'above',
@@ -904,7 +975,7 @@ function c4s_job_posting_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 11,
+        'weight' => '11',
       ),
       'widget_type' => 'options_select',
     ),
@@ -922,6 +993,8 @@ function c4s_job_posting_field_default_fields() {
   t('Groups audience');
   t('MSU HR Posting');
   t('Position Description');
+  t('Promote to Main Site');
+  t('Promote your group job posting to the main listing of the site (outside of your group)');
   t('Salary Range');
   t('Start Date');
 

@@ -21,6 +21,7 @@ features[field][] = node-event-field_date
 features[field][] = node-event-field_event_files
 features[field][] = node-event-field_event_image
 features[field][] = node-event-field_event_location
+features[field][] = node-event-field_promote_to_main_site
 features[field][] = node-event-group_audience
 features[field][] = node-event-group_content_access
 features[node][] = event
