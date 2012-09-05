@@ -32,6 +32,13 @@ function c4s_grants_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'grantc4s';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 0;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add New Grant';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -75,6 +82,7 @@ function c4s_grants_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';

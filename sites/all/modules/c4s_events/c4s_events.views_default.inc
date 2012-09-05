@@ -39,6 +39,14 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['theme_style'] = '1';
   $handler->display->display_options['style_options']['max_items'] = '0';
   $handler->display->display_options['row_plugin'] = 'calendar_node';
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['empty'] = TRUE;
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'event';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 0;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add Event';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -333,6 +341,7 @@ function c4s_events_views_default_views() {
   $handler->display->display_options['style_options']['description'] = 'Create4Stem Ical';
   $handler->display->display_options['row_plugin'] = 'date_ical';
   $handler->display->display_options['row_options']['date_field'] = 'field_data_field_date.field_date_value';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */

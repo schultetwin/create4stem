@@ -72,6 +72,14 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartype'] = 0;
   $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartypenobg'] = 0;
   $handler->display->display_options['row_plugin'] = 'node';
+  /* Header: Global: Add Content Link */
+  $handler->display->display_options['header']['add_content_link']['id'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['table'] = 'views';
+  $handler->display->display_options['header']['add_content_link']['field'] = 'add_content_link';
+  $handler->display->display_options['header']['add_content_link']['empty'] = TRUE;
+  $handler->display->display_options['header']['add_content_link']['bundle'] = 'project';
+  $handler->display->display_options['header']['add_content_link']['into_group'] = 0;
+  $handler->display->display_options['header']['add_content_link']['link_title'] = 'Add Project';
   /* Relationship: Flags: featured_project */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
