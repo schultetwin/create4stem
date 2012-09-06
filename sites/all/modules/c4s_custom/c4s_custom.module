@@ -23,6 +23,22 @@ function c4s_custom_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_menu_local_tasks_alter()
+ */
+function c4s_custom_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (strpos($root_path, 'node/%') !== FALSE) {
+    foreach ($data['tabs'] as $pid => &$tab) {
+      foreach ($tab['output'] as $key => $link) {
+        if ($link['#link']['path'] == 'node/%/group' && !user_access('administer groups')) {
+          unset($tab['output'][$key]);
+        }
+      }
+      $tab['output'] = array_values($tab['output']);
+    }
+  }
+}
+
+/**
  * Implementation of hook_form_alter().
  *
  * Alters the registartion page setting the weight of the profile2 fields after
