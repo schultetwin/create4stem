@@ -154,7 +154,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['title'] = 'Upcoming Events';
   $handler->display->display_options['css_class'] = 'group-events';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'group_member';
+  $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
@@ -1026,7 +1026,7 @@ function c4s_projects_views_default_views() {
   $handler->display->display_options['title'] = 'Project News';
   $handler->display->display_options['css_class'] = 'group-news';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'group_member';
+  $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;

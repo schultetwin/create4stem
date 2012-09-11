@@ -16,6 +16,7 @@ function og_viewscontext_views_plugins() {
       'group_member' => array(
         'title' => t('Current User is Group Member'),
         'handler' => 'og_viewscontext_access_group_member',
+        'uses options' => TRUE,
       ),
     ),
   );

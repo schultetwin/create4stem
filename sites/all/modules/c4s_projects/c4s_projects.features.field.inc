@@ -418,6 +418,9 @@ function c4s_projects_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'og_group_menu',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'link',
@@ -431,6 +434,7 @@ function c4s_projects_field_default_fields() {
           'url_cutoff' => 80,
         ),
         'enable_tokens' => 1,
+        'profile2_private' => FALSE,
         'title' => 'optional',
         'title_maxlength' => 128,
         'title_value' => '',
@@ -462,23 +466,26 @@ function c4s_projects_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'og_group_menu',
       'label' => 'Group Menu Items',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'attributes' => array(
           'class' => '',
+          'configurable_title' => 0,
           'rel' => '',
           'target' => 'default',
+          'title' => '',
         ),
         'display' => array(
-          'url_cutoff' => 80,
+          'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'rel_remove' => 'default',
         'title' => 'optional',
-        'title_maxlength' => 128,
+        'title_maxlength' => '128',
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
-        'validate_url' => 0,
+        'validate_url' => 1,
       ),
       'view modes' => array(
         'default' => array(
@@ -497,6 +504,7 @@ function c4s_projects_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 0,
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',

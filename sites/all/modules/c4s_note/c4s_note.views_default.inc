@@ -27,6 +27,8 @@ function c4s_note_views_default_views() {
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['link_display'] = 'page_1';
   $handler->display->display_options['access']['type'] = 'group_member';
+  $handler->display->display_options['access']['arg_pos'] = '1';
+  $handler->display->display_options['access']['nid_gid'] = 1;
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;

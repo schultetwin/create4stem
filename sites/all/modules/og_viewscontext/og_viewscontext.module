@@ -9,15 +9,45 @@ function og_viewscontext_views_api() {
 /**
  * Implements hook_views_pre_render().
  */
-function og_viewscontext_views_pre_render(&$view) {
+function og_viewscontext_views_post_execute(&$view) {
   if ($view->name == 'group_menu') {
     $results = $view->result;
     foreach ($results as $rowid => $result) {
-      foreach ($result->{'field_' . OG_GROUP_MENU_FIELD} as $delta => $field) {
-        if (!drupal_valid_path($field['raw']['url'])) {
-          unset($result->{'field_' . OG_GROUP_FIELD}[$delta]);
+      foreach ($result->{'field_' . OG_GROUP_MENU_FIELD} as $delta => &$field) {
+        $url = $field['raw']['url'];
+        $parts = parse_url($url);
+        if ($parts['host'] == $_SERVER[ 'SERVER_NAME' ]) {
+          $path = ltrim($parts['path'], '/');
+          if (drupal_lookup_path('source', $path)) $path = drupal_lookup_path ('source', $path);
+          if (!drupal_valid_path($path)) {
+            //unset($result->{'field_' . OG_GROUP_MENU_FIELD}[$delta]);
+            //$field['rendered']['#access'] = FALSE;
+            unset($view->result[$rowid]);
+          }
         }
       }
     }
   }
+}
+
+/**
+ * View access callback
+ */
+function og_viewscontext_access_group_member_access($arg_pos, $use_nid = FALSE) {
+  $arg = arg($arg_pos);
+  $gid = 0;
+  if (!isset($arg) || !is_numeric($arg)) {
+    return FALSE;
+  }
+  if ($use_nid) {
+    $gids = og_get_group_ids('node', array($arg));
+    $gid = reset($gids);
+  }
+  else {
+    $gid = $arg;
+  }
+
+  if ($arg == 0)    return FALSE;
+
+  return og_is_member($gid) || user_access('administer group') || og_user_access($gid, 'adminster group');
 }
