@@ -12,6 +12,12 @@ function og_viewscontext_views_plugins() {
         'uses options' => TRUE,
       ),
     ),
+    'access' => array(
+      'group_member' => array(
+        'title' => t('Current User is Group Member'),
+        'handler' => 'og_viewscontext_access_group_member',
+      ),
+    ),
   );
 }
 

@@ -5,3 +5,19 @@ function og_viewscontext_views_api() {
     'api' => 3,
   );
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function og_viewscontext_views_pre_render(&$view) {
+  if ($view->name == 'group_menu') {
+    $results = $view->result;
+    foreach ($results as $rowid => $result) {
+      foreach ($result->{'field_' . OG_GROUP_MENU_FIELD} as $delta => $field) {
+        if (!drupal_valid_path($field['raw']['url'])) {
+          unset($result->{'field_' . OG_GROUP_FIELD}[$delta]);
+        }
+      }
+    }
+  }
+}

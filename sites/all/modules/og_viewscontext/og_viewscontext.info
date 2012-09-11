@@ -7,5 +7,6 @@ files[] = og_viewscontext.module
 files[] = og_viewscontext.views.inc
 files[] = og_viewscontext_argument_validate_nid_as_gid.inc
 files[] = views_handler_area_add_content_link.inc
+files[] = og_viewscontext_access_group_member.inc
 
 dependencies[] = og
