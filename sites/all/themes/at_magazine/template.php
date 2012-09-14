@@ -125,6 +125,9 @@ function at_magazine_process_page(&$vars) {
   if (module_exists('color')) {
     _color_page_alter($vars);
   }
+  if (isset($vars['node']) && _at_magazine_node_private($vars['node'])) {
+    $vars['title_class'] = "drupal-private-title";
+  }
 }
 
 /**
@@ -193,4 +196,93 @@ function at_magazine_preprocess_field(&$vars) {
   }
   $vars['field_view_mode'] = '';
   $vars['field_view_mode'] = $element['#view_mode'];
+}
+
+/**
+ * Preprocess node to add "private" class
+ */
+function at_magazine_preprocess_node(&$vars) {
+  if (_at_magazine_node_private($vars['node'])) {
+    $vars['title_attributes_array']['class'][] = "drupal-private-title";
+  }
+}
+
+function _at_magazine_node_private($node) {
+  $gids = array();
+
+  $access = FALSE;
+  if (!empty($node->{OG_ACCESS_FIELD}[LANGUAGE_NONE][0]['value']) && $group = og_get_group('node', $node->nid)) {
+    // Group or group content that is explicitly set to be unpublic.
+    $access = TRUE;
+    $gids[] = $group->gid;
+  }
+  elseif (isset($node->{OG_CONTENT_ACCESS_FIELD}[LANGUAGE_NONE][0]['value'])) {
+    switch ($node->{OG_CONTENT_ACCESS_FIELD}[LANGUAGE_NONE][0]['value']) {
+      case OG_CONTENT_ACCESS_DEFAULT:
+        if ($field = field_info_field(OG_ACCESS_FIELD)) {
+          // Access should be determined by its groups. If group content belongs
+          // to several groups, and one of them is private, then the group
+          // content will private as-well.
+          $gids = og_get_entity_groups('node', $node);
+
+          $groups = og_load_multiple($gids);
+
+          // Get all groups under their entity.
+          $list = array();
+          foreach ($groups as $group) {
+            $list[$group->entity_type][$group->etid] = $group->etid;
+          }
+
+          // If group content belongs to several groups, and one of them is
+          // private, then this variable decides what should happen -- if the
+          // group content will be private as-well or become public.
+          // By default, if one group is private then the group content will be
+          // private.
+          $strict_private = variable_get('group_access_strict_private', 1);
+
+          $total_count = 0;
+
+          foreach ($list as $entity_type => $entity_gids) {
+            $query = new EntityFieldQuery;
+            $count = $query
+              ->entityCondition('entity_type', $entity_type)
+              ->entityCondition('entity_id', $entity_gids, 'IN')
+              ->fieldCondition(OG_ACCESS_FIELD, 'value', 1, '=')
+              ->count()
+              ->execute();
+
+            if ($strict_private) {
+              // There is at least one private group and 'strict private' is
+              // TRUE so this group content should be private.
+              if ($count) {
+                $access = TRUE;
+                break;
+              }
+            }
+            else {
+              // 'strict private' is FALSE so count all the groups, and only if
+              // all of them are private then this group content should be
+              // private.
+              $total_count += $count;
+            }
+          }
+          if ($total_count == count($gids)) {
+            // All groups are private.
+            $access = TRUE;
+          }
+        }
+        break;
+
+      case OG_CONTENT_ACCESS_PUBLIC:
+        // Do nothing.
+        break;
+
+      case OG_CONTENT_ACCESS_PRIVATE:
+        $access = TRUE;
+        $gids = og_get_entity_groups('node', $node);
+        break;
+
+    }
+  }
+  return $access;
 }

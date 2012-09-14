@@ -507,3 +507,10 @@ h2.block-title{
   bottom: 50px;
   float: right;
 }
+
+/* Private groups */
+.drupal-private-title:after {
+  content:url(../img/lock.png);
+  position: relative;
+  top: 2px;
+}
