@@ -125,6 +125,7 @@ function at_magazine_process_page(&$vars) {
   if (module_exists('color')) {
     _color_page_alter($vars);
   }
+  $vars['title_class'] = "";
   if (isset($vars['node']) && _at_magazine_node_private($vars['node'])) {
     $vars['title_class'] = "drupal-private-title";
   }
