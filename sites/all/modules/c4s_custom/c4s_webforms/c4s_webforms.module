@@ -1,0 +1,211 @@
+<?php
+
+function c4s_webforms_webform_component_info() {
+  $components = array();
+
+  $components['shib_msu_id'] = array(
+    'label' => t('MSU NetID (Shibboleth)'),
+    'description' => t('Adds a hidden field to store the msu netid from shibboleth'),
+    'features' => array(
+      // Add content to CSV downloads. Defaults to TRUE.
+      'csv' => TRUE,
+
+      // This component supports default values. Defaults to TRUE.
+      'default_value' => FALSE,
+
+      // This component supports a description field. Defaults to TRUE.
+      'description' => FALSE,
+
+      // Show this component in e-mailed submissions. Defaults to TRUE.
+      'email' => TRUE,
+
+      // Allow this component to be used as an e-mail FROM or TO address.
+      // Defaults to FALSE.
+      'email_address' => FALSE,
+
+      // Allow this component to be used as an e-mail SUBJECT or FROM name.
+      // Defaults to FALSE.
+      'email_name' => TRUE,
+
+      // This component may be toggled as required or not. Defaults to TRUE.
+      'required' => FALSE,
+
+      // This component supports a title attribute. Defaults to TRUE.
+      'title' => TRUE,
+
+      // This component has a title that can be toggled as displayed or not.
+      'title_display' => TRUE,
+
+      // This component has a title that can be displayed inline.
+      'title_inline' => TRUE,
+
+      // If this component can be used as a conditional SOURCE. All components
+      // may always be displayed conditionally, regardless of this setting.
+      // Defaults to TRUE.
+      'conditional' => FALSE,
+
+      // If this component allows other components to be grouped within it
+      // (like a fieldset or tabs). Defaults to FALSE.
+      'group' => FALSE,
+
+      // If this component can be used for SPAM analysis, usually with Mollom.
+      'spam_analysis' => FALSE,
+
+      // If this component saves a file that can be used as an e-mail
+      // attachment. Defaults to FALSE.
+      'attachment' => FALSE,
+    ),
+  );
+
+  return $components;
+}
+
+/**
+ * @file
+ * Webform module hidden component.
+ */
+
+/**
+ * Implements _webform_defaults_component().
+ */
+function _webform_defaults_shib_msu_id() {
+  return array(
+    'name' => '',
+    'form_key' => NULL,
+    'pid' => 0,
+    'weight' => 0,
+    'value' => '',
+    'required' => FALSE,
+    'extra' => array(
+      'private' => FALSE,
+      //'hidden_type' => 'value',
+      'redirect_url' => '',
+    ),
+  );
+}
+
+/**
+ * Implements _webform_theme_component().
+ */
+function _webform_theme_shib_msu_id() {
+  return array(
+    'webform_display_shib_msu_id' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements _webform_edit_component().
+ */
+function _webform_edit_shib_msu_id($component) {
+  $form = array(); // Just a place holder
+  $form['notme'] = array('#type' => 'hidden');
+
+  return $form;
+}
+
+/**
+ * Implements _webform_render_component().
+ */
+function _webform_render_shib_msu_id($component, $value = NULL, $filter = TRUE) {
+  $element = array(
+    '#title' => $component['name'],
+    '#weight' => $component['weight'],
+    '#translatable' => array('title'),
+  );
+  $element['#type'] = 'value';
+  $element['#value'] = c4s_webforms_get_shibboleth_user() ? c4s_webforms_get_shibboleth_user() : '';
+
+  return $element;
+}
+
+/**
+ * Implements _webform_display_component().
+ */
+function _webform_display_shib_msu_id($component, $value, $format = 'html') {
+  $element = array(
+    '#title' => $component['name'],
+    '#markup' => isset($value[0]) ? $value[0] : NULL,
+    '#weight' => $component['weight'],
+    '#format' => $format,
+    '#theme' => 'webform_display_shib_msu_id',
+    '#theme_wrappers' => array('webform_element'),
+    '#translatable' => array('title'),
+  );
+
+  return $element;
+}
+
+function theme_webform_display_shib_msu_id($variables) {
+  $element = $variables['element'];
+
+  return $element['#markup'];
+}
+
+/**
+ * Implements _webform_analysis_component().
+ */
+function _webform_analysis_shib_msu_id($component, $sids = array()) {
+  $query = db_select('webform_submitted_data', 'wsd', array('fetch' => PDO::FETCH_ASSOC))
+    ->fields('wsd', array('no', 'data'))
+    ->condition('nid', $component['nid'])
+    ->condition('cid', $component['cid']);
+
+  if (count($sids)) {
+    $query->condition('sid', $sids, 'IN');
+  }
+
+  $nonblanks = 0;
+  $submissions = 0;
+  $wordcount = 0;
+
+  $result = $query->execute();
+  foreach ($result as $data) {
+    if (strlen(trim($data['data'])) > 0) {
+      $nonblanks++;
+      $wordcount += str_word_count(trim($data['data']));
+    }
+    $submissions++;
+  }
+
+  $rows[0] = array( t('Empty'), ($submissions - $nonblanks));
+  $rows[1] = array( t('Non-empty'), $nonblanks);
+  $rows[2] = array( t('Average submission length in words (ex blanks)'),
+                    ($nonblanks !=0 ? number_format($wordcount/$nonblanks, 2) : '0'));
+  return $rows;
+}
+
+/**
+ * Implements _webform_csv_data_component().
+ */
+function _webform_table_shib_msu_id($component, $value) {
+  return check_plain(empty($value[0]) ? '' : $value[0]);
+}
+
+/**
+ * Implements _webform_csv_data_component().
+ */
+function _webform_csv_headers_shib_msu_id($component, $export_options) {
+  $header = array();
+  $header[0] = '';
+  $header[1] = '';
+  $header[2] = $component['name'];
+  return $header;
+}
+
+/**
+ * Implements _webform_csv_data_component().
+ */
+function _webform_csv_data_shib_msu_id($component, $export_options, $value) {
+  return isset($value[0]) ? $value[0] : '';
+}
+
+function c4s_webforms_get_shibboleth_user() {
+  if ((isset($_SERVER['Shib-Identity-Provider']) || isset($_SERVER['Shib_Identity_Provider']))) {
+    $user = $_SERVER['REMOTE_USER'];
+    $parts = explode('@', $user);
+    return $parts[0];
+  }
+  return FALSE;
+}
