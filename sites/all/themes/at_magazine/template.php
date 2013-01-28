@@ -209,6 +209,7 @@ function at_magazine_preprocess_node(&$vars) {
 }
 
 function _at_magazine_node_private($node) {
+  return TRUE;
   $gids = array();
 
   $access = FALSE;

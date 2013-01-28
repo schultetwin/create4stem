@@ -6,7 +6,8 @@
  */
 
 /**
- * Menu callback which shows an overview page of all the custom menus in user's groups and their descriptions.
+ * Menu callback which shows an overview page of all the custom menus in a
+ * user's group and along with their description.
  */
 function og_menu_overview_page($node) {
   $gid = og_get_group_ids('node', array($node->nid), FALSE, array(OG_STATE_ACTIVE, OG_STATE_PENDING));
@@ -15,6 +16,7 @@ function og_menu_overview_page($node) {
   // Set the title of the page.
   drupal_set_title(t('List menus for @title', array('@title' => $node->title)), PASS_THROUGH);
 
+  // @todo Replace by D7 database independant functions
   $result = db_query("
     SELECT om.gid, om.menu_name as name, m.title as title, m.description as description FROM {og_menu} om
     LEFT JOIN {menu_custom} m
@@ -204,12 +206,6 @@ function og_menu_config_form($form, &$form_state) {
     '#default_value' => variable_get('og_menu_block_links', FALSE),
     '#description' => t('If enabled, OG Menu block titles will link to the group node.'),
   );
-  $form['og_menu_show_blocks'] = array(
-    '#type' => 'checkbox',
-    '#title' => t("Show blocks for individual OG Menu's"),
-    '#default_value' => variable_get('og_menu_show_blocks', FALSE),
-    '#description' => t("If disabled, blocks for OG Menu's will be hidden from the block administration page."),
-  );
   $form['og_menu_max_menus_per_group'] = array(
     '#type' => 'textfield',
     '#title' => t('Maximum number of menus per group'),
@@ -227,6 +223,39 @@ function og_menu_config_form($form, &$form_state) {
     '#required' => 'TRUE',
     '#description' => t('Autocomplete is recommended when you have a lot of organic groups.'),
   );
+  $form['og_menu_visibility'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Admin page visibility'),
+    '#description' => t("On sites with multiple OG Menu's it might be prefereable to hide them in places where you don't need them."),
+  );
+  $form['og_menu_visibility']['og_menu_show_blocks'] = array(
+      '#type' => 'checkbox',
+      '#title' => t("Show blocks for individual OG Menu's"),
+      '#default_value' => variable_get('og_menu_show_blocks', FALSE),
+      '#description' => t("If disabled, blocks for OG Menu's will be hidden from the block administration page."),
+  );
+  $form['og_menu_visibility']['og_menu_show_nodetype'] = array(
+      '#type' => 'checkbox',
+      '#title' => t("Include OG Menu's in node type menu settings"),
+      '#default_value' => variable_get('og_menu_show_nodetype', FALSE),
+      '#description' => t("If disabled, OG Menu's will be hidden from the node type config page."),
+  );
+  if (module_exists('menu_position')) {
+    $form['og_menu_visibility']['og_menu_show_menuposition'] = array(
+        '#type' => 'checkbox',
+        '#title' => t("Show as available parent in menu position rules."),
+        '#default_value' => variable_get('og_menu_show_menuposition', FALSE),
+        '#description' => t("If disabled, OG Menu's will be hidden from the menu position parent selection dropdown."),
+    );
+  }
+  if (module_exists('homebox')) {
+    $form['og_menu_visibility']['og_menu_show_homebox'] = array(
+        '#type' => 'checkbox',
+        '#title' => t("Show blocks in Homebox admin page"),
+        '#default_value' => variable_get('og_menu_show_homebox', FALSE),
+        '#description' => t("If disabled, blocks for OG Menu's will be hidden from the homebox administration page."),
+    );
+  }
   return system_settings_form($form);
 }
 

@@ -9,8 +9,11 @@
   line-height: inherit;
   margin: 0;
 }
-.field-lable-above .field-label {}
-.field-lable-inline .field-label {
+
+.field-label-above .field-label {
+}
+
+.field-label-inline .field-label {
   display: inline;
 }
 

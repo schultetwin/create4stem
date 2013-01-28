@@ -32,6 +32,7 @@ function og_viewscontext_views_post_execute(&$view) {
 
 /**
  * View access callback
+ * With new og-7.x-2.x, $use_nid is no longer used
  */
 function og_viewscontext_access_group_member_access($arg_pos, $use_nid = FALSE) {
   $arg = arg($arg_pos);
@@ -39,15 +40,9 @@ function og_viewscontext_access_group_member_access($arg_pos, $use_nid = FALSE) 
   if (!isset($arg) || !is_numeric($arg)) {
     return FALSE;
   }
-  if ($use_nid) {
-    $gids = og_get_group_ids('node', array($arg));
-    $gid = reset($gids);
-  }
-  else {
-    $gid = $arg;
-  }
+  $gid = $arg;
 
   if ($arg == 0)    return FALSE;
 
-  return og_is_member($gid) || user_access('administer group') || og_user_access($gid, 'adminster group');
+  return og_is_member('node', $gid) || user_access('administer group') || og_user_access('node', $gid, 'adminster group');
 }

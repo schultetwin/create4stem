@@ -66,6 +66,18 @@ class MigrateDestinationMedia extends MigrateDestinationFile {
             'wysiwyg' => 1,
           ),
         );
+        // Get the height and width parameters if present
+        preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
+        preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
+        // image width
+        if ($width) {
+          $image_info['attributes']['width'] = $width[1];
+        }
+        // image height
+        if ($height) {
+          $image_info['attributes']['height'] = $height[1];
+        }
+
         $result = '[[' . drupal_json_encode($image_info) . ']]';
       }
     }
@@ -98,12 +110,22 @@ class MigrateExtrasFileYoutube implements MigrateFileInterface {
    */
   public function processFile($value, $owner) {
     // Convert the Youtube URI into a local stream wrapper.
-    $handler = new MediaInternetYouTubeHandler($value);
-    $destination = $handler->parse($value);
+    if (class_exists('MediaInternetYouTubeHandler')) {
+      $handler = new MediaInternetYouTubeHandler($value);
+      $destination = $handler->parse($value);
+      $file = file_uri_to_object($destination, TRUE);
+    }
+    elseif (class_exists('MediaInternetOEmbedHandler')) {
+      $handler = new MediaInternetOEmbedHandler($value);
+      $file = $handler->getFileObject();
+    }
+    else {
+      MigrationBase::displayMessage(t('Could not find a handler for YouTube videos'));
+      return FALSE;
+    }
 
     // Create a file entity object for this Youtube reference, and see if we
     // can get the video title.
-    $file = file_uri_to_object($destination, TRUE);
     if (empty($file->fid) && $info = $handler->getOEmbed()) {
       $file->filename = truncate_utf8($info['title'], 255);
     }
@@ -114,5 +136,34 @@ class MigrateExtrasFileYoutube implements MigrateFileInterface {
     else {
       return FALSE;
     }
+  }
+}
+
+// Basic support for the deprecated media field type.
+class MigrateMediaFieldHandler extends MigrateFileFieldHandler {
+  public function __construct() {
+    $this->registerTypes(array('media'));
+  }
+  /**
+   * Implementation of MigrateFieldHandler::fields().
+   *
+   * @param $type
+   *  The field type.
+   * @param $instance
+   *  Instance info for the field.
+   * @param Migration $migration
+   *  The migration context for the parent field. We can look at the mappings
+   *  and determine which subfields are relevant.
+   * @return array
+   */
+  public function fields($type, $instance, $migration = NULL) {
+    $fields = parent::fields($type, $instance, $migration);
+    unset($fields['description']);
+    unset($fields['display']);
+    $fields += array(
+      'title' => t('Subfield: String to be used as the title value'),
+      'data' => t('Subfield: Additional data about the field'),
+    );
+    return $fields;
   }
 }

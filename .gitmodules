@@ -1,0 +1,3 @@
+[submodule "sites/all/modules/og_mailinglist"]
+	path = sites/all/modules/og_mailinglist
+	url = http://git.drupal.org/project/og_mailinglist.git

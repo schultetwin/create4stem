@@ -7,6 +7,14 @@
 
 /**
  * Destination class implementing migration into entity types.
+ *
+ * To make entity properties that correspond to columns in the entity's base
+ * table available as FieldMapping destinations, they must be present in Entity
+ * API's entity property info and have setter callbacks defined. Because the
+ * EntityDefaultMetadataController doesn't add setter callbacks to the default
+ * entity property info it produces, the custom entity needs to provide this
+ * either in an implementation of hook_entity_property_info(), or via EntityAPI
+ * in a custom metadata controller class.
  */
 class MigrateDestinationEntityAPI extends MigrateDestinationEntity {
 
@@ -172,7 +180,7 @@ class MigrateDestinationEntityAPI extends MigrateDestinationEntity {
         $entity->{$this->id} = $row->migrate_map_destid1;
       }
     }
-    else {
+    elseif ($migration->getSystemOfRecord() == Migration::SOURCE) {
       unset($entity->{$this->id});
     }
 

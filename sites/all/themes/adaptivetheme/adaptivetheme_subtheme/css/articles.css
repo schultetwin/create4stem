@@ -30,14 +30,14 @@
 .article ul.links {}
 .article ul.links li {}
 .article ul.links li a {}
-.article ul.links li.node_read_more a {}
-.article ul.links li.comment_add a {}
-.article ul.links li.comment_comments a {}
-.article ul.links li.comment_new_comments a {}
-.article ul.links li.blog_usernames_blog a {}
-.article ul.links li.print_html a {}
-.article ul.links li.print_email a {}
-.article ul.links li.print_pdf a {}
+.article ul.links li.node-read-more a {}
+.article ul.links li.comment-add a {}
+.article ul.links li.comment-comments a {}
+.article ul.links li.comment-new-comments a {}
+.article ul.links li.blog-sernames-blog a {}
+.article ul.links li.print-html a {}
+.article ul.links li.print-email a {}
+.article ul.links li.print-pdf a {}
 
 /* UL link first and last classes */
 .article ul.links li.first {}

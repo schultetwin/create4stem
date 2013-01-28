@@ -33,6 +33,14 @@ class MigratePathautoHandler extends MigrateDestinationHandler {
       if (!isset($entity->path)) {
         $entity->path = array();
       }
+      elseif (is_string($entity->path)) {
+        // If MigratePathEntityHandler->prepare() hasn't run yet, support
+        // the alias (set as $entity->path as a string) being formatted properly
+        // in the path alias array.
+        $path = $entity->path;
+        $entity->path = array();
+        $entity->path['alias'] = $path;
+      }
       $entity->path['pathauto'] = $entity->pathauto;
       if (!isset($entity->path['alias'])) {
         $entity->path['alias'] = '';

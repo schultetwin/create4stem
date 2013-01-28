@@ -35,7 +35,7 @@ class views_handler_area_add_content_link extends views_handler_area {
     $options = array();
     if (!$empty || $this->options['empty']) {
       if ($this->options['into_group'] && $group = og_context()) {
-        $options['query'] = array('gids_' . $group->entity_type . '[]' => $group->etid);
+        $options['query'] = array('gids_' . $group['group_type'] . '[]' => $group['gid']);
       }
 
       $link = 'node/add/' . str_replace('_', '-', $this->options['bundle']);

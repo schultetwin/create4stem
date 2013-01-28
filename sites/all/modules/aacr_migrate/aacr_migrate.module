@@ -2,7 +2,7 @@
 
 // define the source database
 define("AACR_SOURCE_DATABASE", 'crcstl');
-define("AACR_SOURCE_FILES_DIR", '/srv/http/crcstl/');;
+define("AACR_SOURCE_FILES_DIR", '/var/www/crcstl.create4stem.org/htdocs');;
 define("AACR_NID", 55);
 define('AACR_DOMAIN', 3);
 

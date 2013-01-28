@@ -30,30 +30,43 @@ class context_og_condition_group_type extends context_condition {
   }
 
   function execute($group) {
-    $node = $group ? node_load($group->etid) : FALSE;
-    $type = $node ? $node->type : '_none_';
     $node_form = ((arg(0) == 'node') && ((is_numeric(arg(1)) && (arg(2) == 'edit')) || (arg(1) == 'add')));
-    $contexts = $this->get_contexts($type);
-    $this->values[$type] = array();
+    if (!empty($group) && $group['group_type'] == 'node') {
+      $node = entity_load_single($group['group_type'], $group['gid']);
+      $type = $node ? $node->type : '_none_';
+      $contexts = $this->get_contexts($type);
+      $this->values[$type] = array();
 
-    // check if we are in _any_ group as well
-    if ($type != '_none_') {
-      $allcontexts = $this->get_contexts('_any_');
-      $this->values['_any_'] = array();
-      foreach($allcontexts as $acontext) {
-        $options = $this->fetch_from_context($acontext, 'options');
+      // check if we are in _any_ group as well
+      if ($type != '_none_') {
+        $allcontexts = $this->get_contexts('_any_');
+        $this->values['_any_'] = array();
+        foreach($allcontexts as $acontext) {
+          $options = $this->fetch_from_context($acontext, 'options');
+          if (!$node_form || !empty($options['node_form'])) {
+            $this->condition_met($acontext, '_any_');
+          }
+        }
+      }
+
+      foreach ($contexts as $context) {
+        $options = $this->fetch_from_context($context, 'options');
+        // The condition is met unless we are looking at a node form
+        // and the "Set on node form" option is unchecked.
         if (!$node_form || !empty($options['node_form'])) {
-          $this->condition_met($acontext, '_any_');
+          $this->condition_met($context, $type);
         }
       }
     }
-    
-    foreach ($contexts as $context) {
-      $options = $this->fetch_from_context($context, 'options');
-      // The condition is met unless we are looking at a node form
-      // and the "Set on node form" option is unchecked.
-      if (!$node_form || !empty($options['node_form'])) {
-        $this->condition_met($context, $type);
+    else {
+      $no_group_contexts = $this->get_contexts('_none_');
+      $this->get_contexts('_none_');
+      $this->values['_none_'] = array();
+      foreach($no_group_contexts as $context) {
+        $options = $this->fetch_from_context($context, 'options');
+        if (!$node_form || !empty($options['node_form'])) {
+          $this->condition_met($context, '_none_');
+        }
       }
     }
   }
