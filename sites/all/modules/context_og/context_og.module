@@ -24,6 +24,22 @@ function context_og_context_plugins() {
       'parent' => 'context_condition',
     ),
   );
+  $plugins['context_og_condition_member_status'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'context_og') . '/plugins',
+      'file' => 'context_og_condition_member_status.inc',
+      'class' => 'context_og_condition_member_status',
+      'parent' => 'context_condition',
+    ),
+  );
+  $plugins['context_og_condition_member_role'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'context_og') . '/plugins',
+      'file' => 'context_og_condition_member_role.inc',
+      'class' => 'context_og_condition_member_role',
+      'parent' => 'context_condition',
+    ),
+  );
   $plugins['context_og_reaction_set_group_context'] = array(
     'handler' => array(
       'path' => drupal_get_path('module', 'context_og') . '/plugins',
@@ -51,6 +67,16 @@ function context_og_context_registry() {
         'description' => t("Set this context when viewing a node or other page that is in any group of the selected types.  Select <em>Not in a group</em> to also set the context when viewing a node or other page that is not in any group."),
         'plugin' => 'context_og_condition_group_type',
       ),
+      'context_og_condition_member_status' => array(
+        'title' => t('OG - Member Status'),
+        'description' => t("Set this context based on the current user's OG membership status."),
+        'plugin' => 'context_og_condition_member_status',
+      ),
+      'context_og_condition_member_role' => array(
+        'title' => t('OG - Member Role'),
+        'description' => t("Set this context based on the current user's OG Role. Note that this currently only supports global non-overridden roles."),
+        'plugin' => 'context_og_condition_member_role',
+      ),
     ),
     'reactions' => array(
       'context_og_reaction_set_group_context' => array(
@@ -77,19 +103,28 @@ function context_og_context_registry() {
 
 /*
  * Implementation of hook_context_page_reaction().
- * 
+ *
  * This needs to run after Organic Groups' hook_init() because we need the group context to be set.
- * 
+ *
  * It also needs to run after Views processes arguments because og_views provides argument handlers
  * that set OG's group context.
  */
 function context_og_context_page_reaction() {
   $group = og_context();
 
-  // Only execute the group node context condition if there is a group node
-  // in context.
+  // Only execute the group context conditions if there is a group node.
   if ($group) {
     $plugin = context_get_plugin('condition', 'context_og_condition_group_node');
+    if ($plugin) {
+      $plugin->execute($group);
+    }
+
+    $plugin = context_get_plugin('condition', 'context_og_condition_member_status');
+    if ($plugin) {
+      $plugin->execute($group);
+    }
+
+    $plugin = context_get_plugin('condition', 'context_og_condition_member_role');
     if ($plugin) {
       $plugin->execute($group);
     }
@@ -116,26 +151,3 @@ function context_og_context_page_condition() {
   }
 }
 
-/**
- * Helper function
- * query all created nodes that are of a group type
- *
- * @return an executed query object to iterate
- */
-function context_og_query_og_nodes() {
-  $query = db_select('node', 'n')
-    ->fields('n', array('nid', 'title', 'type'));
-
-  $query
-    ->join('og', 'o', 'n.nid = o.etid');
-
-  $query
-    ->fields('o', array('gid'))
-    ->orderBy('n.type')
-    ->orderBy('n.title')
-    ->addTag('node_access');
-
-  $result = $query->execute();
-
-  return $result;
-}

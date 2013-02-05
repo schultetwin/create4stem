@@ -1,6 +1,7 @@
 /**
  * @file
  * Javascript magic. Shows the eligible menu options when switching groups.
+ * 
  */
 (function ($) {
   Drupal.behaviors.og_menu = {
@@ -11,6 +12,7 @@
       var enabled = $('#edit-menu-enabled').is(':checked');
 
       var holder = document.createElement('select');
+      var selectors = 'select[name^="og_group_ref"], input[name^="og_group_ref"]';
 
       // Toggle menu alteration
       function toggle(values) {
@@ -61,12 +63,12 @@
       };
 
       // Alter menu on OG select change and init
-      if ($('select.group-audience').size()) {
-        $('select.group-audience').change(toggleSelect).ready(toggleSelect);
+      if ($(selectors).size()) {
+        $(selectors).change(toggleSelect).ready(toggleSelect);
       }
 
       // init
-      toggle($('select.group-audience').val());
+      toggle($(selectors).val());
     }
 
   }

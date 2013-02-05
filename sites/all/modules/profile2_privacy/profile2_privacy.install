@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function profile2_privacy_schema() {
+  $schema['profile2_privacy_levels'] = array(
+    'description' => 'Saves privacy levels',
+    'fields' => array(
+      'pplid' => array(
+        'description' => 'The profile privacy level id',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'description' => 'The name of title of the privacy level',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'description' => array(
+        'description' => 'The description of the privacy level',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'weight' => array(
+        'description' => 'The sort weight of the level',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('pplid'),
+    'indexes' => array(
+      'weight_title' => array('weight', 'title'),
+    ),
+  );
+
+  $schema['profile2_privacy_fields'] = array(
+    'description' => 'Saves field to privacy level',
+    'fields' => array(
+      'pplid' => array(
+        'description' => 'The profile2 privacy level id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'rid' => array(
+        'description' => 'The role id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'fiid' => array(
+        'description' => 'The field instance id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'role_fields' => array('pplid', 'rid', 'fiid'),
+      'fields_role' => array('pplid', 'fiid', 'rid'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_field_schema()
+ */
+function profile2_privacy_field_schema($field) {
+  if ($field['type'] == 'profile2_privacy') {
+    return array(
+      'columns' => array(
+        'pplid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+      ),
+    );
+  } // if
+} // profile2_privacy_field_schema()

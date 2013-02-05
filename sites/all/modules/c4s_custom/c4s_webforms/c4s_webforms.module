@@ -79,7 +79,6 @@ function _webform_defaults_shib_msu_id() {
     'extra' => array(
       'private' => FALSE,
       //'hidden_type' => 'value',
-      'redirect_url' => '',
     ),
   );
 }
@@ -114,10 +113,29 @@ function _webform_render_shib_msu_id($component, $value = NULL, $filter = TRUE) 
     '#weight' => $component['weight'],
     '#translatable' => array('title'),
   );
+
+  $path = drupal_get_path_alias('node/' . $component['nid']);
+  $path_parts = explode('/', $path);
+  $path_parts[0] = ltrim($path_parts[0], '/ ');
+  if ($path_parts[0] == 'msurvey') {
+    if (!c4s_webforms_get_shibboleth_user()) {
+      c4s_webforms_goto_shibboleth();
+    }
+  }
   $element['#type'] = 'value';
   $element['#value'] = c4s_webforms_get_shibboleth_user() ? c4s_webforms_get_shibboleth_user() : '';
 
   return $element;
+}
+
+/**
+ * Function redirects to the proper shibboleth page.
+ */
+function c4s_webforms_goto_shibboleth() {
+  $query = drupal_get_destination();
+  $query['target'] = 'http://' .  $_SERVER['SERVER_NAME'] .'/' . $query['destination'];
+  unset($query['destination']);
+  drupal_goto('Shibboleth.sso/Login', array('query' =>  $query));
 }
 
 /**
@@ -203,9 +221,39 @@ function _webform_csv_data_shib_msu_id($component, $export_options, $value) {
 
 function c4s_webforms_get_shibboleth_user() {
   if ((isset($_SERVER['Shib-Identity-Provider']) || isset($_SERVER['Shib_Identity_Provider']))) {
+    if (time() - strtotime($_SERVER['Shib_Authentication_Instant']) > 1200) return FALSE;
     $user = $_SERVER['REMOTE_USER'];
     $parts = explode('@', $user);
     return $parts[0];
   }
   return FALSE;
 }
+
+function c4s_webforms_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_configure_form') {
+    $node = &$form['#node'];
+    $form['role_control']['shibboleth'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Require Shibboleth Login'),
+      '#description' => t('If this is clicked, we require a shibboleth login to submit the form'),
+      '#default_value' => isset($node->webform['shibboleth']) ? $node->webform['shibboleth'] : 0,
+    );
+    array_unshift($form['#submit'], 'c4s_webform_configure_form_submit');
+  }
+}
+
+function c4s_webform_configure_form_submit($form, &$form_state) {
+  $node = &$form['#node'];
+  $node->webform['shibboleth'] = $form_state['values']['shibboleth'];
+}
+
+function c4s_webforms_node_view($node, $view_mode, $langcode) {
+  if (!is_object($node) || $view_mode != 'full') return;
+  $webform_types = webform_variable_get('webform_node_types');
+  if (in_array($node->type, $webform_types)) {
+    if (isset($node->webform['shibboleth']) && $node->webform['shibboleth'] && !c4s_webforms_get_shibboleth_user()) {
+      c4s_webforms_goto_shibboleth();
+    }
+  }
+}
+

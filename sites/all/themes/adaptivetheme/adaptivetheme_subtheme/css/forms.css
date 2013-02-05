@@ -228,3 +228,12 @@ fieldset .filter-help {
 #devel-switch-user-form {
   margin-bottom: 0;
 }
+
+/* Fix autocomplete drop downs */
+#autocomplete {
+  background: #fff;
+}
+#autocomplete li {
+  display: block;
+  color: #000;
+}

@@ -75,8 +75,9 @@ function name_replacement_tokens() {
   return $tokens;
 }
 
-function _name_generate_tokens($name_components) {
+function _name_generate_tokens($name_components, $settings = array()) {
   $name_components = (array) $name_components;
+  $markup = !empty($settings['markup']);
   $name_components += array(
     'title' => '',
     'given' => '',
@@ -87,21 +88,21 @@ function _name_generate_tokens($name_components) {
   );
   $settings = name_settings();
   $tokens = array(
-    't' => isset($name_components['title']) ? $name_components['title'] : NULL,
-    'g' => isset($name_components['given']) ? $name_components['given'] : NULL,
-    'm' => isset($name_components['middle']) ? $name_components['middle'] : NULL,
-    'f' => isset($name_components['family']) ? $name_components['family'] : NULL,
-    'c' => isset($name_components['credentials']) ? $name_components['credentials'] : NULL,
-    's' => isset($name_components['generational']) ? $name_components['generational'] : NULL,
-    'x' => isset($name_components['given']) && strlen($name_components['given']) ? $name_components['given']{0} : NULL,
-    'y' => isset($name_components['middle']) && strlen($name_components['middle']) ? $name_components['middle']{0} : NULL,
-    'z' => isset($name_components['family']) && strlen($name_components['family']) ? $name_components['family']{0} : NULL,
+    't' => theme('name_component', array('value' => $name_components['title'], 'component' => 'title', 'markup' => $markup, 'modifier' => NULL)),
+    'g' => theme('name_component', array('value' => $name_components['given'], 'component' => 'given', 'markup' => $markup, 'modifier' => NULL)),
+    'm' => theme('name_component', array('value' => $name_components['middle'], 'component' => 'middle', 'markup' => $markup, 'modifier' => NULL)),
+    'f' => theme('name_component', array('value' => $name_components['family'], 'component' => 'family', 'markup' => $markup, 'modifier' => NULL)),
+    'c' => theme('name_component', array('value' => $name_components['credentials'], 'component' => 'credentials', 'markup' => $markup, 'modifier' => NULL)),
+    's' => theme('name_component', array('value' => $name_components['generational'], 'component' => 'generational', 'markup' => $markup, 'modifier' => NULL)),
+    'x' => theme('name_component', array('value' => $name_components['given'], 'component' => 'given', 'markup' => $markup, 'modifier' => 'initial')),
+    'y' => theme('name_component', array('value' => $name_components['middle'], 'component' => 'middle', 'markup' => $markup, 'modifier' => 'initial')),
+    'z' => theme('name_component', array('value' => $name_components['family'], 'component' => 'family', 'markup' => $markup, 'modifier' => 'initial')),
     'i' => $settings['sep1'],
     'j' => $settings['sep2'],
     'k' => $settings['sep3'],
   );
-  $given = trim((string) $name_components['given']);
-  $family = trim((string) $name_components['family']);
+  $given = $tokens['g'];
+  $family = $tokens['f'];
   if ($given || $family) {
     $tokens += array(
       'e' => $given ? $given : $family,
@@ -117,14 +118,19 @@ function _name_generate_tokens($name_components) {
   return $tokens;
 }
 
+/**
+ * TODO: Look at replacing the raw string functions with the Drupal equivalent
+ * functions. Will need to test this carefully...
+ */
 function _name_format($name_components, $format = '', $settings = array(), $tokens = NULL) {
   if (empty($format)) {
     return '';
   }
 
   if (!isset($tokens)) {
-    $tokens = _name_generate_tokens($name_components);
+    $tokens = _name_generate_tokens($name_components, $settings);
   }
+
   // Nuetralise any escapped backslashes.
   $format = str_replace('\\\\', "\t", $format);
 
@@ -258,7 +264,15 @@ function _name_format_add_component($string, &$modifiers = '', &$conditions = ''
 function _name_format_apply_modifiers($string, $modifiers) {
   if (!is_null($string) || strlen($string)) {
     if ($modifiers) {
-      $_pre = $string;
+      $original_string = $string;
+      $prefix = '';
+      $suffix = '';
+      if (preg_match('/^(<span[^>]*>)(.*)(<\/span>)$/i', $string, $matches)) {
+        $prefix = $matches[1];
+        $string = $matches[2];
+        $suffix = $matches[3];
+      }
+
       for ($j = 0; $j < strlen($modifiers); $j++) {
         switch ($modifiers{$j}) {
           case 'L':
@@ -288,6 +302,7 @@ function _name_format_apply_modifiers($string, $modifiers) {
             break;
         }
       }
+      $string = $prefix . $string . $suffix;
     }
   }
   return $string;

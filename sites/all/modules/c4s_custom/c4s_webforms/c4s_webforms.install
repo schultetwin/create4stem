@@ -1,0 +1,24 @@
+<?php
+
+function c4s_webforms_schema_alter(&$schema) {
+  $schema['webform']['fields']['shibboleth'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'unsigned' => TRUE,
+    'default' => 0,
+    'description' => 'If true, the webform requires shibboleth',
+  );
+}
+
+function c4s_webforms_install() {
+  c4s_webforms_add_field();
+}
+
+function c4s_webforms_update_7000(&$sandbox) {
+  c4s_webforms_add_field();
+}
+
+function c4s_webforms_add_field() {
+  $schema = drupal_get_schema('webform');
+  db_add_field('webform', 'shibboleth', $schema['fields']['shibboleth']); 
+}
