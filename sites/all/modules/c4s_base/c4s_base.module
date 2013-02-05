@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the C4S Base feature.
- */
-
-include_once 'c4s_base.features.inc';
