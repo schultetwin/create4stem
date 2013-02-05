@@ -28,34 +28,3 @@ function c4s_users_ctools_plugin_api() {
 function c4s_users_views_api() {
   return array("version" => "3.0");
 }
-
-/**
- * Implements hook_image_default_styles().
- */
-function c4s_users_image_default_styles() {
-  $styles = array();
-
-  // Exported image style: user_profile
-  $styles['user_profile'] = array(
-    'name' => 'user_profile',
-    'effects' => array(
-      2 => array(
-        'label' => 'Scale and Smart Crop',
-        'help' => 'Similar to "Scale And Crop", but preserves the portion of the image with the most entropy.',
-        'effect callback' => 'smartcrop_scale_effect',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'smartcrop',
-        'name' => 'smartcrop_scale_and_crop',
-        'data' => array(
-          'width' => '240',
-          'height' => '240',
-          'upscale' => 0,
-        ),
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  return $styles;
-}
