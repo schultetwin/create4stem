@@ -10,7 +10,7 @@
 function c4s_base_filter_default_formats() {
   $formats = array();
 
-  // Exported format: Filtered HTML
+  // Exported format: Filtered HTML.
   $formats['filtered_html'] = array(
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
@@ -38,19 +38,19 @@ function c4s_base_filter_default_formats() {
           'filter_url_length' => '72',
         ),
       ),
-      'filter_autop' => array(
-        'weight' => '-46',
-        'status' => '1',
-        'settings' => array(),
-      ),
       'filter_html' => array(
-        'weight' => '-45',
+        'weight' => '-46',
         'status' => '1',
         'settings' => array(
           'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd><img><h2><h3><h4><h5><h6><p><br><!--break-->',
           'filter_html_help' => 0,
           'filter_html_nofollow' => 1,
         ),
+      ),
+      'filter_autop' => array(
+        'weight' => '-45',
+        'status' => '1',
+        'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
         'weight' => '-44',
@@ -60,7 +60,7 @@ function c4s_base_filter_default_formats() {
     ),
   );
 
-  // Exported format: Full HTML
+  // Exported format: Full HTML.
   $formats['full_html'] = array(
     'format' => 'full_html',
     'name' => 'Full HTML',
@@ -81,17 +81,17 @@ function c4s_base_filter_default_formats() {
           ),
         ),
       ),
-      'filter_url' => array(
+      'biblio_filter_reference' => array(
         'weight' => '-48',
+        'status' => '1',
+        'settings' => array(),
+      ),
+      'filter_url' => array(
+        'weight' => '-47',
         'status' => '1',
         'settings' => array(
           'filter_url_length' => '72',
         ),
-      ),
-      'biblio_filter_reference' => array(
-        'weight' => '-47',
-        'status' => '1',
-        'settings' => array(),
       ),
       'filter_autop' => array(
         'weight' => '-46',
@@ -106,7 +106,7 @@ function c4s_base_filter_default_formats() {
     ),
   );
 
-  // Exported format: Plain text
+  // Exported format: Plain text.
   $formats['plain_text'] = array(
     'format' => 'plain_text',
     'name' => 'Plain text',

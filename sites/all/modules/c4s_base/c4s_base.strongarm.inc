@@ -27,9 +27,51 @@ function c4s_base_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_page';
+  $strongarm->name = 'comment_anonymous_page';
   $strongarm->value = 0;
+  $export['comment_anonymous_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_page';
+  $strongarm->value = 1;
+  $export['comment_default_mode_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_page';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_page';
+  $strongarm->value = 1;
+  $export['comment_form_location_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_page';
+  $strongarm->value = '0';
   $export['comment_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_page';
+  $strongarm->value = '1';
+  $export['comment_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_page';
+  $strongarm->value = 1;
+  $export['comment_subject_field_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -96,18 +138,71 @@ function c4s_base_strongarm() {
     'group_profile_position|profile2|main|form' => TRUE,
     'group_profile_research|profile2|main|form' => FALSE,
     'group_profile_courses|profile2|main|form' => FALSE,
-    'group_profile_position_2|user|user|form' => FALSE,
+    'group_profile_position_2|user|user|form' => TRUE,
     'group_user_password|user|user|form' => FALSE,
-    'group_user_groups|user|user|form' => FALSE,
-    'group_stuff|user|user|form' => FALSE,
-    'group_settings|user|user|form' => FALSE,
-    'group_photo|user|user|form' => FALSE,
+    'group_user_groups|user|user|form' => TRUE,
+    'group_stuff|user|user|form' => TRUE,
+    'group_settings|user|user|form' => TRUE,
+    'group_photo|user|user|form' => TRUE,
     'group_profile_stuff|profile2|main|form' => FALSE,
     'group_about_me|profile2|main|form' => FALSE,
-    'group_conference_signup|node|conference_session|form' => FALSE,
+    'group_conference_signup|node|conference_session|form' => TRUE,
     'group_conference_presentation|node|conference_session|form' => FALSE,
+    'group_profile_photo|user|user|form' => FALSE,
+    'group_personal_info|user|user|form' => FALSE,
+    'group_profile_about|user|user|form' => FALSE,
+    'group_profle_about_disp|user|user|default' => TRUE,
+    'group_featured_photo|node|featured|form' => FALSE,
+    'group_featured_info|node|featured|form' => FALSE,
+    'group_partner_logo|node|partner|form' => FALSE,
+    'group_partner_info|node|partner|form' => FALSE,
   );
   $export['default_field_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__page';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'ical' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -162,6 +257,24 @@ function c4s_base_strongarm() {
       'width' => '594',
       'height' => '355',
     ),
+    100 => array(
+      'x' => '1',
+      'y' => '8',
+      'width' => '798',
+      'height' => '477',
+    ),
+    260 => array(
+      'x' => '0',
+      'y' => '6',
+      'width' => '200',
+      'height' => '150',
+    ),
+    268 => array(
+      'x' => '0',
+      'y' => '92',
+      'width' => '424',
+      'height' => '319',
+    ),
   );
   $export['imagefield_crop_info'] = $strongarm;
 
@@ -211,20 +324,6 @@ function c4s_base_strongarm() {
   $strongarm->name = 'node_submitted_page';
   $strongarm->value = 0;
   $export['node_submitted_page'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'og_group_content_type_page';
-  $strongarm->value = 'omitted';
-  $export['og_group_content_type_page'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'og_group_type_page';
-  $strongarm->value = 'omitted';
-  $export['og_group_type_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -517,7 +616,7 @@ function c4s_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_update_action';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['pathauto_update_action'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -549,7 +648,7 @@ function c4s_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'reg_with_pic_weight';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['reg_with_pic_weight'] = $strongarm;
 
   $strongarm = new stdClass();

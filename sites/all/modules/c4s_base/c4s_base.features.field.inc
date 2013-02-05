@@ -10,7 +10,7 @@
 function c4s_base_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-page-body'
+  // Exported field: 'node-page-body'.
   $fields['node-page-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -20,6 +20,9 @@ function c4s_base_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -33,6 +36,7 @@ function c4s_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -51,7 +55,7 @@ function c4s_base_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -84,7 +88,7 @@ function c4s_base_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-page-field_basic_image'
+  // Exported field: 'node-page-field_basic_image'.
   $fields['node-page-field_basic_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -105,6 +109,7 @@ function c4s_base_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -121,9 +126,13 @@ function c4s_base_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '1',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'large',
+          ),
+          'type' => 'image',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -138,6 +147,7 @@ function c4s_base_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'pages/images',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -151,6 +161,7 @@ function c4s_base_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'insert' => 1,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -164,6 +175,17 @@ function c4s_base_field_default_fields() {
             'link' => 0,
           ),
           'insert_width' => '',
+          'manualcrop_crop_info' => TRUE,
+          'manualcrop_default_crop_area' => TRUE,
+          'manualcrop_enable' => FALSE,
+          'manualcrop_filter_insert' => TRUE,
+          'manualcrop_inline_crop' => FALSE,
+          'manualcrop_instant_crop' => FALSE,
+          'manualcrop_instant_preview' => TRUE,
+          'manualcrop_require_cropping' => array(),
+          'manualcrop_styles_list' => array(),
+          'manualcrop_styles_mode' => 'exclude',
+          'manualcrop_thumblist' => FALSE,
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),

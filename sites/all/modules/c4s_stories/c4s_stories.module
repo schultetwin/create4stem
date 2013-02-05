@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the C4S Stories feature.
- */
-
-include_once 'c4s_stories.features.inc';
