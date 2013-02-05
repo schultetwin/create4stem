@@ -19,33 +19,6 @@ function c4s_custom_menu_alter(&$items) {
   $items['user/%user/biblio']['title'] = 'Publications';
   $items['user/%user/contact']['weight'] = 8;
   $items['user/%user/edit']['weight'] = 10;
-  $items['user/%user/shortcuts']['weight'] = 12;
-}
-
-/**
- * Implementation of hook_form_alter().
- *
- * Alters the registartion page setting the weight of the profile2 fields after
- * the other fields
- */
-function c4s_custom_form_user_register_form_alter(&$form, &$form_state) {
-  foreach (profile2_get_types() as $type_name => $profile_type) {
-    if (!empty($profile_type->data['registration'])) {
-      if (empty($form_state['profiles'][$type_name])) {
-        $form_state['profiles'][$type_name] = profile2_create(array('type' => $type_name));
-      }
-      if (isset($form['#fieldgroups']['group_user_password'])) {
-        $weight = $form['#fieldgroups']['group_user_password']->weight + 1;
-      }
-      else {
-        $weight = 3;
-      }
-      $form['profile_' . $type_name] += array(
-        '#weight' => $weight,
-      );
-    }
-  }
-
 }
 
 /**
