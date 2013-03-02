@@ -8,9 +8,9 @@ dependencies[] = wysiwyg
 files[] = wysiwyg_linebreaks.module
 files[] = plugins/linebreaks.inc
 
-; Information added by drupal.org packaging script on 2012-01-12
-version = "7.x-1.4"
+; Information added by drupal.org packaging script on 2013-02-06
+version = "7.x-1.5"
 core = "7.x"
 project = "wysiwyg_linebreaks"
-datestamp = "1326339047"
+datestamp = "1360171184"
 

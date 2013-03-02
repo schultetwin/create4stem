@@ -31,3 +31,7 @@ function c4s_custom_update_7001(&$sandbox) {
     ->execute();
   drupal_flush_all_caches();
 }
+
+function c4s_custom_update_7002(&$sandbox) {
+  db_query("UPDATE {og_membership} ogm SET field_name = 'og_group_ref'");
+}

@@ -1,4 +1,8 @@
-
+/* @override 
+	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?mijta5
+	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?mipgpc
+	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?miqq0b
+*/
 
 /** 
  * Use this file to provide overrides to the main styles. This file always loads last
@@ -10,6 +14,8 @@
  * 3: Add you styles!
  */
 
+/* @group Body */
+
 body{
 	background: url(images/MSUbodybackground.png) repeat-x !important;
 }
@@ -17,6 +23,15 @@ body{
 #page.container{
 	padding: 0;
 }
+
+h2.block-title{
+	color: #00723f;
+}
+
+/* @end */
+
+/* @group Header */
+
 
 #header{
 	background-image: url(images/MSUbannerbackground.png);
@@ -32,14 +47,7 @@ body{
 #logo{
 }
 
-h2.block-title{
-	color: #00723f;
-}
-
-
-#menu-bar-wrapper{
-	margin: 0;
-}
+/* @group Login Block */
 
 .block-logintoboggan{
 	float: right;
@@ -56,6 +64,14 @@ h2.block-title{
 	height: 12px;
 	width: 40px;
 	top: -30px;
+}
+
+/* @end */
+
+/* @group Menu Bar */
+
+#menu-bar-wrapper{
+	margin: 0;
 }
 
 .block-region-menu-bar{
@@ -84,6 +100,126 @@ h2.block-title{
 #menu-bar a:hover.sf-depth-2, #menu-bar a:hover.sf-depth-3, #menu-bar a:active.sf-depth-2, #menu-bar a:active.sf-depth-3{
 	background-color: #b3b7ae;
 }
+
+/* @end */
+
+/* @end header*/
+
+/* @group Frontpage-Featured */
+
+#tripanel{
+	margin: 10px;
+	background-color: transparent;
+	padding: 0;
+	font-size: 1em;
+}
+
+.three-3x33 .region-three-33-first{
+	width: 610px;
+}
+
+#block-views-featured-front-page-block{
+	padding: 0;
+	margin: 0;
+}
+
+#block-views-featured-front-page-block .block-content-inner,
+#block-views-featured-front-page-block .block-inner{
+	margin: 0;
+	padding: 0;
+}
+
+#block-views-featured-front-page-block .block-inner .block-content .block-content-inner .view-featured-front-page .view-content .skin-default .featured-slide-item .views-field-field-featured-image{
+
+}
+
+.featured-slide-item {
+	background-color: #256131;
+}
+
+.views-field-field-featured-image{
+	padding: 10px 10px 5px;
+}
+
+#transparency{
+	position: absolute;
+	top: 323px;
+	left: 10px;
+	width: 580px;
+	height: 80px;
+	background-color:#256131;
+	filter:alpha(opacity=80);
+	opacity: 0.8;
+	-moz-opacity:0.8;
+}
+
+#caption-area{
+	position: absolute;
+	top: 323px;
+	left: 12px;
+	color: white;
+	font-size: 1.1em;
+	padding: 5px;
+	line-height: 1.2em;
+	font-weight: bold;
+	text-align: justify;
+	width: 570px;
+}
+
+#caption-area h2 a{
+	color: #e8b909;
+	font-weight: bold;
+	font-size: .95em;
+}
+
+
+
+/* @end */
+
+/* @group Frontpage-Highlights */
+
+.three-3x33 .region-three-33-third{
+	width: 330px;
+}
+
+.region-three-33-third .block{
+	margin-bottom: 10px;
+	position: relative;
+	height: 131px;
+	overflow: hidden;
+}
+
+.region-three-33-third .views-field-title a{
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+#block-views-highlights-block{
+	background-color: #8cd0e9;
+}
+
+#block-views-highlights-block-1{
+	background-color: #eada92;
+	}
+
+#block-views-highlights-block-2{
+	background-color: #ed8c6d;
+	margin: 0;
+}
+
+.region-three-33-third .highlight-background{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.region-three-33-third .highlight-image{
+	float: right;
+}
+
+/* @end */
+
+/* @group Announcements Block */
 
 #block-views-news-announcements-block .block-inner{
 	border: 2px solid #84082c;
@@ -116,176 +252,78 @@ h2.block-title{
 	padding: 0;
 }
 
+/* @end */
 
-#tripanel{
-	margin: 10px 0 0;
-	background-color: transparent;
-	padding: 0;
+/* @group Right Sidebar */
+
+.region-sidebar-second .block-content-inner{
+	background: none;
 }
 
-.featured-slide-item{
-	color: white;
-	padding: 10px;
-}
-
-.three-3x33 .region-three-33-first{
-	width: 66%;
-}
-
-
-#block-views-featured-front-page-block .block-inner{
-	padding-right: 0;
-}
-
-#block-views-featured-front-page-block .block-content-inner{
-	padding: 0;
-	font-size: 1.1em;
-}
-
-.featured-slide-item .views-field-title .field-content a{
-	color: #e8b909;
-	font-weight: bold;
-	font-size: 1.3em;
-}
-
-.featured-slide-item {
-	background-color: #3f5657;
-}
-
-.views-slideshow-controls-bottom {
-	right: 15px;
-}
-
-.region-three-33-third .block-inner{
-	margin: 0;
-	font-size: 1.07em;
-}
-
-.view-news-all.view-display-id-block .views-field-title a{
-	font-size: 1.1em;
-	font-weight: bold;
-}
-
-.view-news-all.view-display-id-block .views-row{
-	border-bottom: 2px groove #d3cf25;
-	margin-top: 5px;
-}
-
-.view-news-all.view-display-id-block .views-row-last{
-	border-bottom: none;
-	margin-top: 5px;
-}
-
-.view-news-all.view-display-id-block .feed-icon{
+.region-sidebar-second .feed-icon{
 	text-align: right;
-	margin-bottom: 0;
-	padding-bottom: 0;
+	float: right;
+	padding: 0;
 }
 
-#block-block-2{
-	margin-bottom: 3px;
-}
-
-#block-block-2 h1,
-#block-block-2 h4{
-	text-align: center;
-	color: white;
-}
-
-#block-block-2 .block-content-inner{
-	background-image: none;
-}
-
-#block-block-2 .block-content{
-	background-color: #7c1746;
-	height: 90px;
-}
-
-#block-block-2 .block-inner{
-	margin-left: 0;
-}
-
-#block-block-2 a{
-	color: white;
+.region-sidebar-second .views-field-title a{
+	color: #847135;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
-#block-block-3{
-	margin-bottom: 3px;
-}
+/* @end */
 
-#block-block-3 h2,
-#block-block-3 h3{
-	text-align: center;
-	color: white;
-}
-
-#block-block-3 h2{
-	color: white;
-	font-size: 1.3em;
-}
-
-#block-block-3 p{
-	color: white;
-	font-size: 1.1em;
-	line-height: 1.2em;
-}
-
-#block-block-3 a{
-	color: white;
-	font-style: italic;
-}
-
-#block-block-3 .block-content-inner{
-	background-image: none;
-	height: 180px;
-}
-
-#block-block-3 .block-content{
-	background-color: #007dc5;
-}
-
-#block-block-3 .block-inner{
-	margin-left: 0;
-}
-
-#block-block-4{
-	margin-bottom: 3px;
-}
-
-#block-block-4 h2,
-#block-block-4 h3{
-	text-align: center;
-	color: white;
-}
-
-#block-block-4 p{
-	color: white;
-}
-#block-block-4 a{
-	color: white;
-	font-style: italic;
-}
-
-#block-block-4 .block-content-inner{
-	background-image: none;
-	height: 150px;
-}
-
-#block-block-4 .block-content{
-	background-color:#008183;
-}
-
-#block-block-4 .block-inner{
-	margin-left: 0;
-}
-
+/* @group Publications Block */
 
 .biblio-recent-block .views-field-citation{
 	font-size: 0.9em;
 	line-height: 1.3em;
 	margin-bottom: 5px;
 }
+
+/* @end */
+
+/* @group Upcoming Block */
+
+.upcoming-events-block .views-field-field-event-location{
+	font-style: italic;
+	text-indent: 10px;
+}
+
+.upcoming-events-block .views-field-field-date{
+	text-indent: 10px;
+}
+.upcoming-events-block .views-row{
+	margin-bottom: 5px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+/* @end */
+
+/* @group Positions Block */
+
+/* @end */
+
+/* @group Blurbs Block */
+
+.blurbs-block .views-field-title a{
+	color: #307442;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.blurbs-block .views-row{
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border-bottom-style: groove;
+	border-bottom-width: 1px;
+}
+/* @end */
+
+
+/* @group Main Content */
 
 #main-content{
 	margin: 10px;
@@ -295,46 +333,17 @@ h2.block-title{
 	padding: 10px;
 }
 
-
 .article-teaser.article-sticky{
 	padding-left: 10px;
 }
 
-.views-row-even .article{
-	background-color: #e2e2e0;
+.additional-news{
+	margin-left: 20px;
 }
 
-#block-views-profile-about-block-1 .block-content{
-	background-color: #F9F9F7;
-}
+/* @end */
 
-#block-views-profile-about-block-1 .block-content-inner{
-	background-image: none;
-}
-
-.profile-block{
-	text-align: center;
-	font-size: 1.1em;
-	color: #3f5657;
-}
-.profile-block .views-field-field-user-name{
-	font-weight: bold;
-	font-size: 1.5em;
-	line-height: 1.1em;
-}
-
-.profile-block .views-field-field-profile-title{
-	font-style: italic;
-	margin-bottom: 5px;
-}
-
-#block-views-event-calendar-block-2 ul li{
-	list-style-type: none;
-}
-#block-views-event-calendar-block-2 .views-field-title a{
-	font-weight: bold;
-	color: #00723f;
-}
+/* @group Footer */
 
 #footer{
 	background: #e4e8de url(images/MSU-Wordmark.gif) no-repeat 30px center;
@@ -366,6 +375,8 @@ h2.block-title{
 #footer-inner .block-content-inner a:hover{
 	text-decoration: none;
 }
+
+/* @end */
 
 @media only screen and (max-width:320px) {
   .block-region-three-33-third{
@@ -411,4 +422,8 @@ h2.block-title{
 	background-image: none;
   }
   
+}
+
+.view-publications .biblio-export-buttons{
+	margin-left: 25px;
 }

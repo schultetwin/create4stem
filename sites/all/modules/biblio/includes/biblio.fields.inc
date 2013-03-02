@@ -22,8 +22,8 @@ function _biblio_field_extra_fields() {
     foreach ($fields as $key => $fld) {
       $label = check_plain($fld['title']);
       if ($fld['type'] == 'textarea' ||  $fld['type'] == 'contrib_widget') {
-        $key = $key .'_field';
-        $label = $label . ' (' . t('Fieldset') .')';
+        $key = $key . '_field';
+        $label = $label . ' (' . t('Fieldset') . ')';
       }
       $extras['node']['biblio']['form'][$key] = array(
         'label'       => $label,
@@ -32,11 +32,20 @@ function _biblio_field_extra_fields() {
       );
     }
     $extras['node']['biblio']['form']['other_fields'] = array(
-      'label'       => t('Other Biblio Fields') . ' (' . t('Fieldset') .')',
-      'description' => t('Biblio module form.'),
-      'weight'      => 0
-      );
+        'label'       => t('Other Biblio Fields') . ' (' . t('Fieldset') . ')',
+        'description' => t('Biblio module form.'),
+        'weight'      => 0
+    );
 
+    $extras['user']['user'] = array(
+        'form' => array(
+            'biblio_fieldset' => array(
+                'label' => t('User specific Biblio settings'),
+                'description' => t('Biblio module account form elements.'),
+                'weight' => -10,
+            ),
+        ),
+    );
 
   return $extras;
 }

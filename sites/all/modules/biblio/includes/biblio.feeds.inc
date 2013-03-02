@@ -5,9 +5,9 @@ function _biblio_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_
     foreach ($schema['fields'] as $field => $spec) {
       if (strstr($field, 'biblio_')) {
         $type = $spec['type'];
-        $length = isset($spec['length']) ? ' ['. $spec['length'] .']': '';
+        $length = isset($spec['length']) ? ' ['. $spec['length'] . ']': '';
         $targets[$field] = array(
-          'name' => $field . '  ('. $type . $length . ')',
+          'name' => $field . '  (' . $type . $length . ')',
           'description' =>'',
           'callback' => '_biblio_feeds_set__simple_target',
         );
@@ -32,28 +32,65 @@ function _biblio_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_
 function _biblio_feeds_set__type_target($source, $entity, $target, $value) {
   static $types = array();
 
+  if (empty($value)) {
+    return;
+  }
+
+  // Handle non-multiple value fields.
+  if (!is_array($value)) {
+    $value = array($value);
+  }
+
   if (isset($value[0]) && !empty($value[0])) {
-    if(empty($types)) {
-      $result = db_query('SELECT t.* FROM {biblio_types} as t WHERE t.tid > 0');
-      foreach ($result as $row) {
-        $types[$row->tid] = str_replace(" ","_",strtolower($row->name));
+    if (intval($value[0]) > 0) {
+      // value[0] is the bibio type ID
+      if (empty($types)) {
+        $result = db_query('SELECT t.* FROM {biblio_types} as t WHERE t.tid > 0');
+        foreach ($result as $row) {
+          $types[$row->tid] = $row->tid;
+        }
       }
+
+      $type_id = $value[0];
+      $entity->biblio_type = (isset($types[$type_id])) ? $type_id : 129;
     }
-    $type = array_search($value[0], $types);
-    $entity->biblio_type = (!empty($type)) ? $type : 129;
+    elseif (is_string($value[0])) {
+      // value[0] is the bibio type name
+      if (empty($types)) {
+        $result = db_query('SELECT t.* FROM {biblio_types} as t WHERE t.tid > 0');
+        foreach ($result as $row) {
+          $types[$row->tid] = str_replace(" ","_", strtolower($row->name));
+        }
+      }
+
+      $type = array_search($value[0], $types);
+      $entity->biblio_type = (!empty($type)) ? $type : 129;
+    }
   }
 }
 
 function _biblio_feeds_set__simple_target($source, $entity, $target, $value) {
+  if (empty($value)) {
+    return;
+  }
+
+  // Handle non-multiple value fields.
+  if (!is_array($value)) {
+    $value = array($value);
+  }
+
   if (isset($value[0]) && !empty($value[0])) {
     $entity->$target = $value[0];
-    if($target == 'biblio_abst_e') {
+    if ($target == 'biblio_abst_e') {
       $entity->biblio_formats[$target] = 'full_html';
     }
   }
 }
 
 function _biblio_feeds_set__contrib_target($source, $entity, $target, $value) {
+  if (is_string($value)) {
+    $value = explode('||', $value);
+  }
   foreach ($value as $author) {
     $entity->biblio_contributors[] =  array(
             'name' => $author,
@@ -169,6 +206,6 @@ function _biblio_feeds_oai_importer_default() {
   );
 
   return array(
-  	'biblio_oai' => $feeds_importer
+    'biblio_oai' => $feeds_importer
   );
 }
