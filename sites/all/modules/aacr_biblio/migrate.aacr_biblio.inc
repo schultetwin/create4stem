@@ -78,7 +78,7 @@ class AACRBiblioMigrate extends DynamicMigration {
     }
     
     if (isset($row->mail) && !empty($row->mail)) {
-      $uid_from_email = db_query('SELECT uid FROM users WHERE mail = :mail', array(':mail' => $row->mail))->fetch();
+      $uid_from_email = db_query('SELECT uid FROM users WHERE mail = :mail', array(':mail' => $row->mail))->fetchField();
       if ($uid_from_email) {
         $row->uid = $uid_from_email;
         $this->queueMessage(t('Able to get UID @uid from email address @mail', array('@uid' => $uid_from_email, '@mail' => $row->mail)), Migration::MESSAGE_INFORMATIONAL);
