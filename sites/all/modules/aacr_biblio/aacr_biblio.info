@@ -1,0 +1,8 @@
+name = AACR Biblio Migration
+description = Migration for AACR
+dependencies[] = biblio_extras
+core = 7.x
+
+files[] = migrate.aacr_biblio.inc
+files[] = migrate_keywords.aacr_biblio.inc
+files[] = migrate_contributers.aacr_biblio.inc

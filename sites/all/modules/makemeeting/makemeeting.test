@@ -123,6 +123,29 @@ class MakemeetingPollAdminTestCase extends DrupalWebTestCase {
   }
 
   /**
+   * Test the creation of event content with multiple makmeeting values
+   */
+  public function testEmptyField() {
+    $this->_testCreateField();
+
+    // Removing choice
+    $edit = array();
+    $edit['title'] = $this->randomName();
+    $this->drupalGet('node/add/event');
+    $this->drupalPostAJAX(NULL, $edit, array('new:0' => t('Remove')));
+    $this->verbose($this->content);
+    $this->assertNoRaw('<td class="makemeeting-choice-date">');
+
+    // Must not have answering form
+    $this->drupalPost(NULL, $edit, t('Save'));
+    $this->assertNoRaw('<table class="makemeeting-table');
+
+    // Must not have additional choice
+    $this->drupalGet('node/1/edit');
+    $this->assertNoRaw('<td class="makemeeting-choice-date">');
+  }
+
+  /**
    * Test answering the makemeeting poll
    */
   public function testAnswerEvent() {
@@ -133,6 +156,11 @@ class MakemeetingPollAdminTestCase extends DrupalWebTestCase {
     // Create the event as is
     $this->drupalPost(NULL, array(), t('Save'));
     $this->assertRaw('<input title="Tuesday 22 May 2012 bar" type="checkbox" id="edit-answers-1337644800sugg1" name="answers[1337644800:sugg:1]" value="1" class="form-checkbox"', 'Checkboxes exist');
+
+    // Test answering a poll
+    $this->assertRaw('<tr class="answer-form-row', 'Answer form exists');
+    $this->drupalPost(NULL, array(), t('Submit'));
+    $this->assertNoRaw('<tr class="answer-form-row', 'No answer form once submitted');
 
     // Test a single option form
     $this->_testFillMakemeetingForm();

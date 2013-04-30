@@ -1,8 +1,4 @@
-/* @override 
-	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?mijta5
-	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?mipgpc
-	http://createnew:8082/sites/all/themes/at_magazine/css/styles.custom.css?miqq0b
-*/
+
 
 /** 
  * Use this file to provide overrides to the main styles. This file always loads last
@@ -26,6 +22,11 @@ body{
 
 h2.block-title{
 	color: #00723f;
+}
+
+.feed-icon{
+	float: right;
+	padding: 0;
 }
 
 /* @end */
@@ -134,7 +135,7 @@ h2.block-title{
 }
 
 .featured-slide-item {
-	background-color: #256131;
+	background-color: #3f5657;
 }
 
 .views-field-field-featured-image{
@@ -147,7 +148,7 @@ h2.block-title{
 	left: 10px;
 	width: 580px;
 	height: 80px;
-	background-color:#256131;
+	background-color:#3f5657;
 	filter:alpha(opacity=80);
 	opacity: 0.8;
 	-moz-opacity:0.8;
@@ -254,16 +255,25 @@ h2.block-title{
 
 /* @end */
 
+/* @group Left Sidebar */
+
+.region-sidebar-first .block-title{
+	background: none;
+	color: #81814b;
+}
+
+.region-sidebar-first .menu li a{
+	font-weight: bold;
+}
+
+
+/* @end */
+
+
 /* @group Right Sidebar */
 
 .region-sidebar-second .block-content-inner{
 	background: none;
-}
-
-.region-sidebar-second .feed-icon{
-	text-align: right;
-	float: right;
-	padding: 0;
 }
 
 .region-sidebar-second .views-field-title a{
@@ -343,10 +353,36 @@ h2.block-title{
 
 /* @end */
 
+/* @group Groups */
+
+.og-context .sidebar{
+	padding-top: 15px;
+}
+
+.article-type-group{
+	padding-top: 0;
+}
+
+.article-type-group .article-content{
+	margin-top: 0;
+}
+
+.article-content .field-name-field-event-location{
+	font-style: italic;
+}
+
+/* @end */
+
+
 /* @group Footer */
 
 #footer{
 	background: #e4e8de url(images/MSU-Wordmark.gif) no-repeat 30px center;
+}
+
+#footer .local-contact{
+	float: right;
+	margin-left: 10px;
 }
 
 #footer .block-inner.clearfix{
@@ -374,6 +410,19 @@ h2.block-title{
 
 #footer-inner .block-content-inner a:hover{
 	text-decoration: none;
+}
+
+#footer .local-contact{
+	float: right;
+}
+
+#footer .local-contact .block-content-inner{
+	margin-left: 10px;
+	text-align: right;
+}
+
+#footer .feed-icon{
+	display: none;
 }
 
 /* @end */
@@ -426,4 +475,8 @@ h2.block-title{
 
 .view-publications .biblio-export-buttons{
 	margin-left: 25px;
+}
+
+.field-name-group-group{
+	text-align: right;
 }

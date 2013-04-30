@@ -36,8 +36,8 @@ function makemeeting_permission() {
 function makemeeting_menu() {
   $items['makemeeting/delete-answer/%makemeeting_answer'] = array(
     'title' => 'Remove an answer',
-    'page callback' => 'makemeeting_delete_answer',
-    'page arguments' => array(2),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('makemeeting_delete_answer', 2),
     'access callback' => 'makemeeting_delete_answer_access',
     'access arguments' => array(2),
     'type' => MENU_CALLBACK,
@@ -102,11 +102,18 @@ function makemeeting_edit_answer_access($answer) {
  *
  * @param $answer_id
  */
-function makemeeting_delete_answer($answer, $redirect = TRUE) {
+function makemeeting_delete_answer($form, &$form_state, $answer, $redirect = TRUE) {
+  $form['#answer'] = $answer;
+  return confirm_form(
+    $form,
+    t('Are you sure you want to delete the answer?'),
+    ''
+  );
+}
+
+function makemeeting_delete_answer_submit($form, &$form_state) {
+  $answer = $form['#answer'];
   db_delete('makemeeting_answers')->condition('answer_id', $answer->answer_id)->execute();
-  if ($redirect) {
-    drupal_goto($_GET['destination']);
-  }
 }
 
 /**
@@ -123,7 +130,7 @@ function makemeeting_edit_answer($answer, $type = 'ajax') {
   }
   $entity = $entities[$answer->entity_id];
   $field = $entity->{$answer->field_name}[$answer->language][$answer->delta];
-  $form = drupal_get_form('makemeeting_answers_form', $field, (array) $answer, $answer);
+  $form = drupal_get_form('makemeeting_answers_form_' . $answer->entity_id, $field, (array) $answer, $answer);
   if ($type == 'ajax') {
     $form['#theme'] = 'makemeeting_answer_row';
     // Replace 'ajax' word in form action
@@ -164,6 +171,9 @@ function makemeeting_field_widget_info() {
     'makemeeting_choices' => array(
       'label' => t('Makemeeting choices'),
       'field types' => array('makemeeting'),
+      'behaviors' => array(
+        'default value' => FIELD_BEHAVIOR_NONE,
+      ),
     ),
   );
 }
@@ -246,8 +256,7 @@ function makemeeting_field_widget_form(&$form, &$form_state, $field, $instance, 
     }
   }
 
-  // Calculate the choice and suggestion counts
-  $form_state['choice_count'] = isset($form_state['choice_count']) ? $form_state['choice_count'] : 1;
+  // Calculate the suggestion count
   if (empty($form_state['suggestion_count'])) {
     $form_state['suggestion_count'] = 1;
   }
@@ -271,12 +280,37 @@ function makemeeting_field_widget_form(&$form, &$form_state, $field, $instance, 
     }
   }
 
-  // Add initial or additional choices.
-  $existing_delta = $delta;
-  for (; $delta < $form_state['choice_count']; $delta++) {
-    $key = 'new:' . ($delta - $existing_delta);
-    $element['choices_wrapper']['choices'][$key] =
-      _makemeeting_choice_form($key, '', NULL, $form_state['suggestion_count']);
+  try {
+    list($entity_id) = entity_extract_ids($element['#entity_type'], $element['#entity']);
+  } catch (Exception $e) {
+    // Fail silently if the field is not attached to any entity yet.
+  }
+  if (!isset($form_state['choice_count'])) {
+    // If the entity isn't created yet, offer an empty choice, else no choice
+    if (!isset($entity_id)) {
+      $form_state['choice_count'] = 1;
+    }
+    else {
+      $form_state['choice_count'] = 0;
+    }
+  }
+  // Add choices as required.
+  if ($form_state['choice_count']) {
+    // Add a day to the last option's timestamp for the new default date
+    $last_option_timestamp = isset($choice['chdate']) ? _makemeeting_date_timestamp($choice['chdate']) : REQUEST_TIME;
+    $additional_stamp = strtotime('+1 day', $last_option_timestamp);
+    // Build default date
+    $default_date = array(
+      'month' => date('n', $additional_stamp),
+      'day' => date('j', $additional_stamp),
+      'year' => date('Y', $additional_stamp)
+    );
+    $existing_delta = $delta;
+    for (; $delta < $form_state['choice_count']; $delta++) {
+      $key = 'new:' . ($delta - $existing_delta);
+      $element['choices_wrapper']['choices'][$key] =
+        _makemeeting_choice_form($key, $default_date, NULL, $form_state['suggestion_count']);
+    }
   }
 
   // We prefix our buttons with 'makemeeting' to avoid conflicts
@@ -374,8 +408,10 @@ function makemeeting_choices_submit($form, &$form_state) {
 
   // Affect timestamp as key to each choice
   $choices = array();
-  foreach ($element['choices'] as $choice) {
-    $choices['choices'][_makemeeting_date_timestamp($choice['chdate'])] = $choice;
+  if (isset($element['choices'])) {
+    foreach ($element['choices'] as $choice) {
+      $choices['choices'][_makemeeting_date_timestamp($choice['chdate'])] = $choice;
+    }
   }
 
   // Handle other operations
@@ -419,8 +455,7 @@ function makemeeting_choices_submit($form, &$form_state) {
  */
 function makemeeting_choice_js($form, $form_state) {
   // Get the element from the parents of the clicked button
-  list($field_name, $language, $delta) = $form_state['clicked_button']['#parents'];
-  $element =& $form[$field_name][$language][$delta];
+  $element = drupal_array_get_nested_value($form, $form_state['clicked_button']['#parents']);
   return $element['choices_wrapper']['choices'];
 }
 
@@ -442,17 +477,19 @@ function makemeeting_answer_js($form, $form_state) {
   // We need to empty POST data to prevent the form
   // from being processed as submitted
   $_POST = array();
-  return drupal_get_form('makemeeting_answers_form', $field, $values);
+  $new_form = drupal_get_form('makemeeting_answers_form_' . $answer->entity_id, $field, $values);
+  // AJaX processing overrides form action, now retrieving the correct one
+  $query = parse_url($form['#action']);
+  $parameters = drupal_get_query_array($query['query']);
+  $new_form['#action'] = $parameters['destination'];
+  return $new_form;
 }
 
 /**
  * Implements hook_field_is_empty().
- *
- * This field cannot be empty as it will always
- * have a default choice of today's date
  */
-function makemeeting_field_is_empty() {
-  return FALSE;
+function makemeeting_field_is_empty($item) {
+  return empty($item['choices']);
 }
 
 /**
@@ -499,14 +536,26 @@ function makemeeting_field_formatter_info() {
 function makemeeting_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $content = array();
   foreach ($items as $delta => $item) {
+    list($entity_id) = entity_extract_ids($entity_type, $entity);
     $instance += array(
-      'entity_id' => reset(entity_extract_ids($entity_type, $entity)),
+      'entity_id' => $entity_id,
       'language' => $langcode,
       'delta' => $delta
     );
-    $content[] = drupal_get_form('makemeeting_answers_form', $item, $instance);
+    $content[] = drupal_get_form('makemeeting_answers_form_' . $instance['entity_id'], $item, $instance);
   }
   return $content;
+}
+
+/**
+ * Implements hook_forms().
+ */
+function makemeeting_forms($form_id, $args) {
+  if (preg_match('/^makemeeting_answers_form_\d+?$/', $form_id)) {
+    return array($form_id => array(
+      'callback' => 'makemeeting_answers_form',
+    ));
+  }
 }
 
 /**
@@ -576,16 +625,16 @@ function makemeeting_answers_form($form, $form_state, $item, $instance, $answer 
     $results = $select->execute();
     // And add each answer to our results array for futher use
     foreach ($results as $result) {
-      $answer = unserialize($result->value);
-      if (is_array($answer)) {
-        foreach ($answer as $key => $value) {
+      $_answer = unserialize($result->value);
+      if (is_array($_answer)) {
+        foreach ($_answer as $key => $value) {
           if ($value) {
             $answers[$key] = empty($answers[$key]) ? 1 : $answers[$key] + 1;
           }
         }
       }
-      elseif (is_string($answer) && $answer) {
-        $answers[$answer] = empty($answers[$answer]) ? 1 : $answers[$answer] + 1;
+      elseif (is_string($_answer) && $_answer) {
+        $answers[$_answer] = empty($answers[$_answer]) ? 1 : $answers[$_answer] + 1;
       }
     }
   }
@@ -767,8 +816,10 @@ function theme_makemeeting_answers($vars) {
   if (!empty($form['answer_edited'])) {
     $select->condition('answer_id', $form['answer_edited']['#value']->answer_id, '!=');
   }
-  $results = $select->execute()->fetchAllAssoc('uid');
+  $results = $select->execute()->fetchAllAssoc('answer_id');
+  $uids = array();
   foreach ($results as $result) {
+    $uids[] = $result->uid;
     $row = array();
     // Display name of the person that has answered
     $row[] = _makemeeting_render_cell_name($result->uid, $result->name, $result->answer_id);
@@ -816,7 +867,7 @@ function theme_makemeeting_answers($vars) {
   $limited = $item['limit'] > 0 && $item['limit'] * count($row_suggestions) - 1 <= count($results);
   // ... not closed,
   $closed = $item['closed'] || $limited;
-  $submitted = user_is_logged_in() && in_array($user->uid, array_keys($results));
+  $submitted = user_is_logged_in() && in_array($user->uid, array_values($uids));
   // ... user has access and has not already submitted
   $show_form = user_access('answer makemeeting form') && !$closed && !$submitted;
   if ($show_form) {
@@ -941,6 +992,7 @@ function _makemeeting_render_cell_name($uid, $name, $answer_id) {
       '#options' => array(
         'query' => drupal_get_destination(),
         'html' => TRUE,
+        'attributes' => array('rel' => 'nofollow'),
       ),
     ),
     'edit-link' => array(
@@ -953,6 +1005,7 @@ function _makemeeting_render_cell_name($uid, $name, $answer_id) {
       '#options' => array(
         'query' => drupal_get_destination(),
         'html' => TRUE,
+        'attributes' => array('rel' => 'nofollow'),
       ),
       '#ajax' => array(
         'wrapper' => 'answer-' . $answer_id,
@@ -1125,6 +1178,7 @@ function _makemeeting_choice_form($key, $value = '', $suggestions = array(), $si
     '#type' => 'submit',
     '#parents' => array(),
     '#submit' => array('makemeeting_choices_submit'),
+    '#limit_validation_errors' => array(array('choices')),
     '#ajax' => array(
       'callback' => 'makemeeting_choice_js',
       'wrapper' => 'makemeeting-choices',

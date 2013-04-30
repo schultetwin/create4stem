@@ -1,0 +1,11 @@
+<?php
+
+function biblio_extras_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'destination handlers' => array(
+      'BiblioDestinationHandler',
+    ),
+  );
+  return $api;
+}

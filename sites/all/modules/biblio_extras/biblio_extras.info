@@ -1,0 +1,7 @@
+name = Biblio Extras
+description = Adds currently biblio migration information
+core = 7.x
+
+dependencies[] = migrate
+
+files[] = biblio.inc
