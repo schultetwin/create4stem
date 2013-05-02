@@ -18,7 +18,7 @@ class AACRBiblioContributersJoin extends DynamicMigration {
     $this->addFieldMapping('cid', 'cid')->sourceMigration('AACRBiblioContributers');
     $this->addFieldMapping('vid', 'vid');
     
-    $this->source = new MigrateSourceSQL($source_query);
+    $this->source = new MigrateSourceSQL($source_query, array(), $source_query->countQuery(), array('map_joinable' => false));
     $this->destination = new MigrateDestinationTable('biblio_contributor');
     $this->map = new MigrateSQLMap($this->machineName, MigrateDestinationTable::getKeySchema('biblio_contributor'), MigrateDestinationTable::getKeySchema('biblio_contributor'));
     
