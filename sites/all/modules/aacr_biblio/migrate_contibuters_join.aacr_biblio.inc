@@ -14,13 +14,31 @@ class AACRBiblioContributersJoin extends DynamicMigration {
     $source_query->fields('bc');
     
     $this->addSimpleMappings(array('auth_type', 'auth_category', 'rank'));
-    $this->addFieldMapping('nid', 'nid')->sourceMigration('AACRBiblioMigrate');
+    $this->addFieldMapping('nid', 'nid');
     $this->addFieldMapping('cid', 'cid')->sourceMigration('AACRBiblioContributers');
     $this->addFieldMapping('vid', 'vid');
     
     $this->source = new MigrateSourceSQL($source_query, array(), $source_query->countQuery(), array('map_joinable' => false));
     $this->destination = new MigrateDestinationTable('biblio_contributor');
-    $this->map = new MigrateSQLMap($this->machineName, MigrateDestinationTable::getKeySchema('biblio_contributor'), MigrateDestinationTable::getKeySchema('biblio_contributor'));
+    $this->map = new MigrateSQLMap($this->machineName, 
+        array(
+          'nid' => array(
+            'type' => 'int',
+            'unsigned' => true,
+          ),
+          'vid' => array(
+            'type' => 'int',
+            'unsigned' => true,
+          ),
+          'cid' => array(
+            'type' => 'int',
+            'unsigned' => true,
+          ),
+          'auth_category' => array(
+            'type' => 'int',
+            'unsigned' => true,
+          )
+        ), MigrateDestinationTable::getKeySchema('biblio_contributor'));
     
   }
   
