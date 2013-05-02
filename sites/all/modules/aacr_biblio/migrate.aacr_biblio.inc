@@ -92,19 +92,5 @@ class AACRBiblioMigrate extends DynamicMigration {
       $row->uid = 1;
     }
     
-    $row->biblio_keyword = array();
-    
-    // Get all the keywords
-    $contributer_query = Database::getConnection('default', 'crcstl')
-        ->select('biblio_contributor_data', 'bcd');
-    $contributer_query->fields('bcd', array('cid', 'name'));
-    $contributer_results = $contributer_query->execute();
-    while ($contributer = $contributer_results->fetchAssoc()) {
-      $row->biblio_contributer[] = array(
-        'cid' => $this->handleSourceMigration('AACRBiblioContributers', $contributer['cid']),
-        'name' => $contributer['name'],
-      );
-    }
-    
   }
 }

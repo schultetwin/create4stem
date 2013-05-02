@@ -7,6 +7,7 @@ function aacr_biblio_migrate_api() {
       'AACRBiblioMigrate' => array('class_name' => 'AACRBiblioMigrate'),
       'AACRBiblioKeywords' => array('class_name' => 'AACRBiblioKeywords'),
       'AACRBiblioContributers' => array('class_name' => 'AACRBiblioContributers'),
+      'AACRBiblioContributersJoin' => array('class_name' => 'AACRBiblioContributersJoin'),
     ),
   );
   
