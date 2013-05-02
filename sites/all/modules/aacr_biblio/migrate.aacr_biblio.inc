@@ -50,8 +50,7 @@ class AACRBiblioMigrate extends DynamicMigration {
     $this->addFieldMapping('body:summary', 'biblio_abst_f');
     
     $this->addFieldMapping('uid', 'uid');
-    $this->addFieldMapping('og_group_ref')->description(t('Do we need to set a specific group?'))->issueGroup('FIXME');
-
+    $this->addFieldMapping('og_group_ref')->defaultValue('408');
     $this->addFieldMapping('log')->defaultValue('Importing from AACR/CRCSTL Database');
     $this->addFieldMapping('language')->defaultValue('und');
     $this->addFieldMapping('revision_uid')->defaultValue(1);
