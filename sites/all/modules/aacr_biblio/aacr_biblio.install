@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Removing og things
+ */
+function aacr_biblio_update_7000(&$sandbox) {
+  foreach (node_type_get_names() as $bundle => $value) {
+    // Dependent on a dynamic migration.
+    $machine_name = 'OgMigrateGroup' . ucfirst($bundle);
+    if (MigrationBase::getInstance($machine_name, 'OgMigrateGroup', array('bundle' => $bundle))) {
+      Migration::deregisterMigration($machine_name);
+    }
+  }
+  Migration::deregisterMigration('OgMigrateContent');
+  Migration::deregisterMigration('OgMigrateAddFields');
+  Migration::deregisterMigration('OgMigrateGroup');
+  Migration::deregisterMigration('OgMigrateMembership');
+  Migration::deregisterMigration('OgMigrateRoles');
+  Migration::deregisterMigration('OgMigrateUserRoles');
+}

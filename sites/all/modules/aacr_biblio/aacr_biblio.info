@@ -7,3 +7,4 @@ files[] = migrate.aacr_biblio.inc
 files[] = migrate_keywords.aacr_biblio.inc
 files[] = migrate_contributers.aacr_biblio.inc
 files[] = migrate_contibuters_join.aacr_biblio.inc
+files[] = migrate_aacr_files.aacr_biblio.inc

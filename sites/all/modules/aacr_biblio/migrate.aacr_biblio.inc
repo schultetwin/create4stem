@@ -44,13 +44,16 @@ class AACRBiblioMigrate extends DynamicMigration {
       'biblio_custom4', 'biblio_custom5', 'biblio_custom6', 'biblio_custom7'));
     
     
-    $this->addFieldMapping('biblio_keywords', 'biblio_keywords')->sourceMigration('AACRBiblioKeywords');
+    $this->addFieldMapping('biblio_keywords', 'biblio_keywords');
     
     $this->addFieldMapping('body', 'biblio_abst_e');
     $this->addFieldMapping('body:summary', 'biblio_abst_f');
     
     $this->addFieldMapping('uid', 'uid');
-    $this->addFieldMapping('og_group_ref')->defaultValue('408');
+    //$this->addFieldMapping('og_group_ref')->defaultValue('408');
+    
+
+    
     $this->addFieldMapping('log')->defaultValue('Importing from AACR/CRCSTL Database');
     $this->addFieldMapping('language')->defaultValue('und');
     $this->addFieldMapping('revision_uid')->defaultValue(1);
@@ -59,7 +62,7 @@ class AACRBiblioMigrate extends DynamicMigration {
     
     $this->addUnmigratedSources(array('type', 'language', 'moderate', 'vid', 'biblio_lang',
       ));
-    $this->addUnmigratedDestinations(array('path', 'biblio_sort_title', 'biblio_formats'));
+    $this->addUnmigratedDestinations(array('path', 'biblio_sort_title', 'biblio_formats', 'type'));
   }
   
   public function prepareRow($row) {
@@ -69,11 +72,13 @@ class AACRBiblioMigrate extends DynamicMigration {
     
     // Get all the keywords
     $keyword_query = Database::getConnection('default', 'crcstl')
-        ->select('biblio_keyword_data', 'bkd');
-    $keyword_query->fields('bkd', array('kid'));
+        ->select('biblio_keyword', 'bk');
+    $keyword_query->leftJoin('biblio_keyword_data', 'bkd', 'bkd.kid = bk.kid');
+    $keyword_query->fields('bkd', array('word'));
+    $keyword_query->condition('nid', $row->nid, '=');
     $keyword_results = $keyword_query->execute();
     while ($keyword = $keyword_results->fetchAssoc()) {
-      $row->biblio_keyword[] = $keyword['kid'];
+      $row->biblio_keywords[] = $keyword['word'];
     }
     
     if (isset($row->mail) && !empty($row->mail)) {
@@ -90,6 +95,8 @@ class AACRBiblioMigrate extends DynamicMigration {
     else {
       $row->uid = 1;
     }
+    
+    unset($row->type);
     
   }
 }
