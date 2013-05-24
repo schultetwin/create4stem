@@ -8,6 +8,12 @@ class AACRBiblioFiles extends DynamicMigration {
     
     $this->dependencies[] = 'AACRBiblioMigrate';
     
+    $sub_query = Database::getConnection('default', 'crcstl')
+        ->select('biblio_keyword', 'bk');
+    $sub_query->fields('bk', array('nid'));
+    $sub_query->leftJoin('biblio_keyword_data', 'bkd', 'bk.kid = bkd.kid');
+    $sub_query->condition('bkd.word', 'AACR', '=');
+    
     $source_query = Database::getConnection('default', 'crcstl')
         ->select('files', 'f');
     $source_query->fields('f');
@@ -15,6 +21,7 @@ class AACRBiblioFiles extends DynamicMigration {
     $source_query->innerJoin('upload', 'up', 'up.fid = f.fid');
     $source_query->innerJoin('node', 'n', 'n.nid = up.nid');
     $source_query->condition('n.type', 'biblio', '=');
+    $source_query->condition('up.nid', $sub_query, 'IN');
     
     $this->systemOfRecord = Migration::DESTINATION;
     

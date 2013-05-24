@@ -84,7 +84,7 @@ class AACRBiblioMigrate extends DynamicMigration {
     $keyword_query->leftJoin('biblio_keyword_data', 'bkd', 'bkd.kid = bk.kid');
     $keyword_query->fields('bkd', array('word'));
     $keyword_query->condition('nid', $row->nid, '=');
-    $keyword_query->condition('bkd.word', 'AACR-pub', '!='); // Asked to not migrate
+    $keyword_query->condition('bkd.word', 'AACR-pub', '!='); // Asked to not migrate  
     $keyword_results = $keyword_query->execute();
     while ($keyword = $keyword_results->fetchAssoc()) {
       $row->biblio_keywords[] = $keyword['word'];

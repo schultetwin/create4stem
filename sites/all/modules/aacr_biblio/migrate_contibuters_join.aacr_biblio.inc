@@ -9,8 +9,15 @@ class AACRBiblioContributersJoin extends DynamicMigration {
     $this->dependencies[] = 'AACRBiblioMigrate';
     $this->dependencies[] = 'AACRBiblioContributers';
     
+     $sub_query = Database::getConnection('default', 'crcstl')
+        ->select('biblio_keyword', 'bk');
+    $sub_query->fields('bk', array('nid'));
+    $sub_query->leftJoin('biblio_keyword_data', 'bkd', 'bk.kid = bkd.kid');
+    $sub_query->condition('bkd.word', 'AACR', '=');
+    
     $source_query = Database::getConnection('default', 'crcstl')
         ->select('biblio_contributor', 'bc');
+    $source_query->condition('bc.nid', $sub_query, 'IN');
     $source_query->groupBy("bc.nid, bc.cid, bc.auth_type, bc.rank");
     $source_query->fields('bc');
     
