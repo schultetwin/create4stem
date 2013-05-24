@@ -9,11 +9,19 @@ class AACRBiblioMigrate extends DynamicMigration {
     $this->dependencies[] = 'AACRBiblioContributers';
     
     $extra_fields = array();
+    
+    $sub_query = Database::getConnection('default', 'crcstl')
+        ->select('biblio_keyword', 'bk');
+    $sub_query->fields('bk', array('nid'));
+    $sub_query->leftJoin('biblio_keyword_data', 'bkd', 'bk.kid = bkd.kid');
+    $sub_query->condition('bkd.word', 'AACR', '=');
+    
     $source_query = Database::getConnection('default', 'crcstl')
         ->select('node', 'n');
     $source_query->leftJoin('biblio', 'b', 'n.vid = b.vid');
     $source_query->leftJoin('users', 'u', 'n.uid = u.uid');
     $source_query->condition('n.type', 'biblio', '=');
+    $source_query->condition('n.nid', $sub_query, 'IN');
     $source_query->fields('n');
     $source_query->fields('b');
     $source_query->fields('u', array('mail'));
@@ -76,6 +84,7 @@ class AACRBiblioMigrate extends DynamicMigration {
     $keyword_query->leftJoin('biblio_keyword_data', 'bkd', 'bkd.kid = bk.kid');
     $keyword_query->fields('bkd', array('word'));
     $keyword_query->condition('nid', $row->nid, '=');
+    $keyword_query->condition('bkd.word', 'AACR-pub', '!='); // Asked to not migrate
     $keyword_results = $keyword_query->execute();
     while ($keyword = $keyword_results->fetchAssoc()) {
       $row->biblio_keywords[] = $keyword['word'];

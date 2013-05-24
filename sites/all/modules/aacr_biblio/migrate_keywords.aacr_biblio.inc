@@ -8,6 +8,7 @@ class AACRBiblioKeywords extends DynamicMigration {
     
     $source_query = Database::getConnection('default', 'crcstl')
         ->select('biblio_keyword_data', 'bkd');
+    $source_query->condition('bkd.word', 'AACR-pub', '!=');
     $source_query->fields('bkd');
     
     $this->addSimpleMappings(array('word'));
