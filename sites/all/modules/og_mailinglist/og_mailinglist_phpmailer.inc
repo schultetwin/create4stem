@@ -52,8 +52,8 @@ function og_mailinglist_send_comment_email($comment, $node, $gids) {
   $headers['subject'] = 'Re: ' . $groups_list . ' ' . $node->title;
 
   // Decorate body.
-  $body = field_get_items('comment', $comment, 'comment_body');
-  $html = check_markup($body[0]['value']);
+  $rendered_body = comment_view($comment, $node);
+  $html = $rendered_body['comment_body']['0']['#markup'];
 
   // Add the user's signature and footer.
   $html .= theme('og_mailinglist_attached_files', array('comment' => $comment));

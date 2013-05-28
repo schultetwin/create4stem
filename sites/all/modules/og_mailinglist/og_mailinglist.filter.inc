@@ -331,5 +331,27 @@ function _og_mailinglist_find_unusual_quoted_sections(&$lines) {
       }
     }
   }
+
+  // If still no quotes, search for Outlook 14.0 style stupid ones,
+  // e.g starting with the following:
+  // From: Shai [mailto:shai@example.com]
+  // Sent: Wednesday, March 06, 2013 7:46 PM
+  // To: John Smith
+  // Subject: Re: [meta] silly thought
+  if (empty($quotes)) {
+    foreach ($lines as $line_number => $line) {
+      if (preg_match('/^\s*From\:/', $line)
+	      and count($lines) > $line_number + 3
+        and preg_match('/^\s*Sent\:/', $lines[$line_number + 1])
+		    and preg_match('/^\s*To\:/', $lines[$line_number + 2])
+		    and preg_match('/^\s*Subject\:/', $lines[$line_number + 3])
+        and $line_number != 0
+        ) {
+        // A quote starts here.
+        $quotes[] = array('start' => $line_number, 'end' => count($lines) - 1);
+      }
+    }
+  }
+
   return $quotes;
 }
