@@ -743,8 +743,7 @@ function _og_mailinglist_save_files($entity_type, $entity, $attachments) {
   }
 
   if (isset($node)) {
-    field_attach_presave('node', $node);
-    field_attach_update('node', $node);
+    node_save($node);
   }
 }
 
