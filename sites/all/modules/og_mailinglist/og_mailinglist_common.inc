@@ -235,8 +235,9 @@ function theme_og_mailinglist_attached_files($variables) {
     if (!empty($files)) {
       $html .= "<br />\n";
       $html .= "Attached files:<br />\n";
-      foreach ($files as $file) {
-        $html .= l($file['filename'], file_create_url($file['uri'])) . "<br />\n";
+      foreach ($files as $file_info) {
+        $file = file_load($file_info['fid']);
+        $html .= l($file->filename, file_create_url($file->uri)) . "<br />\n";
       }
     }
   }
