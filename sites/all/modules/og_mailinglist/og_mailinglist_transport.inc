@@ -679,7 +679,7 @@ function _og_mailinglist_parse_content($part) {
   return $content;
 }
 
-function _og_mailinglist_save_files($entity_type, &$entity, $attachments) {
+function _og_mailinglist_save_files($entity_type, $entity, $attachments) {
   $image_field = _og_mailinglist_get_field($entity_type, 'image');
   $file_field = _og_mailinglist_get_field($entity_type, 'file');
 
@@ -691,7 +691,7 @@ function _og_mailinglist_save_files($entity_type, &$entity, $attachments) {
     $filename = _og_mailinglist_sanitise_filename($attachment['filename']);
 
     // Save the data to a temporary file.
-    $file = file_save_data($attachment['data'], 'temporary://' . $filename);
+    $file = file_save_data($attachment['data'], 'temporary://' . $filename, FILE_EXISTS_RENAME);
 
     // If file is an image and image field is present.
     $image_errors = file_validate_is_image($file);
@@ -717,8 +717,8 @@ function _og_mailinglist_save_files($entity_type, &$entity, $attachments) {
     if ($field->directory) {
       $path .= 'public://' . $field->directory . '/' . $filename;
       $dir = 'public://' . $field->directory;
-      if (!file_prepare_directory($dir))  {
-        drupal_set_message(t('Directory cannot be made writable'), NULL, 'error');
+      if (!file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS))  {
+        drupal_set_message(t('Directory @dir cannot be made writable', array('@dir' => $dir)), 'error');
       }
     }
     else {
@@ -726,21 +726,25 @@ function _og_mailinglist_save_files($entity_type, &$entity, $attachments) {
     }
 
     $file = file_move($file, $path);
+    
+    if (!$file) {
+      drupal_set_message(t('OG Mailinglist failed to attach file @file to entity', array('@file ' => $filename)), 'error');
+    }
     $file->display = 1;
 
     if ($entity_type == $field->type) {
       $entity->{$field->name}[LANGUAGE_NONE][$file->fid] = (array) $file;
+      $node = $entity;
     }
     elseif ($entity_type == 'comment' and $field->type == 'node') {
-      if (!isset($node)) {
-        $node = node_load($entity->nid);
-      }
+      $node = node_load($entity->nid);
       $node->{$field->name}[LANGUAGE_NONE][$file->fid] = (array) $file;
     }
   }
 
   if (isset($node)) {
-    node_save($node);
+    field_attach_presave('node', $node);
+    field_attach_update('node', $node);
   }
 }
 
