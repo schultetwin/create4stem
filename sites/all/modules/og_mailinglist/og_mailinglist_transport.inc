@@ -718,7 +718,8 @@ function _og_mailinglist_save_files($entity_type, $entity, $attachments) {
       $path .= 'public://' . $field->directory . '/' . $filename;
       $dir = 'public://' . $field->directory;
       if (!file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS))  {
-        drupal_set_message(t('Directory @dir cannot be made writable', array('@dir' => $dir)), 'error');
+        watchdog('og_mailinglsit', 'Directory @dir cannot be made writable', array('@dir' => $dir), WATCHDOG_ERROR);
+        return;
       }
     }
     else {
@@ -728,7 +729,8 @@ function _og_mailinglist_save_files($entity_type, $entity, $attachments) {
     $file = file_move($file, $path);
     
     if (!$file) {
-      drupal_set_message(t('OG Mailinglist failed to attach file @file to entity', array('@file ' => $filename)), 'error');
+      watchdog('og_mailinglsit', 'OG Mailinglist failed to attach file @file to entity', array('@file ' => $filename), WATCHDOG_ERROR);
+      return;
     }
     $file->display = 1;
 
