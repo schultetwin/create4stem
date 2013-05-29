@@ -713,9 +713,8 @@ function _og_mailinglist_save_files($entity_type, $entity, $attachments) {
 
     $filename = file_munge_filename($file->filename, $field->extensions);
     // TODO: decide whether to use private:// based on group privacy.
-    $path = 'public://';
     if ($field->directory) {
-      $path .= 'public://' . $field->directory . '/' . $filename;
+      $path = 'public://' . $field->directory . '/' . $filename;
       $dir = 'public://' . $field->directory;
       if (!file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS))  {
         watchdog('og_mailinglsit', 'Directory @dir cannot be made writable', array('@dir' => $dir), WATCHDOG_ERROR);
