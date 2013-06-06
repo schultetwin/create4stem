@@ -1585,6 +1585,20 @@ function field_ui_field_settings_form($form, &$form_state, $instance) {
     $form['field']['#description'] = '<div class="messages error">' . t('There is data for this field in the database. The field settings can no longer be changed.') . '</div>' . $form['field']['#description'];
   }
 
+  $form['field']['cardinality'] = array(
+    '#type' => 'select',
+    '#title' => t('Maximum number of values users can enter'),
+    '#options' => array(FIELD_CARDINALITY_UNLIMITED => t('Unlimited')) + drupal_map_assoc(range(1, 10)),
+    '#default_value' => $field['cardinality'],
+  );
+
+  if (field_behaviors_widget('multiple values', $instance) == FIELD_BEHAVIOR_DEFAULT) {
+    $form['field']['cardinality']['#description'] = t('%unlimited will provide an %add-more button so users can add as many values as they like.', array(
+      '%unlimited' => t('Unlimited'),
+      '%add-more' => t('Add another item'),
+    ));
+  }
+
   // Build the non-configurable field values.
   $form['field']['field_name'] = array('#type' => 'value', '#value' => $field['field_name']);
   $form['field']['type'] = array('#type' => 'value', '#value' => $field['type']);
@@ -1598,11 +1612,6 @@ function field_ui_field_settings_form($form, &$form_state, $instance) {
   $additions = module_invoke($field['module'], 'field_settings_form', $field, $instance, $has_data);
   if (is_array($additions)) {
     $form['field']['settings'] = $additions;
-  }
-  if (empty($form['field']['settings'])) {
-    $form['field']['settings'] = array(
-      '#markup' => t('%field has no field settings.', array('%field' => $instance['label'])),
-    );
   }
   $form['#entity_type'] = $entity_type;
   $form['#bundle'] = $bundle;
@@ -1923,19 +1932,6 @@ function field_ui_field_edit_form($form, &$form_state, $instance) {
     '#tree' => TRUE,
   );
 
-  // Build the configurable field values.
-  $description = t('Maximum number of values users can enter for this field.');
-  if (field_behaviors_widget('multiple values', $instance) == FIELD_BEHAVIOR_DEFAULT) {
-    $description .= '<br/>' . t("'Unlimited' will provide an 'Add more' button so the users can add as many values as they like.");
-  }
-  $form['field']['cardinality'] = array(
-    '#type' => 'select',
-    '#title' => t('Number of values'),
-    '#options' => array(FIELD_CARDINALITY_UNLIMITED => t('Unlimited')) + drupal_map_assoc(range(1, 10)),
-    '#default_value' => $field['cardinality'],
-    '#description' => $description,
-  );
-
   // Add additional field type settings. The field type module is
   // responsible for not returning settings that cannot be changed if
   // the field already has data.
@@ -2000,7 +1996,7 @@ function field_ui_default_value_widget($field, $instance, &$form, &$form_state) 
   $instance['description'] = '';
 
   // @todo Allow multiple values (requires more work on 'add more' JS handler).
-  $element += field_default_form($instance['entity_type'], NULL, $field, $instance, LANGUAGE_NONE, $items, $element, $form_state, 0);
+  $element += field_default_form($instance['entity_type'], NULL, $field, $instance, LANGUAGE_NONE, $items, $element, $form_state);
 
   return $element;
 }
@@ -2049,7 +2045,7 @@ function field_ui_field_edit_form_validate($form, &$form_state) {
  */
 function field_ui_field_edit_form_submit($form, &$form_state) {
   $instance = $form_state['values']['instance'];
-  $field = $form_state['values']['field'];
+  $field = isset($form_state['values']['field']) ? $form_state['values']['field'] : $form['#field'];
 
   // Update any field settings that have changed.
   $field_source = field_info_field($instance['field_name']);

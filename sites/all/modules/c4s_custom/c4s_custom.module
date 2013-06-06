@@ -61,3 +61,14 @@ function c4s_custom_page_build(&$page) {
     drupal_set_title(t('Publications'));
   }
 }
+
+/**
+ * Implements hook_views_pre_execute().
+ */
+function c4s_custom_views_pre_render(&$view) {
+  if ($view->name == 'groups_people') {
+		if (views_get_page_view() == $view) {
+			og_context('node', node_load($view->args[0]));
+		}
+  }
+}
